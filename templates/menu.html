@@ -5,90 +5,123 @@
     Our mission is to bring joy, creativity, and vibrant color to every bite — because dessert should never be dull. Every piece in our collection is freshly crafted by hand, using only the finest ingredients, sourced for their flavor and quality.
     From our rich, velvety cupcakes to refreshing rainbow-inspired drinks, each item is a celebration of flavor, freshness, and fun.
     Whether you’re craving something sweet, fruity, creamy, or bold, we’ve got a treat to match every mood and every color of the rainbow.</p>
+
 <div class="menu-grid">
 
-    <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Red Velvet Cupcake">
+<div class="modal fade" id="redVelvetModal" tabindex="-1" aria-labelledby="redVelvetModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="redVelvetModalLabel">Red Velvet Cupcake - Allergens</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Ingredients/Allergens:</strong></p>
+        <p>Flour, eggs, dairy, food coloring<br>(Contains gluten, eggs, milk)</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="card">
+        <img src="{{ url_for('static', filename='images/red_velvet_cupcake.jpg') }}" alt="Red Velvet Cupcake">
         <div class="card-content">
             <div class="item-name">Red Velvet Cupcake</div>
+            <div class="description"><strong>Moist red velvet sponge topped with cream cheese frosting</strong></div>
+            <button type="button" class="btn btn-outline-info"
+                    data-bs-toggle="modal" data-bs-target="#redVelvetModal">
+              View Allergens
+            </button>
             <div class="price">£2.50</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Strawberry Shortcake">
+        <img src="{{ url_for('static', filename='images/strawberry_shortcake.jpg') }}" alt="Strawberry Shortcake">
         <div class="card-content">
             <div class="item-name">Strawberry Shortcake</div>
+            <div class="description"><strong>Layers of sponge, strawberries, and whipped cream</strong></div>
             <div class="price">£3.75</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Orange Macaron">
+        <img src="{{ url_for('static', filename='images/orange_macaron.jpg') }}" alt="Orange Macaron">
         <div class="card-content">
             <div class="item-name">Orange Macaron</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Almond flour, egg whites, orange zest (contains nuts, eggs)</div>
             <div class="price">£1.90</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Citrus Tart">
+        <img src="{{ url_for('static', filename='images/citrus_tart.jpg') }}" alt="Citrus Tart">
         <div class="card-content">
             <div class="item-name">Citrus Tart</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Lemon, orange, flour, butter (contains gluten, milk, eggs)</div>
             <div class="price">£3.20</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Lemon Meringue Pie">
+        <img src="{{ url_for('static', filename='images/lemon_meringue_pi.jpg') }}" alt="Lemon Meringue Pie">
         <div class="card-content">
             <div class="item-name">Lemon Meringue Pie</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Lemon curd, eggs, flour, sugar (contains gluten, eggs)</div>
             <div class="price">£4.00</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Yellow Sunshine Cookie">
+        <img src="{{ url_for('static', filename='images/yellow_sunshine_cookie.jpg') }}" alt="Yellow Sunshine Cookie">
         <div class="card-content">
             <div class="item-name">Yellow Sunshine Cookie</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Lemon, butter, flour (contains gluten, milk)</div>
             <div class="price">£1.50</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Matcha Swirl Brownie">
+        <img src="{{ url_for('static', filename='images/matcha_swirl_brownie.jpg') }}" alt="Matcha Swirl Brownie">
         <div class="card-content">
             <div class="item-name">Matcha Swirl Brownie</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Matcha, cocoa, flour, butter (contains gluten, milk, eggs)</div>
             <div class="price">£2.80</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Pistachio Muffin">
+        <img src="{{ url_for('static', filename='images/pistachio_muffin.jpg') }}" alt="Pistachio Muffin">
         <div class="card-content">
             <div class="item-name">Pistachio Muffin</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Pistachios, flour, butter (contains nuts, gluten, milk, eggs)</div>
             <div class="price">£2.60</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Blueberry Cheesecake">
+        <img src="{{ url_for('static', filename='images/blueberry_cheesecake.jpg') }}" alt="Blueberry Cheesecake">
         <div class="card-content">
             <div class="item-name">Blueberry Cheesecake</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Blueberries, cream cheese, biscuit base (contains gluten, milk)</div>
             <div class="price">£4.25</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Blue Macaron">
+        <img src="{{ url_for('static', filename='images/blue_macaron.jpg') }}" alt="Blue Macaron">
         <div class="card-content">
             <div class="item-name">Blue Macaron</div>
+            <div class="allergens"><strong>Ingredients/Allergens:</strong> Almond flour, egg whites, vanilla (contains nuts, eggs)</div>
             <div class="price">£1.90</div>
         </div>
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Grape Frosted Donut">
+        <img src="{{ url_for('static', filename='images/grape_frosted_doughnut.jpg') }}" alt="Grape Frosted Donut">
         <div class="card-content">
             <div class="item-name">Grape Frosted Donut</div>
             <div class="price">£2.10</div>
@@ -96,7 +129,7 @@
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Lavender Shortbread">
+        <img src="{{ url_for('static', filename='images/lavender_shortbread.jpg') }}" alt="Lavender Shortbread">
         <div class="card-content">
             <div class="item-name">Lavender Shortbread</div>
             <div class="price">£2.00</div>
@@ -104,7 +137,7 @@
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Pink Strawberry Donut">
+        <img src="{{ url_for('static', filename='images/strawberry-glazed_doughnut.jpg') }}" alt="Pink Strawberry Doughnut">
         <div class="card-content">
             <div class="item-name">Pink Strawberry Donut</div>
             <div class="price">£2.20</div>
@@ -112,7 +145,7 @@
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Pink Croissant">
+        <img src="{{ url_for('static', filename='images/pink_croissant.jpg') }}" alt="Pink Croissant">
         <div class="card-content">
             <div class="item-name">Pink Croissant</div>
             <div class="price">£2.80</div>
@@ -120,7 +153,7 @@
     </div>
 
     <div class="card">
-        <img src="https://via.placeholder.com/300x180" alt="Red Berry Fizz">
+        <img src="{{ url_for('static', filename='images/red_berry_fizz.jpg') }}" alt="Red Berry Fizz">
         <div class="card-content">
             <div class="item-name">Red Berry Fizz</div>
             <div class="price">£2.80</div>

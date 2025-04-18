@@ -33,7 +33,7 @@ h1 {
 
 .card img {
   width: 100%;
-  height: 180px;
+  height: 270px;
   object-fit: cover;
 }
 
@@ -46,6 +46,20 @@ h1 {
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
+}
+
+.description {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #666; /* optional: makes it a soft grey */
+  margin-top: 8px; /* optional: adds space above */
+}
+
+.allergens {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #666; /* optional: makes it a soft grey */
+  margin-top: 8px; /* optional: adds space above */
 }
 
 .price {
