@@ -1,17 +1,20 @@
-from flask import render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect, session
 import bcrypt
 
-from application import app
-from datetime import datetime
-from application.utilities import get_time_of_day
-from application.fake_data import products, people
-import os
-from application.forms.register_form import RegisterForm
-from application.data_access import add_person, get_people
+# from application import app
+# from datetime import datetime
+# from application.utilities import get_time_of_day
+# from application.fake_data import products, people
+# import os
+# from application.forms.register_form import RegisterForm
+# from application.data_access import add_person, get_people
 
 app = Flask(__name__)
-
-
+@app.route('/menu')
+def menu():
+    return render_template('menu.html', title='Menu')
+if __name__ == '__main__':
+    app.run(debug=True)
 @app.route('/')
 @app.route('/home')
 def home():
@@ -27,9 +30,7 @@ def founders():
     return render_template('founders.html', title='Founders')
 
 
-@app.route('/menu')
-def menu():
-    return render_template('menu.html', title='Menu')
+
 
 
 @app.route('/locations')
@@ -76,8 +77,7 @@ def register():
     return render_template('register.html', form=register_form, title='Add Person', message=error)
 
 
-if __name__ == '__main__':
-    app.run(debug=True)
+
 
 
 
@@ -151,7 +151,7 @@ def logout():
     session.pop('role', None)
     session['loggedIn'] = False
     return redirect(url_for('home'))
-
+#
 
 @app.route('/adminlogin')
 def adminlogin():
