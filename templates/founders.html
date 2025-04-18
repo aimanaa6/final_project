@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}Founders - Bakery Website{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Meet Our Founders</h1>
+    <p>Welcome to Kaasp Bakery! Our bakery was founded by a group of passionate bakers who are dedicated to bringing you the best baked goods in town. Here are the amazing people behind our success:</p>
+
+    <div class="row">
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card founder-card">
+                <img src="{{ url_for('static', filename='images/kinga.jpg') }}" class="card-img-top" alt="Kinga">
+                <div class="card-body">
+                    <h5 class="card-title">Kinga</h5>
+                    <p class="card-text">Kinga is a master baker with over 20 years of experience in the industry. Their expertise in bread making is unparalleled.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card founder-card">
+                <img src="{{ url_for('static', filename='images/aiman.jpg') }}" class="card-img-top" alt="Aiman">
+                <div class="card-body">
+                    <h5 class="card-title">Aiman</h5>
+                    <p class="card-text">Aiman specializes in pastries and has a knack for creating delicious and flaky treats that everyone loves.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card founder-card">
+                <img src="{{ url_for('static', filename='images/anita.jpg') }}" class="card-img-top" alt="Anita">
+                <div class="card-body">
+                    <h5 class="card-title">Anita</h5>
+                    <p class="card-text">Anita is our cake artist, known for designing beautiful and delectable cakes for all occasions.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card founder-card">
+                <img src="{{ url_for('static', filename='images/sai.jpg') }}" class="card-img-top" alt="Sai">
+                <div class="card-body">
+                    <h5 class="card-title">Sami</h5>
+                    <p class="card-text">Sai brings a unique touch to our bakery with their innovative recipes and creative ideas.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card founder-card">
+                <img src="{{ url_for('static', filename='images/pooja.jpg') }}" class="card-img-top" alt="Pooja">
+                <div class="card-body">
+                    <h5 class="card-title">Pooja</h5>
+                    <p class="card-text">Pooja is the heart of our customer service, ensuring that every customer leaves with a smile.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -40,7 +40,24 @@ def locations():
 def productofthemonth():
     return render_template('productofthemonth.html', title='Product of the Month')
 
-people = []
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
+ # Handle the form submission (e.g., save to database, send email, etc.)
+        return redirect(url_for('thank_you'))
+    return render_template('contact.html')
+
+@app.route('/thank_you')
+def thank_you():
+    return render_template('thank_you.html')
+
+@app.route('/newjoincommunitypage')
+def newjoincommunitypage():
+    return render_template('newjoincommunitypage.html'
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

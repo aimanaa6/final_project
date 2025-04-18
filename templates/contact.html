@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}Contact Us - Bakery Website{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Contact Us</h1>
+    <p>If you have any questions or comments, please feel free to reach out to us using the form below.</p>
+
+    <form action="{{ url_for('contact') }}" method="POST" class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+            <div class="invalid-feedback">
+                Please enter a valid email address.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <select class="form-select" id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject</option>
+                <option value="general">General Inquiry</option>
+                <option value="order">Order Inquiry</option>
+                <option value="feedback">Feedback</option>
+                <option value="other">Other</option>
+            </select>
+            <div class="invalid-feedback">
+                Please select a subject.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+            <div class="invalid-feedback">
+                Please enter your message.
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
