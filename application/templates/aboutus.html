@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block title %}About Us - Kaasp Bakery{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>About Kaasp Bakery</h1>
+    <p class="lead">Baking joy since 2020 in the heart of the community.</p>
+
+    <div class="mt-4">
+        <h3>Our Story</h3>
+        <p>Kaasp Bakery was founded by five passionate bakers and friends who came together over a shared dream of creating the perfect pastry haven.</p>
+    </div>
+
+    <div class="mt-4">
+        <h3>Our Values</h3>
+        <ul>
+            <li>Freshly baked, every day</li>
+            <li>Locally sourced ingredients</li>
+            <li>Friendly and welcoming service</li>
+            <li>Creativity in every bake</li>
+        </ul>
+    </div>
+
+    <div class="mt-4">
+        <h3>Meet the Founders</h3>
+        <div class="row">
+            {% for person in ['Amir', 'Pooja', 'Jade', 'Sara', 'Liam'] %}
+            <div class="col-md-4 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ person }}</h5>
+                        <p class="card-text">Co-Founder & Baker</p>
+                        <p>Passionate about creating delicious treats and building a warm community space.</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
