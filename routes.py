@@ -13,6 +13,10 @@ app = Flask(__name__)
 @app.route('/menu')
 def menu():
     return render_template('menu.html', title='Menu')
+
+@app.route('/featuredproduct')
+def featuredproduct():
+    return render_template('featuredproduct.html', title='Product of the Month')
 if __name__ == '__main__':
     app.run(debug=True)
 @app.route('/')
@@ -37,9 +41,6 @@ def founders():
 def locations():
     return render_template('locations.html', title='Locations')
 
-@app.route('/productofthemonth')
-def productofthemonth():
-    return render_template('productofthemonth.html', title='Product of the Month')
 
 people = []
 

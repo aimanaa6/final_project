@@ -7,155 +7,164 @@
     Whether you’re craving something sweet, fruity, creamy, or bold, we’ve got a treat to match every mood and every color of the rainbow.</p>
 <p>⚠️ Please note: Our products may contain or come into contact with the following allergens: <strong>gluten, milk, eggs, tree nuts (including pistachios and almonds), peanuts, soy, sesame, sulphites, and food colourings.</strong></p>
 
-<div class="menu-grid">
-<div class="modal fade" id="redVelvetModal" tabindex="-1" aria-labelledby="redVelvetModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="redVelvetModalLabel">Red Velvet Cupcake - Allergens</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+ <section class="product-section food-products">
+    <h2>Bakery Items</h2>
+    <div class="menu-grid">
+    <div class="modal fade" id="redVelvetModal" tabindex="-1" aria-labelledby="redVelvetModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="redVelvetModalLabel">Red Velvet Cupcake - Allergens</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Ingredients/Allergens:</strong></p>
+            <p>Flour, eggs, dairy, food coloring<br>(Contains gluten, eggs, milk)</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
-      <div class="modal-body">
-        <p><strong>Ingredients/Allergens:</strong></p>
-        <p>Flour, eggs, dairy, food coloring<br>(Contains gluten, eggs, milk)</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
     </div>
-  </div>
-</div>
+          <div class="card">
+            <img src="{{ url_for('static', filename='images/red_velvet_cupcake.jpg') }}" alt="Red Velvet Cupcake">
+            <div class="card-content">
+                <div class="item-name">Red Velvet Cupcake</div>
+                <div class="description"><strong>Moist red velvet sponge topped with cream cheese frosting</strong></div>
+                <button type="button" class="btn btn-outline-info"
+                        data-bs-toggle="modal" data-bs-target="#redVelvetModal">
+                  View Allergens
+                </button>
+                <div class="price">£2.50</div>
+            </div>
+        </div>
 
-      <div class="card">
-        <img src="{{ url_for('static', filename='images/red_velvet_cupcake.jpg') }}" alt="Red Velvet Cupcake">
-        <div class="card-content">
-            <div class="item-name">Red Velvet Cupcake</div>
-            <div class="description"><strong>Moist red velvet sponge topped with cream cheese frosting</strong></div>
-            <button type="button" class="btn btn-outline-info"
-                    data-bs-toggle="modal" data-bs-target="#redVelvetModal">
-              View Allergens
-            </button>
-            <div class="price">£2.50</div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/strawberry_shortcake.jpg') }}" alt="Strawberry Shortcake">
+            <div class="card-content" data-category="cupcake">
+                <div class="item-name">Strawberry Shortcake</div>
+                <div class="description"><strong>Layers of sponge, strawberries, and whipped cream</strong></div>
+                <div class="price">£3.75</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/orange_macaron.jpg') }}" alt="Orange Macaron">
+            <div class="card-content">
+                <div class="item-name">Orange Macaron</div>
+                <div class="description"><strong>Crispy almond shell with orange zest ganache</strong></div>
+                <div class="price">£1.90</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/citrus_tart.jpg') }}" alt="Citrus Tart">
+            <div class="card-content">
+                <div class="item-name">Citrus Tart</div>
+                <div class="description"><strong>Tangy orange and lemon curd in a buttery crust</strong></div>
+                <div class="price">£3.20</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/lemon_meringue_pi.jpg') }}" alt="Lemon Meringue Pie">
+            <div class="card-content">
+                <div class="item-name">Lemon Meringue Pie</div>
+                <div class="description"><strong>Classic lemon filling topped with toasted meringue</strong></div>
+                <div class="price">£4.00</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/yellow_sunshine_cookie.jpg') }}" alt="Yellow Sunshine Cookie">
+            <div class="card-content">
+                <div class="item-name">Yellow Sunshine Cookie</div>
+                <div class="description"><strong>Buttery cookie with lemon glaze</strong></div>
+                <div class="price">£1.50</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/matcha_swirl_brownie.jpg') }}" alt="Matcha Swirl Brownie">
+            <div class="card-content">
+                <div class="item-name">Matcha Swirl Brownie</div>
+                <div class="description"><strong>Fudgy brownie with a green tea swirl</strong></div>
+                <div class="price">£2.80</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/pistachio_muffin.jpg') }}" alt="Pistachio Muffin">
+            <div class="card-content">
+                <div class="item-name">Pistachio Muffin</div>
+                <div class="description"><strong>Light green muffin with pistachio bits</strong></div>
+                <div class="price">£2.60</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/blueberry_cheesecake.jpg') }}" alt="Blueberry Cheesecake">
+            <div class="card-content">
+                <div class="item-name">Blueberry Cheesecake</div>
+                <div class="description"><strong>Rich cheesecake with a blueberry topping</strong></div>
+                <div class="price">£4.25</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/blue_macaron.jpg') }}" alt="Blue Macaron">
+            <div class="card-content">
+                <div class="item-name">Blue Macaron</div>
+                <div class="description"><strong>Delicate blue macaron with vanilla cream</strong></div>
+                <div class="price">£1.90</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/grape_frosted_doughnut.jpg') }}" alt="Grape Frosted Donut">
+            <div class="card-content">
+                <div class="item-name">Grape Frosted Donut</div>
+                <div class="description"><strong>Fluffy donut with purple grape icing and sprinkles</strong></div>
+                <div class="price">£2.10</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/lavender_shortbread.jpg') }}" alt="Lavender Shortbread">
+            <div class="card-content">
+                <div class="item-name">Lavender Shortbread</div>
+                <div class="description"><strong>Fragrant shortbread with a hint of lavender</strong></div>
+                <div class="price">£2.00</div>
+                <a href="{{ url_for('featuredproduct') }}" class="btn btn-outline-info">
+                CLICK ME!
+                </a>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/strawberry-glazed_doughnut.jpg') }}" alt="Pink Strawberry Donut">
+            <div class="card-content">
+                <div class="item-name">Pink Strawberry Donut</div>
+                <div class="description"><strong>Soft yeast donut with strawberry glaze and pink sprinkles</strong></div>
+                <div class="price">£2.20</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/pink_croissant.jpg') }}" alt="Pink Croissant">
+            <div class="card-content">
+                <div class="item-name">Pink Croissant</div>
+                <div class="description"><strong>Flaky, buttery croissant with a delicate strawberry glaze</strong></div>
+                <div class="price">£2.80</div>
+            </div>
         </div>
     </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/strawberry_shortcake.jpg') }}" alt="Strawberry Shortcake">
-        <div class="card-content" data-category="cupcake">
-            <div class="item-name">Strawberry Shortcake</div>
-            <div class="description"><strong>Layers of sponge, strawberries, and whipped cream</strong></div>
-            <div class="price">£3.75</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/orange_macaron.jpg') }}" alt="Orange Macaron">
-        <div class="card-content">
-            <div class="item-name">Orange Macaron</div>
-            <div class="description"><strong>Crispy almond shell with orange zest ganache</strong></div>
-            <div class="price">£1.90</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/citrus_tart.jpg') }}" alt="Citrus Tart">
-        <div class="card-content">
-            <div class="item-name">Citrus Tart</div>
-            <div class="description"><strong>Tangy orange and lemon curd in a buttery crust</strong></div>
-            <div class="price">£3.20</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/lemon_meringue_pi.jpg') }}" alt="Lemon Meringue Pie">
-        <div class="card-content">
-            <div class="item-name">Lemon Meringue Pie</div>
-            <div class="description"><strong>Classic lemon filling topped with toasted meringue</strong></div>
-            <div class="price">£4.00</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/yellow_sunshine_cookie.jpg') }}" alt="Yellow Sunshine Cookie">
-        <div class="card-content">
-            <div class="item-name">Yellow Sunshine Cookie</div>
-            <div class="description"><strong>Buttery cookie with lemon glaze</strong></div>
-            <div class="price">£1.50</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/matcha_swirl_brownie.jpg') }}" alt="Matcha Swirl Brownie">
-        <div class="card-content">
-            <div class="item-name">Matcha Swirl Brownie</div>
-            <div class="description"><strong>Fudgy brownie with a green tea swirl</strong></div>
-            <div class="price">£2.80</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/pistachio_muffin.jpg') }}" alt="Pistachio Muffin">
-        <div class="card-content">
-            <div class="item-name">Pistachio Muffin</div>
-            <div class="description"><strong>Light green muffin with pistachio bits</strong></div>
-            <div class="price">£2.60</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/blueberry_cheesecake.jpg') }}" alt="Blueberry Cheesecake">
-        <div class="card-content">
-            <div class="item-name">Blueberry Cheesecake</div>
-            <div class="description"><strong>Rich cheesecake with a blueberry topping</strong></div>
-            <div class="price">£4.25</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/blue_macaron.jpg') }}" alt="Blue Macaron">
-        <div class="card-content">
-            <div class="item-name">Blue Macaron</div>
-            <div class="description"><strong>Delicate blue macaron with vanilla cream</strong></div>
-            <div class="price">£1.90</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/grape_frosted_doughnut.jpg') }}" alt="Grape Frosted Donut">
-        <div class="card-content">
-            <div class="item-name">Grape Frosted Donut</div>
-            <div class="description"><strong>Fluffy donut with purple grape icing and sprinkles</strong></div>
-            <div class="price">£2.10</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/lavender_shortbread.jpg') }}" alt="Lavender Shortbread">
-        <div class="card-content">
-            <div class="item-name">Lavender Shortbread</div>
-            <div class="description"><strong>Fragrant shortbread with a hint of lavender</strong></div>
-            <div class="price">£2.00</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/strawberry-glazed_doughnut.jpg') }}" alt="Pink Strawberry Donut">
-        <div class="card-content">
-            <div class="item-name">Pink Strawberry Donut</div>
-            <div class="description"><strong>Soft yeast donut with strawberry glaze and pink sprinkles</strong></div>
-            <div class="price">£2.20</div>
-        </div>
-    </div>
-
-    <div class="card">
-        <img src="{{ url_for('static', filename='images/pink_croissant.jpg') }}" alt="Pink Croissant">
-        <div class="card-content">
-            <div class="item-name">Pink Croissant</div>
-            <div class="description"><strong>Flaky, buttery croissant with a delicate strawberry glaze</strong></div>
-            <div class="price">£2.80</div>
-        </div>
-    </div>
-
+</section>
+<br>
+<section class="product-section drink-products">
+  <h3>Drinks</h3>
+    <div class="menu-grid">
     <div class="card">
         <img src="{{ url_for('static', filename='images/red_berry_fizz.jpg') }}" alt="Red Berry Fizz">
         <div class="card-content">
@@ -279,7 +288,8 @@
             <div class="item-name">Strawberry Milkshake</div>
             <div class="description"><strong>Creamy milkshake blended with real strawberries</strong></div>
             <div class="price">£3.30</div>
+        </div>
+        </div>
     </div>
-   </div>
-</div>
+</section>
 {% endblock %}

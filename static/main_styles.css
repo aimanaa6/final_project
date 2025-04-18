@@ -67,3 +67,37 @@ h1 {
   color: #2e7d32;
   font-weight: bold;
 }
+
+.overlay-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.featured-product-overlay {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  z-index: 10;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Optional: adds readability */
+}
+
+.overlay-text h2 {
+  font-size: 2rem;
+  color: #5c4b51;
+}
+
+.overlay-text p {
+  font-size: 1.2rem;
+  color: #6b4e71;
+}
+
