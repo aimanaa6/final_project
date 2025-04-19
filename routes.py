@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 import bcrypt
-from application import app
-from application.register_customer import register_customer, check_customerdetails, get_db_connection
+# from application import app
+# from application.register_customer import register_customer, check_customerdetails, get_db_connection
 import datetime
 
 # from application import app
