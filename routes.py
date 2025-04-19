@@ -222,6 +222,33 @@ def communitypage():
         return render_template('communitypage.html', username=username, title='Community Page')
     return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
 
+@app.route('/find_branch', methods=['GET', 'POST'])
+def find_branch():
+    branches = []
+    message = None
+
+    if request.method == 'POST':
+        town = request.form.get('town')
+
+        if not town:
+            message = "Please enter a town."
+        else:
+            conn = get_db_connection()
+            cursor = conn.cursor(dictionary=True)
+
+            query = """
+                SELECT b.branch_name, l.location_name
+                FROM branches b
+                JOIN locations l ON b.location_id = l.location_id
+                WHERE LOWER(l.location_name) = LOWER(%s)
+            """
+            cursor.execute(query, (town,))
+            branches = cursor.fetchall()
+
+            if not branches:
+                message = f"No branches found in {town.title()}."
+
+    return render_template('find_branch.html', branches=branches, message=message)
 
 
 if __name__ == '__main__':

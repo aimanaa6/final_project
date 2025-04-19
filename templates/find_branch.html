@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+<div class="container py-5">
+  <h2 class="text-center mb-4">Find a Branch Near You</h2>
+
+  <form method="POST" class="mb-4">
+    <div class="mb-3">
+      <label for="town" class="form-label">Enter your town:</label>
+      <input type="text" name="town" id="town" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Search</button>
+  </form>
+
+  {% if message %}
+    <div class="alert alert-info">{{ message }}</div>
+  {% endif %}
+
+  {% if branches %}
+    <h3 class="text-center mt-4">Branches in {{ request.form.town.title() }}:</h3>
+    <ul class="list-group">
+        {% for branch in branches %}
+            <li class="list-group-item">{{ branch.branch_name }}</li>
+        {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+
+{% endblock %}
