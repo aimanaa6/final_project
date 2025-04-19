@@ -19,11 +19,11 @@ admin_password_hashed = bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('home.html', title='Home')
+    return render_template('home.html', title='Welcome to Kaasp Bakery')
 
 @app.route('/aboutus')
 def aboutus():
-    return render_template('aboutus.html', title='About Us')
+    return render_template('aboutus.html', title='Our Story')
 
 @app.route('/adminlogin', methods=['GET', 'POST'])
 def adminlogin():
