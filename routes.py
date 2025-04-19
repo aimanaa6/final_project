@@ -1,5 +1,8 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 import bcrypt
+from application import app
+from application.register_customer import register_customer, check_customerdetails, get_db_connection
+import datetime
 
 # from application import app
 # from datetime import datetime
@@ -10,7 +13,7 @@ import bcrypt
 # from application.data_access import add_person, get_people
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Required for session management
+app.secret_key = 'test'  # Required for session management
 
 # Hardcoded admin credentials
 admin_username = 'admin'
@@ -69,8 +72,6 @@ def locations():
 def featuredproduct():
     return render_template('featuredproduct.html', title='Product of the Month')
 
-people = []
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -96,15 +97,103 @@ def newjoincommunitypage():
 # add a notification of success
 
 @app.route('/login', methods=['GET', 'POST'])
+
+@app.route('/login', methods=['GET', 'POST'])
+
+# def login():
+#     # app.logger.debug("Start of login")
+#     if request.method == 'POST':
+#         session['username'] = request.form['username']
+#         # app.logger.debug("Username is: " + session['username'])
+#         session['loggedIn'] = True
+#         session['role'] = 'admin'
+#         return redirect(url_for('communitypage'))
+#     return render_template('loginfailed.html', username=False, title='Login Failed')
+
 def login():
-    # app.logger.debug("Start of login")
+    error = None
+    next_page = request.args.get('next', url_for('home'))  # Get 'next' URL or default to home
+
     if request.method == 'POST':
-        session['username'] = request.form['username']
-        # app.logger.debug("Username is: " + session['username'])
-        session['loggedIn'] = True
-        session['role'] = 'admin'
-        return redirect(url_for('communitypage'))
-    return render_template('loginfailed.html', username=False, title='Login Failed')
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        if not username or not password:
+            error = "Please fill in all fields."
+        elif check_customerdetails(username, password):
+            session['username'] = username  # Store in session
+            return redirect(next_page)  # Redirect to originally requested page
+        else:
+            error = "Incorrect Username or Password."
+
+    return render_template('login.html', error=error, next_page=next_page)
+
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    # Handle form submission
+    if request.method == 'POST':
+        # Check if logged in
+        if 'username' not in session:
+            # Save form data in session to repopulate later
+            session['contact_form_data'] = {
+                'subject_id': request.form.get('subject_id'),
+                'message': request.form.get('message')
+            }
+            return redirect(url_for('login', next=url_for('contact')))
+
+        # Process form for logged-in users
+        username = session['username']
+        subject_id = request.form.get('subject_id')
+        message = request.form.get('message')
+        date = datetime.date.today()
+
+        conn = get_db_connection()
+        try:
+            with conn.cursor(dictionary=True) as cursor:
+                # Get user and subject info
+                cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
+                user_result = cursor.fetchone()
+
+                cursor.execute("SELECT subject_id FROM subjects WHERE subject_description = %s", (subject_id,))
+                subject_result = cursor.fetchone()
+
+                if not user_result:
+                    return "User not found", 404
+                if not subject_result:
+                    return "Subject not found", 404
+
+                # Insert message
+                insert_query = """
+                    INSERT INTO contactus (username, subject_id, message, date, customer_id)
+                    VALUES (%s, %s, %s, %s, %s)
+                """
+                cursor.execute(insert_query, (
+                    username,
+                    subject_result['subject_id'],
+                    message,
+                    date,
+                    user_result['customer_id']
+                ))
+                conn.commit()
+
+                # Clear saved form data
+                if 'contact_form_data' in session:
+                    session.pop('contact_form_data')
+
+                return "Thanks for your message!"
+        finally:
+            conn.close()
+
+    # Handle GET request
+    username = session.get('username')
+    form_data = session.pop('contact_form_data', None) if 'username' in session else None
+
+    return render_template('contact.html',
+                           username=username,
+                           subject_id=form_data['subject_id'] if form_data else None,
+                           message=form_data['message'] if form_data else None)
+
 
 @app.route('/logout')
 def logout():
