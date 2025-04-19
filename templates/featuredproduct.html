@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container text-center my-5">
+  <h1>🌈 Product of the Month</h1>
+  <p>Each month, we feature a vibrant delight we think you'll absolutely love.</p>
+</div>
+<div class="featured-product-overlay position-relative text-center">
+  <div class="overlay-text">
+    <h2>Product of the Month</h2>
+    <p>Lavender Shortbread – A gentle joy for spring 🌿</p>
+  </div>
+
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{{ url_for('static', filename='images/lavender_shortbread.jpg') }}" class="d-block w-100" alt="Lavender Shortbread">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static', filename='images/lavender_box.jpg') }}" class="d-block w-100" alt="Lavender Box">
+      </div>
+      <div class="carousel-item">
+        <img src="{{ url_for('static', filename='images/lavender_field_background.jpg') }}" class="d-block w-100" alt="Lavender Field">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+<br>
+<div class="container mt-5">
+  <h3>Why We Love It</h3>
+    <p>A delicate treat to welcome spring.</p>
+    <p>This April, we're celebrating the season of renewal with our beautifully fragrant Lavender Shortbread. Light, buttery, and infused with a gentle floral note, it's the perfect companion to a cup of tea or a sunny afternoon moment.</p>
+    <p>Lavender is a subtle nod to blooming gardens and Easter gatherings, and its soft purple hue brings a touch of calm elegance to your table. Whether you're sharing with loved ones or savoring solo, this little biscuit offers a peaceful pause in every bite.</p>
+    <p>Why Lavender? Because spring deserves something as gentle and joyful as the season itself. 🌿💜</p>
+
+</div>
+{% endblock %}

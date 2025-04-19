@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home - Kaasp Bakery{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="text-center">
+        <h1>{{ title }}</h1>
+        <p class="lead">Delicious bakes, made fresh every day.</p>
+        <div class="mb-4">
+            <div class="p-5 bg-light rounded">
+                <h2>Handcrafted with love</h2>
+                <p>We offer a wide range of cakes, pastries, and breads — all baked daily with the finest ingredients.</p>
+                <a href="/menu" class="btn btn-primary">View Our Menu</a>  <!-- Temporarily hardcoded URL -->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class="mt-5">Customer Favourites</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Strawberry Shortcake</h5>
+                    <p class="card-text">Layers of sponge, strawberries, and whipped cream.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Yellow Sunshine Cookie</h5>
+                    <p class="card-text">Buttery cookie with lemon glaze.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Blueberry Cheesecake</h5>
+                    <p class="card-text">Rich cheesecake with a blueberry topping.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
