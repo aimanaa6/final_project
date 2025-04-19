@@ -1,13 +1,41 @@
 {% extends "layout.html" %}
 
-{% block title %}Welcome to Kaasp Community{% endblock %}
+{% block title %}Thank You from KAASP{% endblock %}
 
 {% block content %}
 <div class="container">
-    <h1>Welcome to the Kaasp Community!</h1>
-    <p>You're now part of our community - we're thrilled to have you! Enjoy!</p>
-    <p>Watch out for the latest updates, recipes, and events from Kaasp Bakery.</p>
-    <a href="{{ url_for('community_page') }}" class="btn btn-primary">See our content</a>
+    <!-- Button to trigger modal (optional) -->
+    <button type="button" class="btn btn-primary" id="launchModalButton" data-bs-toggle="modal" data-bs-target="#thankYouModal" style="display: none;">
+        Launch Thank You Modal
+    </button>
 
+    <!-- Modal -->
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="dialog">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="thankYouModalLabel">Thank You!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 20px;">
+                    <p>Thank you for signing up to our newsletter/community. We have received your subscription and will keep you updated with our latest news and offers.</p>
+                    <p>In the meantime, feel free to browse our website and check out our delicious baked goods.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('home') }}" class="btn btn-outline-primary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const launchModalButton = document.getElementById('launchModalButton');
+        {% if session.pop('show_modal', None) %}
+            launchModalButton.style.display = 'block'; // Show button
+        {% endif %}
+    });
+</script>
+
 {% endblock %}

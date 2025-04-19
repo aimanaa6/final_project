@@ -3,97 +3,54 @@
 {% block title %}Community - Bakery Website{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1>Kaasp Community</h1>
-    <p>Welcome to the Kaasp Bakery community! Here you can find various recipes shared by our members, along with photos and a sneak peaks into some of our upcoming events!.</p>
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5 fw-bold text-primary">KAASP Community</h1>
+        <p class="lead text-muted">Explore recipes, events, and creative vibes shared by our amazing bakery fam!</p>
+    </div>
 
-    <!-- Events Section -->
-    <section class="events">
-        <h2>Upcoming Events</h2>
-        <div class="card mb-4">
+    <!-- Upcoming Events Section -->
+    <section class="events mb-5">
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3">🎉 Upcoming Events</h2>
+        <div class="card shadow-sm">
             <img src="{{ url_for('static', filename='images/event1.jpg') }}" class="card-img-top" alt="May Opening in London">
             <div class="card-body">
-                <h5 class="card-title">May Opening of Our Next Location in London</h5>
-                <p class="card-text">We're hoping to see you all at the opening of our new, secret location bakery in London. More details coming soon!</p>
+                <h5 class="card-title fw-bold">May Opening of Our Next Location in London</h5>
+                <p class="card-text">Join us for the secret unveiling of our newest spot in London! More details coming soon. Bring your sweet tooth 🍩</p>
+                <span class="badge bg-info text-dark">New!</span>
             </div>
         </div>
     </section>
 
-    <!-- Recipe Posts Section -->
+    <!-- Recipes Section -->
     <section class="recipe-posts">
-        <h2>Recipe Posts</h2>
-        <div class="row" id="recipe-list">
-            <div class="col-md-4 recipe-card" data-category="bread">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe1.jpg') }}" class="card-img-top" alt="Delicious Bread">
-                    <div class="card-body">
-                        <h5 class="card-title">Chunky, Fluffy Orange Challah Bread</h5>
-                        <p class="card-text"> One of our star bakers, Amanda, is very passionate about turmeric and its health benefits. Checkout her orange bread recipe below.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">🧁 Community Recipes</h2>
+        <div class="row g-4">
+            {% for recipe in [
+                {'img': 'recipe1.jpg', 'title': 'Chunky, Fluffy Orange Challah Bread', 'text': 'Amanda’s turmeric-powered bread recipe.', 'category': 'bread'},
+                {'img': 'recipe2.jpg', 'title': 'Red Chocolate Cake', 'text': 'A rich twist on red velvet.', 'category': 'cake'},
+                {'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = 💕.', 'category': 'pastry'},
+                {'img': 'recipe4.jpg', 'title': 'Blue Chai Latte', 'text': 'Chai with a blue twist from our fans.', 'category': 'drink'},
+                {'img': 'recipe5.jpg', 'title': 'Green Matcha Cookies', 'text': 'Vibrant, crunchy, and slightly healthy.', 'category': 'cookie'},
+                {'img': 'recipe6.jpg', 'title': 'Sourdough Bread', 'text': 'Master the sour rise.', 'category': 'bread'},
+                {'img': 'recipe7.jpg', 'title': 'Red Velvet Cake', 'text': 'For all your celebrations.', 'category': 'cake'},
+                {'img': 'recipe8.jpg', 'title': 'Croissants', 'text': 'Perfect your flaky layers.', 'category': 'pastry'}
+            ] %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
+                    <img src="{{ url_for('static', filename='images/' ~ recipe.img) }}" class="card-img-top" alt="{{ recipe.title }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        <p class="card-text text-muted">{{ recipe.text }}</p>
+                        <a href="#" class="btn btn-outline-primary mt-auto">Read More</a>
+                    </div>
+                    <div class="card-footer bg-white border-0">
+                        <span class="badge bg-light text-dark text-capitalize">{{ recipe.category }}</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 recipe-card" data-category="cake">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe2.jpg') }}" class="card-img-top" alt="Chocolate Cake">
-                    <div class="card-body">Red Chocolate Cake</h5>
-                        <p class="card-text">Indulge in this rich and moist chocolate cake recipe which takes from Red Velvet in terms of its colors!. Our founders' favourite.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 recipe-card" data-category="pastry">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe3.jpg') }}" class="card-img-top" alt="Pastry Delight">
-                    <div class="card-body">
-                        <h5 class="card-title"> Pink Puff Pastry Delight</h5>
-                        <p class="card-text">Try out this delightful recipe whch uses beetroot and puff pastry - it's perfect for any occasion.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 recipe-card" data-category="drink">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe4.jpg') }}" class="card-img-top" alt="Chai Latte">
-                    <div class="card-body">
-                        <h5 class="card-title"> Customer recipe: Blue Chai Latte</h5>
-                        <p class="card-text">Enjoy this warm and comforting chai latte recipe shared by one of our community members, with a twist - blue colouring.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 recipe-card" data-category="cookie">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe5.jpg') }}" class="card-img-top" alt="Green Matcha Cookies">
-                    <div class="card-body">
-                        <h5 class="card-title">Green Matcha Cookies</h5>
-                        <p class="card-text">Try these unique and delicious green matcha cookies for a health(ier!) treat.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 recipe-card" data-category="bread">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe6.jpg') }}" class="card-img-top" alt="Sourdough Bread">
-                    <div class="card-body">
-                        <h5 class="card-title">Sourdough Bread</h5>
-                        <p class="card-text">Master the art of making sourdough bread with this comprehensive guide.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 recipe-card" data-category="cake">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe7.jpg') }}" class="card-img-top" alt="Red Velvet Cake">
-                    <div class="card-body">
-                        <h5 class="card-title">Red Velvet Cake</h5>
-                        <p class="card-text">Bake a stunning red velvet cake that's perfect for celebrations.</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 recipe-card" data-category="pastry">
-                <div class="card mb-4">
-                    <img src="{{ url_for('static', filename='images/recipe8.jpg') }}" class="card-img-top" alt="Croissants">
-                    <div class="card-body">
-                        <h5 class
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}
