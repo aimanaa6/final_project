@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+<div class="contact-form-container">
+  <h2>Contact Us</h2>
+  <form method="POST" action="{{ url_for('contact') }}">
+    
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="subject_id">Subject:</label>
+    <select name="subject_id" id="subject_id" required>
+      <option value="">-- Select a Subject --</option>
+      <option value="Allergy complaint">Allergy complaint</option>
+      <option value="Ingredients question">Ingredients question</option>
+      <option value="Recipe">Recipe</option>
+      <option value="Bakery feedback">Bakery feedback</option>
+      <option value="Job Posting">Job Posting</option>
+      <option value="Culture">Culture</option>
+      <option value="Sustainability">Sustainability</option>
+      <option value="General">General</option>
+      <option value="Product feedback">Product feedback</option>
+    </select>
+
+    <label for="message">Your Message:</label>
+    <textarea name="message" id="message" rows="5" required></textarea>
+
+    <button type="submit">Send Message</button>
+  </form>
+
+  {% if success %}
+    <p class="success-message">{{ success }}</p>
+  {% endif %}
+  {% if error %}
+    <p class="error-message">{{ error }}</p>
+  {% endif %}
+</div>
+{% endblock %}

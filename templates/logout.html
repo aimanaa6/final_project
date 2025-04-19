@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+
+{% block body_content %}
+<div class="logout-container">
+  <h2>You have successfully logged out!</h2>
+  <p><a href="{{ url_for('login') }}">Login again</a></p>
+</div>
+{% endblock %}

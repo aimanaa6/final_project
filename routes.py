@@ -1,13 +1,13 @@
-from flask import render_template, url_for, request, redirect, session
+from flask import Flask, render_template, url_for, request, redirect, session
 import bcrypt
 
-from application import app
-from datetime import datetime
-from application.utilities import get_time_of_day
-from application.fake_data import products, people
-import os
-from application.forms.register_form import RegisterForm
-from application.data_access import add_person, get_people
+# from application import app
+# from datetime import datetime
+# from application.utilities import get_time_of_day
+# from application.fake_data import products, people
+# import os
+# from application.forms.register_form import RegisterForm
+# from application.data_access import add_person, get_people
 
 app = Flask(__name__)
 
@@ -36,95 +36,28 @@ def menu():
 def locations():
     return render_template('locations.html', title='Locations')
 
-@app.route('/productofthemonth')
-def productofthemonth():
-    return render_template('productofthemonth.html', title='Product of the Month')
+@app.route('/featuredproduct')
+def featuredproduct():
+    return render_template('featuredproduct.html', title='Product of the Month')
 
 people = []
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    error = ""
-    register_form = RegisterForm()
+    if request.method == 'POST': username = request.form.get('username')
+    firstname = request.form.get('first_name')
+    lastname = request.form.get('last_name')
+    email = request.form.get('email')
+    password = request.form.get('password')
+    if not username or not firstname or not lastname or not email or not password:
+        return "All fields are required!"
+    if register_customer(username, firstname, lastname, email, password):
+        return f"User {username} registered successfully!"
+    else:
+        return "Username or email already exists"
 
-    if request.method == 'POST':
-        username = register_form.username.data
-        first_name = register_form.first_name.data
-        last_name = register_form.last_name.data
-        email = register_form.email.data
-        password = register_form.password.data
-
-        if len(username) == 0 or len(first_name) == 0 or len(last_name) == 0 or len(email) == 0 or len(password) == 0:
-            error = 'Please supply all details'
-        else:
-            # Encrypt the password
-            hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-
-            # Store the user details with the hashed password
-            people.append({
-                'Username': username,
-                'Firstname': first_name,
-                'Lastname': last_name,
-                'Email': email,
-                'Password': hashed_password
-            })
-
-            # Assuming add_person is a function to add the person to a database or another list
-            add_person(username, first_name, last_name, email, hashed_password)
-            return redirect(url_for('newjoincommunitypage'))
-
-    return render_template('register.html', form=register_form, title='Add Person', message=error)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# @app.route('/register', methods=['GET', 'POST'])
-# def register():
-#     error = ""
-#     register_form = RegisterForm()
-#
-#     if request.method == 'POST':
-#         username = register_form.username.data
-#         first_name = register_form.first_name.data
-#         last_name = register_form.last_name.data
-#         email = register_form.email.data
-#         password = register_form.password.data
-#
-#         if len(username) == 0 or len(first_name) == 0 or len(last_name) == 0 or len(email) == 0 or len(password) == 0:
-#             error = 'Please supply all details'
-#         # include others
-#         else:
-#             people.append({'Username': username, 'Firstname': first_name, 'Lastname': last_name, 'Email': email, 'Password': password})
-#             add_person(username, first_name, last_name, email, password)
-#             return redirect(url_for('newjoincommunitypage'))
-#
-#     return render_template('register.html', form=register_form, title='Add Person', message=error)
+    return render_template('register.html')
 
 @app.route('/newjoincommunitypage')
 def newjoincommunitypage():
@@ -179,18 +112,8 @@ def communitypage():
         return render_template('communitypage.html', username=username, title='Community Page')
     return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
 
-@app.route('/loginfailed', methods=['GET', 'POST'])
-def loginfailed():
-    # app.logger.debug("Start of login")
-    if request.method == 'POST':
-        session['username'] = request.form['username']
-        # app.logger.debug("Username is: " + session['username'])
-        session['loggedIn'] = True
-        session['role'] = 'admin'
-        return redirect(url_for('adminviewsubmissions'))
-    return render_template('loginfailed.html', title="Login Failed")
-# how do we display the login failed message?
 
 
-
+if __name__ == '__main__':
+    app.run(debug=True)
 

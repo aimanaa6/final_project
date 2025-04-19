@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}Thank You from KAASP{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="thankYouModalLabel">Thank You!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for signing up to our newsletter/community!</p>
+                    <p>We’ve received your subscription and will keep you in the loop with our latest news, fresh-baked specials, and sweet offers.</p>
+                    <p>In the meantime, explore our site and discover something delicious. 🍰</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('home') }}" class="btn btn-outline-primary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if session.pop('show_modal', None) %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const thankYouModal = new bootstrap.Modal(document.getElementById('thankYouModal'));
+        thankYouModal.show();
+    });
+</script>
+{% endif %}
+{% endblock %}
