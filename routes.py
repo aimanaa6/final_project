@@ -10,17 +10,46 @@ import bcrypt
 # from application.data_access import add_person, get_people
 
 app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Required for session management
 
+# Hardcoded admin credentials
+admin_username = 'admin'
+admin_password_hashed = bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt())
 
 @app.route('/')
 @app.route('/home')
 def home():
     return render_template('home.html', title='Home')
 
-
 @app.route('/aboutus')
-def welcome():
-    return render_template('aboutus.html',title = 'About Us')
+def aboutus():
+    return render_template('aboutus.html', title='About Us')
+
+@app.route('/adminlogin', methods=['GET', 'POST'])
+def adminlogin():
+    error = ""
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password'].encode('utf-8')
+
+        if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
+            session['username'] = username
+            session['admin'] = True
+            return redirect(url_for('admin_dashboard'))
+        else:
+            error = "Invalid admin credentials."
+
+    return render_template('adminlogin.html', title='Admin Login', error=error)
+
+@app.route('/admin')
+def admin_dashboard():
+    if session.get('admin'):
+        return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
+    return redirect(url_for('adminlogin'))
+
+
+# ------- THIS IS THE END OF POOJA's ROUTES ----------
+
 
 @app.route('/founders')
 def founders():
@@ -84,14 +113,6 @@ def logout():
     session.pop('role', None)
     session['loggedIn'] = False
     return redirect(url_for('home'))
-
-
-@app.route('/adminlogin')
-def adminlogin():
-    if 'username' in session:
-        username = session['username']
-        return render_template('adminlogin.html', username=username, title='Admin Login')
-    return render_template('adminlogin.html', username=False, title='Admin Login')
 
 
 @app.route('/adminviewsubmissions', methods=['GET', 'POST'])
