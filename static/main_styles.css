@@ -43,6 +43,11 @@ h1 {
 .card.card-link {
   cursor: pointer;
   transition: transform 0.2s;
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb) 1;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.3);
+  position: relative;
 }
 
 .item-name {
@@ -103,5 +108,24 @@ h1 {
 .overlay-text p {
   font-size: 1.2rem;
   color: white;
+}
+
+.btn-outline-info {
+  background-color: #fcd6e5;
+  color: #7a1f4c;
+  font-weight: 600;
+  font-size: 0.85rem; /* slightly smaller font */
+  border: none;
+  padding: 0.3rem 0.8rem; /* smaller padding */
+  border-radius: 50px;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+}
+
+.btn-outline-info {
+  background-color: #f8a6c4;
+  color: white;
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
 }
 
