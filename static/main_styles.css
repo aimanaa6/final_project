@@ -40,6 +40,10 @@ h1 {
 .card-content {
   padding: 20px;
 }
+.card.card-link {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
 
 .item-name {
   font-size: 1.1em;
