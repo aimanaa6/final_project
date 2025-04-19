@@ -98,8 +98,6 @@ def newjoincommunitypage():
 
 @app.route('/login', methods=['GET', 'POST'])
 
-@app.route('/login', methods=['GET', 'POST'])
-
 # def login():
 #     # app.logger.debug("Start of login")
 #     if request.method == 'POST':
