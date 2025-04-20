@@ -86,7 +86,6 @@ def register():
         return f"User {username} registered successfully!"
     else:
         return "Username or email already exists"
-
     return render_template('register.html')
 
 @app.route('/newjoincommunitypage')

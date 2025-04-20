@@ -4,7 +4,17 @@ body {
   margin: 0;
 }
 .back-button {
-    color: lightpink;
+    color: white;
+    background: #B88C9E;
+    font-weight: 600;
+    font-size: 0.85rem; /* slightly smaller font */
+    border: none;
+    padding: 0.3rem 0.8rem; /* smaller padding */
+    border-radius: 50px;
+    transition: 0.3s ease;
+    box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
 }
 h1 {
   text-align: center;
@@ -160,7 +170,8 @@ h1 {
 }
 .btn-all-filter:hover,
 .btn-bakery-filter:hover,
-.btn-drink-filter:hover {
+.btn-drink-filter:hover,
+.back-button:hover {
   background-color: #fbaecf;
   transform: scale(1.05);
 }
