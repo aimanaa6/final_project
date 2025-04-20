@@ -9,3 +9,9 @@ function filterItems(type) {
     }
   });
 }
+
+function resetRecipe() {
+    document.querySelectorAll('#ingredients-list input, #steps-list input').forEach(input => {
+      input.checked = false;
+    });
+}

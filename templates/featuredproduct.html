@@ -33,12 +33,42 @@
   </div>
 </div>
 <br>
-<div class="container mt-5">
+<div class="why-section">
   <h3>Why We Love It</h3>
     <p>A delicate treat to welcome spring.</p>
     <p>This April, we're celebrating the season of renewal with our beautifully fragrant Lavender Shortbread. Light, buttery, and infused with a gentle floral note, it's the perfect companion to a cup of tea or a sunny afternoon moment.</p>
     <p>Lavender is a subtle nod to blooming gardens and Easter gatherings, and its soft purple hue brings a touch of calm elegance to your table. Whether you're sharing with loved ones or savoring solo, this little biscuit offers a peaceful pause in every bite.</p>
     <p>Why Lavender? Because spring deserves something as gentle and joyful as the season itself. 🌿💜</p>
-
 </div>
+
+<section class="recipe-section">
+  <h4>🌸 Let's Bake Lavender Shortbread!</h4>
+  <p>This buttery, floral delight is perfect with tea or a lazy afternoon snack. Just follow these relaxed steps and enjoy!</p>
+
+  <h5>🛒 Ingredients:</h5>
+  <ul id="ingredients-list">
+    <li><label><input type="checkbox"> 1 cup (225g) unsalted butter, softened</label></li>
+    <li><label><input type="checkbox"> 1/2 cup (100g) granulated sugar</label></li>
+    <li><label><input type="checkbox"> 2 cups (240g) plain flour</label></li>
+    <li><label><input type="checkbox"> 2 tsp dried culinary lavender</label></li>
+    <li><label><input type="checkbox"> Pinch of salt</label></li>
+    <li><label><input type="checkbox"> Optional: a bit of lemon zest for extra zing!</label></li>
+  </ul>
+
+  <h6>🧁 Instructions:</h6>
+  <ol id="steps-list">
+    <li><label><input type="checkbox"> Preheat your oven to <strong>170°C (340°F)</strong> and line a tray with baking paper.</label></li>
+    <li><label><input type="checkbox"> Cream together the butter and sugar until it's light and fluffy.</label></li>
+    <li><label><input type="checkbox"> Gently mix in the flour, salt, and lavender (and lemon zest if you're feeling fancy).</label></li>
+    <li><label><input type="checkbox"> Form a dough, roll it out to about 1cm thick, and cut into shapes (hearts? stars? go wild!).</label></li>
+    <li><label><input type="checkbox"> Place the cookies on your tray and chill in the fridge for 10 minutes.</label></li>
+    <li><label><input type="checkbox"> Bake for 15–20 minutes until just slightly golden at the edges. Don’t overbake!</label></li>
+    <li><label><input type="checkbox"> Let them cool, sprinkle with sugar if you like, and enjoy every bite 💜</label></li>
+  </ol>
+
+  <div class="reset-button-wrapper">
+    <button onclick="resetRecipe()" class="reset-button">🔄 Reset Recipe</button>
+  </div>
+</section>
+<script src="{{ url_for('static', filename='scripts.js') }}"></script>
 {% endblock %}
