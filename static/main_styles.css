@@ -3,19 +3,6 @@ body {
   padding: 40px;
   margin: 0;
 }
-.back-button {
-    color: white;
-    background: #B88C9E;
-    font-weight: 600;
-    font-size: 0.85rem; /* slightly smaller font */
-    border: none;
-    padding: 0.3rem 0.8rem; /* smaller padding */
-    border-radius: 50px;
-    transition: 0.3s ease;
-    box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
-    transform: scale(1.05);
-    box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
-}
 h1 {
   text-align: center;
   color: #d63384;
@@ -120,7 +107,19 @@ h1 {
   font-size: 1.2rem;
   color: white;
 }
-
+.back-button {
+    color: white;
+    background: #B88C9E;
+    font-weight: 600;
+    font-size: 0.85rem; /* slightly smaller font */
+    border: none;
+    padding: 0.3rem 0.8rem; /* smaller padding */
+    border-radius: 50px;
+    transition: 0.3s ease;
+    box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
+}
 .btn-outline-info {
   background-color:#f8a6c4;
   color: white;
