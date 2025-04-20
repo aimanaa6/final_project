@@ -107,7 +107,7 @@ def newjoincommunitypage():
 #         # app.logger.debug("Username is: " + session['username'])
 #         session['loggedIn'] = True
 #         session['role'] = 'admin'
-#         return redirect(url_for('communitypage'))
+#         return redirect(url_for('community_page'))
 #     return render_template('loginfailed.html', username=False, title='Login Failed')
 
 def login():
@@ -214,13 +214,16 @@ def adminviewsubmissions():
         return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
-
-@app.route('/communitypage')
-def communitypage():
+@app.route('/community_page')
+def community_page():
+    # Check if the user is logged in (using the session)
     if 'username' in session:
-        username = session['username']
-        return render_template('communitypage.html', username=username, title='Community Page')
-    return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
+        username = session['username']  # Retrieve the username from the session
+        return render_template('community_page.html', username=username, title='Community Page')
+
+    # If user is not logged in, redirect them to the login page
+    return redirect(url_for('login'))  # Or show an error message if you prefer
+
 
 @app.route('/find_branch', methods=['GET', 'POST'])
 def find_branch():
@@ -249,6 +252,14 @@ def find_branch():
                 message = f"No branches found in {town.title()}."
 
     return render_template('find_branch.html', branches=branches, message=message)
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html', title="404 - Page Not Found"), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html', title="500 - Server Error"), 500
 
 
 if __name__ == '__main__':
