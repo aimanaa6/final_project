@@ -1,10 +1,11 @@
 body {
-  background-color: #fdfaf6;
   font-family: 'Segoe UI', sans-serif;
   padding: 40px;
   margin: 0;
 }
-
+.back-button {
+    color: lightpink;
+}
 h1 {
   text-align: center;
   color: #d63384;
@@ -20,7 +21,7 @@ h1 {
 }
 
 .card {
-  background: #fff;
+  background: #F4D6CC;
   border-radius: 10px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
   overflow: hidden;
@@ -43,6 +44,11 @@ h1 {
 .card.card-link {
   cursor: pointer;
   transition: transform 0.2s;
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb) 1;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(255, 192, 203, 0.3);
+  position: relative;
 }
 
 .item-name {
@@ -97,11 +103,123 @@ h1 {
 
 .overlay-text h2 {
   font-size: 2rem;
-  color: #5c4b51;
+  color: white;
 }
 
 .overlay-text p {
   font-size: 1.2rem;
-  color: #6b4e71;
+  color: white;
 }
+
+.btn-outline-info {
+  background-color:#f8a6c4;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem; /* slightly smaller font */
+  border: none;
+  padding: 0.3rem 0.8rem; /* smaller padding */
+  border-radius: 50px;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
+}
+
+.btn-all-filter {
+  background-color: #fcd6e5;
+  color: #7a1f4c;
+  font-weight: 600;
+  font-size: 1rem; /* slightly smaller font */
+  border: none;
+  padding: 0.6rem 1.4rem; /* smaller padding */
+  border-radius: 50px;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+}
+.btn-bakery-filter {
+  background-color: #fcd6e5;
+  color: #7a1f4c;
+  font-weight: 600;
+  font-size: 1rem; /* slightly smaller font */
+  border: none;
+  padding: 0.6rem 1.4rem; /* smaller padding */
+  border-radius: 50px;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+}
+.btn-drink-filter {
+  background-color: #fcd6e5;
+  color: #7a1f4c;
+  font-weight: 600;
+  font-size: 1rem; /* slightly smaller font */
+  border: none;
+  padding: 0.6rem 1.4rem; /* smaller padding */
+  border-radius: 50px;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+}
+.btn-all-filter:hover,
+.btn-bakery-filter:hover,
+.btn-drink-filter:hover {
+  background-color: #fbaecf;
+  transform: scale(1.05);
+}
+.why-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid #eac7e7;
+  border-radius: 1rem;
+  background-color: #fff0f6;
+  font-family: 'Segoe UI', sans-serif;
+}
+.recipe-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid #eac7e7;
+  border-radius: 1rem;
+  background-color: #fff0f6;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.recipe-section h2 {
+  color: #7a1f4c;
+}
+
+.recipe-section h3 {
+  color: #b05c88;
+}
+
+#ingredients-list,
+#steps-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+#steps-list {
+  padding-left: 1rem;
+}
+
+.reset-button-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.reset-button {
+  background-color: #fcd6e5;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  color: #7a1f4c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #fbb6d2;
+}
+
 

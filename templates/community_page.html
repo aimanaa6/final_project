@@ -11,7 +11,7 @@
 
     <!-- Upcoming Events Section -->
     <section class="events mb-5">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3">🎉 Upcoming Events</h2>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3"> Upcoming Events</h2>
         <div class="card shadow-sm">
             <img src="{{ url_for('static', filename='images/event1.jpg') }}" class="card-img-top" alt="May Opening in London">
             <div class="card-body">
@@ -24,12 +24,12 @@
 
     <!-- Recipes Section -->
     <section class="recipe-posts">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">🧁 Community Recipes</h2>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4"> Community Recipes</h2>
         <div class="row g-4">
             {% for recipe in [
                 {'img': 'recipe1.jpg', 'title': 'Chunky, Fluffy Orange Challah Bread', 'text': 'Amanda’s turmeric-powered bread recipe.', 'category': 'bread'},
                 {'img': 'recipe2.jpg', 'title': 'Red Chocolate Cake', 'text': 'A rich twist on red velvet.', 'category': 'cake'},
-                {'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = 💕.', 'category': 'pastry'},
+                {'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = forever love.', 'category': 'pastry'},
                 {'img': 'recipe4.jpg', 'title': 'Blue Chai Latte', 'text': 'Chai with a blue twist from our fans.', 'category': 'drink'},
                 {'img': 'recipe5.jpg', 'title': 'Green Matcha Cookies', 'text': 'Vibrant, crunchy, and slightly healthy.', 'category': 'cookie'},
                 {'img': 'recipe6.jpg', 'title': 'Sourdough Bread', 'text': 'Master the sour rise.', 'category': 'bread'},
