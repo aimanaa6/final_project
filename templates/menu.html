@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block content %}
-<h1>Our Menu</h1>
+<h1>{% block title %}{{ title }}{% endblock %}</h1>
 <p>At Kaasp Bakery, we believe life should be as exciting and colorful as the treats you enjoy.
     Our mission is to bring joy, creativity, and vibrant color to every bite — because dessert should never be dull. Every piece in our collection is freshly crafted by hand, using only the finest ingredients, sourced for their flavor and quality.
     From our rich, velvety cupcakes to refreshing rainbow-inspired drinks, each item is a celebration of flavor, freshness, and fun.
@@ -861,5 +861,4 @@
         </div>
         </div>
 </section>
-<br>
 {% endblock %}

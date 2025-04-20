@@ -61,7 +61,7 @@ def founders():
 
 @app.route('/menu')
 def menu():
-    return render_template('menu.html', title='Menu')
+    return render_template('menu.html', title='Our Menu')
 
 
 @app.route('/locations')
