@@ -39,7 +39,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
 
 def check_customerdetails(username, password):
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)  # ✅ Make rows dict-like
+    cursor = conn.cursor(dictionary=True)
 
     sql = "SELECT * FROM customers WHERE username = %s"
     cursor.execute(sql, (username,))
