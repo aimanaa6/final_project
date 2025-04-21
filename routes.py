@@ -210,15 +210,19 @@ def adminviewsubmissions():
         return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
+# @app.route('/community_page')
+# def community_page():
+#
+#     if 'username' in session:
+#         username = session['username']  # Retrieve the username from the session
+#         return render_template('community_page.html', username=username, title='Community Page')
+#
+#     # If user is not logged in, redirect them to the login page
+#     return redirect(url_for('login'))  # Or show an error message if you prefer
 @app.route('/community_page')
 def community_page():
-
-    if 'username' in session:
-        username = session['username']  # Retrieve the username from the session
-        return render_template('community_page.html', username=username, title='Community Page')
-
-    # If user is not logged in, redirect them to the login page
-    return redirect(url_for('login'))  # Or show an error message if you prefer
+    username = session.get('username')  # Will be None if not logged in
+    return render_template('community_page.html', username=username, title='Community Page')
 
 
 

@@ -11,57 +11,158 @@
 
     <!-- Upcoming Events Section -->
     <section class="events mb-5">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3"> Upcoming Events</h2>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3">Upcoming Events</h2>
         <div class="card shadow-sm">
             <img src="{{ url_for('static', filename='images/event1.jpg') }}" class="card-img-top" alt="May Opening in London">
             <div class="card-body">
                 <h5 class="card-title fw-bold">May Opening of Our Next Location in London</h5>
-                <p class="card-text">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned! </p>
+                <p class="card-text">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned!</p>
                 <span class="badge bg-info text-dark">New!</span>
             </div>
         </div>
     </section>
 
-    <!-- Recipes Carousel Section -->
-<section class="recipe-carousel mb-5">
-    <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">Community Recipes</h2>
-
-    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            {% for recipe in [
-                {'img': 'recipe1.jpg', 'title': 'Chunky, Fluffy Orange Challah Bread', 'text': 'Amanda’s turmeric-powered bread recipe.', 'category': 'bread'},
-                {'img': 'recipe2.jpg', 'title': 'Red Chocolate Cake', 'text': 'A rich twist on red velvet.', 'category': 'cake'},
-                {'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = forever love.', 'category': 'pastry'},
-                {'img': 'recipe4.jpg', 'title': 'Blue Chai Latte', 'text': 'Chai with a blue twist from our fans.', 'category': 'drink'},
-                {'img': 'recipe5.jpg', 'title': 'Green Matcha Cookies', 'text': 'Vibrant, crunchy, and slightly healthy.', 'category': 'cookie'},
-                {'img': 'recipe6.jpg', 'title': 'Sourdough Bread', 'text': 'Master the sour rise.', 'category': 'bread'},
-                {'img': 'recipe7.jpg', 'title': 'Red Velvet Cake', 'text': 'For all your celebrations.', 'category': 'cake'},
-                {'img': 'recipe8.jpg', 'title': 'Croissants', 'text': 'Perfect your flaky layers.', 'category': 'pastry'}
-            ] %}
-            <div class="carousel-item {% if loop.first %}active{% endif %}">
-                <div class="card mx-auto shadow-sm border-0" style="width: 75%;">
-                    <img src="{{ url_for('static', filename='images/' ~ recipe.img) }}" class="card-img-top" alt="{{ recipe.title }}">
-                    <div class="card-body text-center">
-                        <h5 class="card-title">{{ recipe.title }}</h5>
-                        <p class="card-text text-muted">{{ recipe.text }}</p>
-                        <span class="badge bg-secondary text-capitalize">{{ recipe.category }}</span>
+    <!-- Discounts Section -->
+    <section class="discounts mb-5">
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3">Special Discounts</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <img src="{{ url_for('static', filename='images/pink_discount.jpg') }}" class="card-img-top" alt="Pink Baked Goods Discount">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-pink">25% Off Pink Baked Goods</h5>
+                        <p class="card-text">Celebrate love and sweetness with our pink-themed delights! Enjoy 25% off on everything from beet puff pastries to rose cupcakes.</p>
+                        <span class="badge bg-danger">Limited Time</span>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+            <div class="col-md-6">
+                <div class="card shadow-sm border-0 h-100">
+                    <img src="{{ url_for('static', filename='images/red_discount.jpg') }}" class="card-img-top" alt="Red Baked Goods Discount">
+                    <div class="card-body">
+                        <h5 class="card-title fw-bold text-danger">25% Off Red Baked Goods</h5>
+                        <p class="card-text">Treat yourself with our bold red delights—like red velvet cake and ruby chocolate cookies. Now 25% off for a limited time!</p>
+                        <span class="badge bg-danger">Hot Deal</span>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</section>
-
     </section>
+
+    <!-- Recipes Carousel Section -->
+    <section class="recipe-carousel mb-5">
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">Community Recipes</h2>
+        <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for recipe in [
+                    {'id': 'modal1', 'img': 'recipe1.jpg', 'title': 'Chunky, Fluffy Orange Challah Bread', 'text': 'Amanda’s turmeric-powered bread recipe.'},
+                    {'id': 'modal2', 'img': 'recipe2.jpg', 'title': 'Red Chocolate Cake', 'text': 'A rich twist on red velvet.'},
+                    {'id': 'modal3', 'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = forever love.'},
+                    {'id': 'modal4', 'img': 'recipe4.jpg', 'title': 'Blue Chai Latte', 'text': 'Chai with a blue twist from our fans.'},
+                    {'id': 'modal5', 'img': 'recipe5.jpg', 'title': 'Green Matcha Cookies', 'text': 'Vibrant, crunchy, and slightly healthy.'},
+                    {'id': 'modal6', 'img': 'recipe6.jpg', 'title': 'Sourdough Bread', 'text': 'Master the sour rise.'},
+                    {'id': 'modal7', 'img': 'recipe7.jpg', 'title': 'Red Velvet Cake', 'text': 'For all your celebrations.'},
+                    {'id': 'modal8', 'img': 'recipe8.jpg', 'title': 'Croissants', 'text': 'Perfect your flaky layers.'}
+                ] %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#{{ recipe.id }}">
+                        <img src="{{ url_for('static', filename='images/' ~ recipe.img) }}" class="card-img-top" alt="{{ recipe.title }}">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">{{ recipe.title }}</h5>
+                            <p class="card-text text-muted">{{ recipe.text }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Recipe Modals with Step-by-Step Instructions -->
+    {% for recipe in [
+        {'id': 'modal1', 'title': 'Chunky, Fluffy Orange Challah Bread', 'steps': [
+            "In a bowl, combine warm water, yeast, and 1 tbsp sugar. Let it sit until foamy (10 min).",
+            "Add orange zest, eggs, oil, remaining sugar, and salt. Mix well.",
+            "Gradually add flour and knead until smooth. Let rise in a warm place (1–2 hours).",
+            "Braid the dough into your desired shape, then let it rise again (30–45 min).",
+            "Brush with egg wash and bake at 175°C (350°F) for 25–30 minutes until golden brown."
+        ]},
+        {'id': 'modal2', 'title': 'Red Chocolate Cake', 'steps': [
+            "Preheat oven to 180°C (350°F). Grease and line two round cake pans.",
+            "Mix beet juice, vinegar, and milk. Let sit to curdle slightly (vegan buttermilk!).",
+            "In a bowl, whisk sugar, flour, cocoa, baking soda, and salt.",
+            "Add wet ingredients and beat until smooth. Fold in melted dark chocolate.",
+            "Divide into pans and bake for 30–35 mins. Cool before frosting with cream cheese icing."
+        ]},
+        {'id': 'modal3', 'title': 'Pink Puff Pastry Delight', 'steps': [
+            "Roll out thawed puff pastry and cut into squares or circles.",
+            "Whip cream cheese with beet puree and a splash of rose water.",
+            "Place a dollop of filling in the center, fold edges, and seal.",
+            "Brush with egg wash and bake at 200°C (400°F) for 12–15 minutes until puffed.",
+            "Dust with powdered sugar and edible rose petals before serving."
+        ]},
+        {'id': 'modal4', 'title': 'Blue Chai Latte', 'steps': [
+            "Steep 1 tsp butterfly pea flower in hot water until vibrant blue.",
+            "In a pot, simmer milk (or alt milk), cinnamon stick, cloves, ginger, cardamom, and black tea.",
+            "Strain both the blue tea and chai mix.",
+            "Combine in a cup: half chai, half blue tea. Sweeten with honey or syrup.",
+            "Top with steamed milk or foam and sprinkle cinnamon on top."
+        ]},
+        {'id': 'modal5', 'title': 'Green Matcha Cookies', 'steps': [
+            "Preheat oven to 180°C (350°F). Line a baking tray.",
+            "Cream butter and sugar. Add egg and vanilla extract.",
+            "Mix in flour, baking soda, salt, and matcha powder.",
+            "Fold in white chocolate chips. Scoop dough onto tray.",
+            "Bake for 10–12 minutes until edges are golden but center is soft."
+        ]},
+        {'id': 'modal6', 'title': 'Sourdough Bread', 'steps': [
+            "Mix 500g flour, 350g water, and 100g active sourdough starter. Let autolyse (30 mins).",
+            "Add 10g salt. Knead or stretch-and-fold over 3 hours.",
+            "Let bulk ferment until doubled in size (4–6 hours).",
+            "Shape into a boule or batard. Rest in a banneton or bowl (overnight in fridge).",
+            "Score and bake in a Dutch oven at 230°C (450°F) for 20 mins covered, then 20 uncovered."
+        ]},
+        {'id': 'modal7', 'title': 'Red Velvet Cake', 'steps': [
+            "Preheat oven to 175°C (350°F). Grease 2 cake tins.",
+            "Cream butter and sugar. Add eggs, one at a time.",
+            "In a separate bowl, mix buttermilk, red food coloring, vanilla, and vinegar.",
+            "Combine dry ingredients, then alternate adding wet and dry to the butter mix.",
+            "Bake for 30 mins. Let cool before layering with cream cheese frosting."
+        ]},
+        {'id': 'modal8', 'title': 'Croissants', 'steps': [
+            "Make dough with flour, water, milk, sugar, yeast, and salt. Chill overnight.",
+            "Roll out and laminate with cold butter: fold and roll 3 times with rests in between.",
+            "Cut into triangles, roll into crescent shapes.",
+            "Proof until doubled in size (1–2 hours).",
+            "Bake at 200°C (400°F) until golden and flaky (18–20 minutes)."
+        ]}
+    ] %}
+    <div class="modal fade" id="{{ recipe.id }}" tabindex="-1" aria-labelledby="{{ recipe.id }}Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="{{ recipe.id }}Label">{{ recipe.title }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h6>Steps:</h6>
+                    <ol>
+                        {% for step in recipe.steps %}
+                        <li>{{ step }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 </div>
 {% endblock %}
