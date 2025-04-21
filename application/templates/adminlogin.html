@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}Admin Login - Kaasp{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <form method="POST" action="{{ url_for('adminlogin') }}">
+    <h2>Admin Login</h2>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password" required>
+
+    <button type="submit">Login</button>
+
+    {% if error %}
+      <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+  </form>
+</div>
+{% endblock %}

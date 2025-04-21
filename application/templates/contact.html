@@ -3,12 +3,13 @@
 {% block title %}Thank You from KAASP{% endblock %}
 
 {% block content %}
-<div class="contact-form-container">
+<div class="login-container">
   <h2>Contact Us</h2>
   <form method="POST" action="{{ url_for('contact') }}">
-
     <label for="username">Username:</label>
-    <input type="text" name="username" id="username" required>
+    <input type="text" name="username" id="username"
+       value="{{ session['username'] if session.get('username') else '' }}"
+       {% if session.get('username') %}readonly{% endif %} required>
 
     <label for="subject_id">Subject:</label>
     <select name="subject_id" id="subject_id" required>

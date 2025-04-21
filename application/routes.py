@@ -1,7 +1,7 @@
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import render_template, url_for, request, redirect, session
 import bcrypt
-# from application import app
-# from application.register_customer import register_customer, check_customerdetails, get_db_connection
+from application import app
+from application.register_customer import register_customer, check_customerdetails, get_db_connection
 import datetime
 
 # from application import app
@@ -11,9 +11,6 @@ import datetime
 # import os
 # from application.forms.register_form import RegisterForm
 # from application.data_access import add_person, get_people
-
-app = Flask(__name__)
-app.secret_key = 'test'  # Required for session management
 
 # Hardcoded admin credentials
 admin_username = 'admin'
@@ -51,6 +48,9 @@ def admin_dashboard():
     return redirect(url_for('adminlogin'))
 
 
+# ------- THIS IS THE END OF POOJA's ROUTES ----------
+
+
 @app.route('/founders')
 def founders():
     return render_template('founders.html', title='Founders')
@@ -72,17 +72,18 @@ def featuredproduct():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST': username = request.form.get('username')
-    firstname = request.form.get('first_name')
-    lastname = request.form.get('last_name')
-    email = request.form.get('email')
-    password = request.form.get('password')
-    if not username or not firstname or not lastname or not email or not password:
-        return "All fields are required!"
-    if register_customer(username, firstname, lastname, email, password):
-        return f"User {username} registered successfully!"
-    else:
-        return "Username or email already exists"
+    if request.method == 'POST':
+        username = request.form.get('username')
+        firstname = request.form.get('first_name')
+        lastname = request.form.get('last_name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        if not username or not firstname or not lastname or not email or not password:
+            return "All fields are required!"
+        if register_customer(username, firstname, lastname, email, password):
+            return f"User {username} registered successfully!"
+        else:
+            return "Username or email already exists"
     return render_template('register.html')
 
 @app.route('/newjoincommunitypage')
@@ -94,37 +95,23 @@ def newjoincommunitypage():
 
 @app.route('/login', methods=['GET', 'POST'])
 
+
 @app.route('/login', methods=['GET', 'POST'])
-
-# def login():
-#     # app.logger.debug("Start of login")
-#     if request.method == 'POST':
-#         session['username'] = request.form['username']
-#         # app.logger.debug("Username is: " + session['username'])
-#         session['loggedIn'] = True
-#         session['role'] = 'admin'
-#         return redirect(url_for('community_page'))
-#     return render_template('loginfailed.html', username=False, title='Login Failed')
-
 def login():
     error = None
-    next_page = request.args.get('next', url_for('home'))  # Get 'next' URL or default to home
-
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
-        if not username or not password:
-            error = "Please fill in all fields."
-        elif check_customerdetails(username, password):
-            session['username'] = username  # Store in session
-            return redirect(next_page)  # Redirect to originally requested page
+        # Check login credentials
+        if check_customerdetails(username, password):
+            session['username'] = username  # Set session data
+            session['loggedIn'] = True  # Optional: you can track logged-in state
+            return redirect(url_for('home'))  # Redirect after successful login
         else:
-            error = "Incorrect Username or Password."
+            error = "Incorrect username or password."
 
-    return render_template('login.html', error=error, next_page=next_page)
-
-
+    return render_template('login.html', error=error)
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     # Handle form submission
@@ -174,22 +161,18 @@ def contact():
                 conn.commit()
 
                 # Clear saved form data
-                if 'contact_form_data' in session:
-                    session.pop('contact_form_data')
+                session.pop('contact_form_data', None)
 
-                return "Thanks for your message!"
+                # Set modal flag in session
+                session['show_modal'] = True
+
+                # Redirect to contact page (so modal can show)
+                return redirect(url_for('contact'))
         finally:
             conn.close()
 
-    # Handle GET request
-    username = session.get('username')
-    form_data = session.pop('contact_form_data', None) if 'username' in session else None
-
-    return render_template('contact.html',
-                           username=username,
-                           subject_id=form_data['subject_id'] if form_data else None,
-                           message=form_data['message'] if form_data else None)
-
+    # If GET, just render the page
+    return render_template('contact.html')
 
 @app.route('/logout')
 def logout():
@@ -210,20 +193,14 @@ def adminviewsubmissions():
         return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
-# @app.route('/community_page')
-# def community_page():
-#
-#     if 'username' in session:
-#         username = session['username']  # Retrieve the username from the session
-#         return render_template('community_page.html', username=username, title='Community Page')
-#
-#     # If user is not logged in, redirect them to the login page
-#     return redirect(url_for('login'))  # Or show an error message if you prefer
+
 @app.route('/community_page')
 def community_page():
-    username = session.get('username')  # Will be None if not logged in
-    return render_template('community_page.html', username=username, title='Community Page')
+    if 'username' not in session:
+        return redirect(url_for('login', next=url_for('community_page')))
 
+    username = session['username']
+    return render_template('community_page.html', username=username, title='Community Page')
 
 
 @app.route('/find_branch', methods=['GET', 'POST'])
@@ -254,15 +231,4 @@ def find_branch():
 
     return render_template('find_branch.html', branches=branches, message=message)
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('404.html', title="404 - Page Not Found"), 404
-
-@app.errorhandler(500)
-def internal_error(error):
-    return render_template('500.html', title="500 - Server Error"), 500
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
