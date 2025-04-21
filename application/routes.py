@@ -1,7 +1,7 @@
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import render_template, url_for, request, redirect, session
 import bcrypt
-# from application import app
-from register_customer import register_customer, check_customerdetails, get_db_connection
+from application import app
+from application.register_customer import register_customer, check_customerdetails, get_db_connection
 import datetime
 
 # from application import app
@@ -11,9 +11,6 @@ import datetime
 # import os
 # from application.forms.register_form import RegisterForm
 # from application.data_access import add_person, get_people
-
-app = Flask(__name__)
-app.secret_key = 'test'  # Required for session management
 
 # Hardcoded admin credentials
 admin_username = 'admin'
@@ -220,7 +217,7 @@ def community_page():
     if 'username' in session:
         username = session['username']
         return render_template('community_page.html', username=username, title='Community Page')
-    return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
+    # return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
 
 @app.route('/find_branch', methods=['GET', 'POST'])
 def find_branch():
@@ -250,7 +247,4 @@ def find_branch():
 
     return render_template('find_branch.html', branches=branches, message=message)
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
 

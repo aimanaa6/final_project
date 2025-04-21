@@ -8,7 +8,6 @@ def get_db_connection():
         password="",
         database="kaasp"
     )
-
 # Function to insert a new customer with hashed password
 def register_customer(username, first_name, last_name, email, plain_password):
     conn = get_db_connection()

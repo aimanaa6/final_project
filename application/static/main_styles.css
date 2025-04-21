@@ -133,39 +133,27 @@ h1 {
   transform: scale(1.05);
   box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
 }
-
-.btn-all-filter {
-  background-color: #fcd6e5;
-  color: #7a1f4c;
-  font-weight: 600;
-  font-size: 1rem; /* slightly smaller font */
-  border: none;
-  padding: 0.6rem 1.4rem; /* smaller padding */
-  border-radius: 50px;
-  transition: 0.3s ease;
-  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap; /* if you want it to wrap on smaller screens */
 }
-.btn-bakery-filter {
-  background-color: #fcd6e5;
-  color: #7a1f4c;
-  font-weight: 600;
-  font-size: 1rem; /* slightly smaller font */
-  border: none;
-  padding: 0.6rem 1.4rem; /* smaller padding */
-  border-radius: 50px;
-  transition: 0.3s ease;
-  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
-}
+.btn-all-filter,
+.btn-bakery-filter,
 .btn-drink-filter {
   background-color: #fcd6e5;
   color: #7a1f4c;
   font-weight: 600;
-  font-size: 1rem; /* slightly smaller font */
+  font-size: 1rem;
   border: none;
-  padding: 0.6rem 1.4rem; /* smaller padding */
+  padding: 0.5rem 1.2rem;
   border-radius: 50px;
-  transition: 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+  cursor: pointer;
+  white-space: nowrap;
 }
 .btn-all-filter:hover,
 .btn-bakery-filter:hover,
