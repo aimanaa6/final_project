@@ -1,16 +1,17 @@
-import mysql.connector
-# import pymysql
-# from pymysql.err import IntegrityError
+# import mysql.connector
+import pymysql
+from pymysql.err import IntegrityError
 import bcrypt
 
 
 def get_db_connection():
-    return mysql.connector.connect(
+    return pymysql.connect(
+        # pymysql.connect - PyMySQL crash
         host="localhost",
         user="root",
         password="password",
         database="kaasp",
-        # cursorclass=pymysql.cursors.DictCursor
+        cursorclass= pymysql.cursors.DictCursor
     )
 
 # Function to insert a new customer with hashed password

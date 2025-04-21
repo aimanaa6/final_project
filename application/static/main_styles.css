@@ -107,19 +107,15 @@ h1 {
   font-size: 1.2rem;
   color: white;
 }
-.back-button {
-    color: white;
-    background: #B88C9E;
-    font-weight: 600;
-    font-size: 0.85rem; /* slightly smaller font */
-    border: none;
-    padding: 0.3rem 0.8rem; /* smaller padding */
-    border-radius: 50px;
-    transition: 0.3s ease;
-    box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
-    transform: scale(1.05);
-    box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
+.nav-buttons {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.5rem;
+  z-index: 1000;
 }
+
 .btn-outline-info {
   background-color:#f8a6c4;
   color: white;
@@ -142,7 +138,8 @@ h1 {
 }
 .btn-all-filter,
 .btn-bakery-filter,
-.btn-drink-filter {
+.btn-drink-filter,
+.home-menu-button {
   background-color: #fcd6e5;
   color: #7a1f4c;
   font-weight: 600;
@@ -157,8 +154,7 @@ h1 {
 }
 .btn-all-filter:hover,
 .btn-bakery-filter:hover,
-.btn-drink-filter:hover,
-.back-button:hover {
+.btn-drink-filter:hover {
   background-color: #fbaecf;
   transform: scale(1.05);
 }

@@ -125,8 +125,9 @@ def contact():
 
         conn = get_db_connection()
         try:
-            with conn.cursor(dictionary=True) as cursor:
-                # with conn.cursor() as cursor: - PyMySQl
+            with conn.cursor() as cursor:
+            # with conn.cursor(dictionary=True) as cursor:
+                 # - PyMySQl
                 # Get user and subject info
                 cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
                 user_result = cursor.fetchone()
@@ -208,8 +209,8 @@ def find_branch():
             message = "Please enter a town."
         else:
             conn = get_db_connection()
-            cursor = conn.cursor(dictionary=True)
-            # cursor = conn.cursor() - PyMySQL
+            # cursor = conn.cursor(dictionary=True)
+            cursor = conn.cursor()
 
             query = """
                 SELECT b.branch_name, l.location_name
