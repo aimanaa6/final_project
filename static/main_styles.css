@@ -3,9 +3,6 @@ body {
   padding: 40px;
   margin: 0;
 }
-.back-button {
-    color: lightpink;
-}
 h1 {
   text-align: center;
   color: #d63384;
@@ -110,7 +107,19 @@ h1 {
   font-size: 1.2rem;
   color: white;
 }
-
+.back-button {
+    color: white;
+    background: #B88C9E;
+    font-weight: 600;
+    font-size: 0.85rem; /* slightly smaller font */
+    border: none;
+    padding: 0.3rem 0.8rem; /* smaller padding */
+    border-radius: 50px;
+    transition: 0.3s ease;
+    box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
+}
 .btn-outline-info {
   background-color:#f8a6c4;
   color: white;
@@ -160,7 +169,8 @@ h1 {
 }
 .btn-all-filter:hover,
 .btn-bakery-filter:hover,
-.btn-drink-filter:hover {
+.btn-drink-filter:hover,
+.back-button:hover {
   background-color: #fbaecf;
   transform: scale(1.05);
 }
@@ -220,6 +230,68 @@ h1 {
 
 .reset-button:hover {
   background-color: #fbb6d2;
+}
+
+
+.login-container {
+  width: 350px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #FFF0F2; /* Soft blush background */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4B4B4B;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #4B4B4B;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FF6F91;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff4f75;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #FF6F91;
+  text-decoration: underline;
 }
 
 

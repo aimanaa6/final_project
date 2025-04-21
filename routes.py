@@ -51,9 +51,6 @@ def admin_dashboard():
     return redirect(url_for('adminlogin'))
 
 
-# ------- THIS IS THE END OF POOJA's ROUTES ----------
-
-
 @app.route('/founders')
 def founders():
     return render_template('founders.html', title='Founders')
@@ -61,7 +58,7 @@ def founders():
 
 @app.route('/menu')
 def menu():
-    return render_template('menu.html', title='Menu')
+    return render_template('menu.html', title='Our Menu')
 
 
 @app.route('/locations')
@@ -86,7 +83,6 @@ def register():
         return f"User {username} registered successfully!"
     else:
         return "Username or email already exists"
-
     return render_template('register.html')
 
 @app.route('/newjoincommunitypage')
