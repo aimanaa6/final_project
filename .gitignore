@@ -1,7 +1,18 @@
-DStore
+# IDE files
 .idea/
+.DS_Store
+
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# Bytecode compiled files
 *.pyo
 *.pyd
-.venv/
+
+# Ignore specific cached files (no need to list them one-by-one)
+application/__pycache__/
