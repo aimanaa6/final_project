@@ -112,7 +112,6 @@ def login():
             error = "Incorrect username or password."
 
     return render_template('login.html', error=error)
-
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     # Handle form submission
@@ -162,21 +161,83 @@ def contact():
                 conn.commit()
 
                 # Clear saved form data
-                if 'contact_form_data' in session:
-                    session.pop('contact_form_data')
+                session.pop('contact_form_data', None)
 
-                return "Thanks for your message!"
+                # Set modal flag in session
+                session['show_modal'] = True
+
+                # Redirect to contact page (so modal can show)
+                return redirect(url_for('contact'))
         finally:
             conn.close()
 
-    # Handle GET request
-    username = session.get('username')
-    form_data = session.pop('contact_form_data', None) if 'username' in session else None
+    # If GET, just render the page
+    return render_template('contact.html')
 
-    return render_template('contact.html',
-                           username=username,
-                           subject_id=form_data['subject_id'] if form_data else None,
-                           message=form_data['message'] if form_data else None)
+# @app.route('/contact', methods=['GET', 'POST'])
+# def contact():
+#     # Handle form submission
+#     if request.method == 'POST':
+#         # Check if logged in
+#         if 'username' not in session:
+#             # Save form data in session to repopulate later
+#             session['contact_form_data'] = {
+#                 'subject_id': request.form.get('subject_id'),
+#                 'message': request.form.get('message')
+#             }
+#             return redirect(url_for('login', next=url_for('contact')))
+#
+#         # Process form for logged-in users
+#         username = session['username']
+#         subject_id = request.form.get('subject_id')
+#         message = request.form.get('message')
+#         date = datetime.date.today()
+#
+#         conn = get_db_connection()
+#         try:
+#             with conn.cursor(dictionary=True) as cursor:
+#                 # Get user and subject info
+#                 cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
+#                 user_result = cursor.fetchone()
+#
+#                 cursor.execute("SELECT subject_id FROM subjects WHERE subject_description = %s", (subject_id,))
+#                 subject_result = cursor.fetchone()
+#
+#                 if not user_result:
+#                     return "User not found", 404
+#                 if not subject_result:
+#                     return "Subject not found", 404
+#
+#                 # Insert message
+#                 insert_query = """
+#                     INSERT INTO contactus (username, subject_id, message, date, customer_id)
+#                     VALUES (%s, %s, %s, %s, %s)
+#                 """
+#                 cursor.execute(insert_query, (
+#                     username,
+#                     subject_result['subject_id'],
+#                     message,
+#                     date,
+#                     user_result['customer_id']
+#                 ))
+#                 conn.commit()
+#
+#                 # Clear saved form data
+#                 if 'contact_form_data' in session:
+#                     session.pop('contact_form_data')
+#
+#                 return "Thanks for your message!"
+#         finally:
+#             conn.close()
+#
+#     # Handle GET request
+#     username = session.get('username')
+#     form_data = session.pop('contact_form_data', None) if 'username' in session else None
+#
+#     return render_template('contact.html',
+#                            username=username,
+#                            subject_id=form_data['subject_id'] if form_data else None,
+#                            message=form_data['message'] if form_data else None)
 
 
 @app.route('/logout')
