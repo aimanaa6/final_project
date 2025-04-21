@@ -11,46 +11,57 @@
 
     <!-- Upcoming Events Section -->
     <section class="events mb-5">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3">🎉 Upcoming Events</h2>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3"> Upcoming Events</h2>
         <div class="card shadow-sm">
             <img src="{{ url_for('static', filename='images/event1.jpg') }}" class="card-img-top" alt="May Opening in London">
             <div class="card-body">
                 <h5 class="card-title fw-bold">May Opening of Our Next Location in London</h5>
-                <p class="card-text">Join us for the secret unveiling of our newest spot in London! More details coming soon. Bring your sweet tooth 🍩</p>
+                <p class="card-text">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned! </p>
                 <span class="badge bg-info text-dark">New!</span>
             </div>
         </div>
     </section>
 
-    <!-- Recipes Section -->
-    <section class="recipe-posts">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">🧁 Community Recipes</h2>
-        <div class="row g-4">
+    <!-- Recipes Carousel Section -->
+<section class="recipe-carousel mb-5">
+    <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">Community Recipes</h2>
+
+    <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
             {% for recipe in [
                 {'img': 'recipe1.jpg', 'title': 'Chunky, Fluffy Orange Challah Bread', 'text': 'Amanda’s turmeric-powered bread recipe.', 'category': 'bread'},
                 {'img': 'recipe2.jpg', 'title': 'Red Chocolate Cake', 'text': 'A rich twist on red velvet.', 'category': 'cake'},
-                {'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = 💕.', 'category': 'pastry'},
+                {'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = forever love.', 'category': 'pastry'},
                 {'img': 'recipe4.jpg', 'title': 'Blue Chai Latte', 'text': 'Chai with a blue twist from our fans.', 'category': 'drink'},
                 {'img': 'recipe5.jpg', 'title': 'Green Matcha Cookies', 'text': 'Vibrant, crunchy, and slightly healthy.', 'category': 'cookie'},
                 {'img': 'recipe6.jpg', 'title': 'Sourdough Bread', 'text': 'Master the sour rise.', 'category': 'bread'},
                 {'img': 'recipe7.jpg', 'title': 'Red Velvet Cake', 'text': 'For all your celebrations.', 'category': 'cake'},
                 {'img': 'recipe8.jpg', 'title': 'Croissants', 'text': 'Perfect your flaky layers.', 'category': 'pastry'}
             ] %}
-            <div class="col-md-6 col-lg-4">
-                <div class="card h-100 shadow-sm border-0">
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <div class="card mx-auto shadow-sm border-0" style="width: 75%;">
                     <img src="{{ url_for('static', filename='images/' ~ recipe.img) }}" class="card-img-top" alt="{{ recipe.title }}">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body text-center">
                         <h5 class="card-title">{{ recipe.title }}</h5>
                         <p class="card-text text-muted">{{ recipe.text }}</p>
-                        <a href="#" class="btn btn-outline-primary mt-auto">Read More</a>
-                    </div>
-                    <div class="card-footer bg-white border-0">
-                        <span class="badge bg-light text-dark text-capitalize">{{ recipe.category }}</span>
+                        <span class="badge bg-secondary text-capitalize">{{ recipe.category }}</span>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
     </section>
 </div>
 {% endblock %}
