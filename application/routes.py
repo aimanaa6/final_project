@@ -87,37 +87,23 @@ def newjoincommunitypage():
 
 @app.route('/login', methods=['GET', 'POST'])
 
+
 @app.route('/login', methods=['GET', 'POST'])
-
-# def login():
-#     # app.logger.debug("Start of login")
-#     if request.method == 'POST':
-#         session['username'] = request.form['username']
-#         # app.logger.debug("Username is: " + session['username'])
-#         session['loggedIn'] = True
-#         session['role'] = 'admin'
-#         return redirect(url_for('communitypage'))
-#     return render_template('loginfailed.html', username=False, title='Login Failed')
-
 def login():
     error = None
-    next_page = request.args.get('next', url_for('home'))  # Get 'next' URL or default to home
-
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
-        if not username or not password:
-            error = "Please fill in all fields."
-        elif check_customerdetails(username, password):
-            session['username'] = username  # Store in session
-            return redirect(next_page)  # Redirect to originally requested page
+        # Check login credentials
+        if check_customerdetails(username, password):
+            session['username'] = username  # Set session data
+            session['loggedIn'] = True  # Optional: you can track logged-in state
+            return redirect(url_for('home'))  # Redirect after successful login
         else:
-            error = "Incorrect Username or Password."
+            error = "Incorrect username or password."
 
-    return render_template('login.html', error=error, next_page=next_page)
-
-
+    return render_template('login.html', error=error)
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     # Handle form submission
@@ -168,22 +154,18 @@ def contact():
                 conn.commit()
 
                 # Clear saved form data
-                if 'contact_form_data' in session:
-                    session.pop('contact_form_data')
+                session.pop('contact_form_data', None)
 
-                return "Thanks for your message!"
+                # Set modal flag in session
+                session['show_modal'] = True
+
+                # Redirect to contact page (so modal can show)
+                return redirect(url_for('contact'))
         finally:
             conn.close()
 
-    # Handle GET request
-    username = session.get('username')
-    form_data = session.pop('contact_form_data', None) if 'username' in session else None
-
-    return render_template('contact.html',
-                           username=username,
-                           subject_id=form_data['subject_id'] if form_data else None,
-                           message=form_data['message'] if form_data else None)
-
+    # If GET, just render the page
+    return render_template('contact.html')
 
 @app.route('/logout')
 def logout():
@@ -207,10 +189,12 @@ def adminviewsubmissions():
 
 @app.route('/community_page')
 def community_page():
-    if 'username' in session:
-        username = session['username']
-        return render_template('community_page.html', username=username, title='Community Page')
-    # return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
+    if 'username' not in session:
+        return redirect(url_for('login', next=url_for('community_page')))
+
+    username = session['username']
+    return render_template('community_page.html', username=username, title='Community Page')
+
 
 @app.route('/find_branch', methods=['GET', 'POST'])
 def find_branch():
