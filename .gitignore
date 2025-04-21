@@ -16,7 +16,5 @@ venv/
 
 # Ignore specific cached files (no need to list them one-by-one)
 application/__pycache__/
-application/__pycache__/register_customer.cpython-313.pyc
-application/__pycache__/routes.cpython-313.pyc
-__pycache__
 *.pyc
+
