@@ -1,13 +1,18 @@
 import mysql.connector
+# import pymysql
+# from pymysql.err import IntegrityError
 import bcrypt
+
 
 def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
-        database="kaasp"
+        password="password",
+        database="kaasp",
+        # cursorclass=pymysql.cursors.DictCursor
     )
+
 # Function to insert a new customer with hashed password
 def register_customer(username, first_name, last_name, email, plain_password):
     conn = get_db_connection()
@@ -20,25 +25,22 @@ def register_customer(username, first_name, last_name, email, plain_password):
         INSERT INTO customers (username, first_name, last_name, email, password)
         VALUES (%s, %s, %s, %s, %s)
     """
-    values = (username, first_name, last_name,email, hashed.decode('utf-8'))
+    values = (username, first_name, last_name, email, hashed.decode('utf-8'))
 
     try:
         cursor.execute(sql, values)
         conn.commit()
         return True
-    # Trying to insert a duplicate value in a column with UNIQUE constraint (e.g., username already exists).
-    except mysql.connector.IntegrityError:
+    except IntegrityError:
         return False
-    # This block always runs, whether an error happened or not.
     finally:
         cursor.close()
         conn.close()
 
-
 # Login with hashed password
 def check_customerdetails(username, password):
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     sql = "SELECT * FROM customers WHERE username = %s"
     cursor.execute(sql, (username,))
@@ -52,8 +54,6 @@ def check_customerdetails(username, password):
         return True
     else:
         return False
-
-
 
 
 # from flask import render_template, url_for, request, redirect, session

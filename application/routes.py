@@ -4,14 +4,6 @@ from application import app
 from application.register_customer import register_customer, check_customerdetails, get_db_connection
 import datetime
 
-# from application import app
-# from datetime import datetime
-# from application.utilities import get_time_of_day
-# from application.fake_data import products, people
-# import os
-# from application.forms.register_form import RegisterForm
-# from application.data_access import add_person, get_people
-
 # Hardcoded admin credentials
 admin_username = 'admin'
 admin_password_hashed = bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt())
@@ -134,6 +126,7 @@ def contact():
         conn = get_db_connection()
         try:
             with conn.cursor(dictionary=True) as cursor:
+                # with conn.cursor() as cursor: - PyMySQl
                 # Get user and subject info
                 cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
                 user_result = cursor.fetchone()
@@ -216,6 +209,7 @@ def find_branch():
         else:
             conn = get_db_connection()
             cursor = conn.cursor(dictionary=True)
+            # cursor = conn.cursor() - PyMySQL
 
             query = """
                 SELECT b.branch_name, l.location_name
