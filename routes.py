@@ -51,9 +51,6 @@ def admin_dashboard():
     return redirect(url_for('adminlogin'))
 
 
-# ------- THIS IS THE END OF POOJA's ROUTES ----------
-
-
 @app.route('/founders')
 def founders():
     return render_template('founders.html', title='Founders')
