@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, redirect, session
 import bcrypt
 # from application import app
-# from application.register_customer import register_customer, check_customerdetails, get_db_connection
+from register_customer import register_customer, check_customerdetails, get_db_connection
 import datetime
 
 # from application import app
@@ -75,17 +75,18 @@ def featuredproduct():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if request.method == 'POST': username = request.form.get('username')
-    firstname = request.form.get('first_name')
-    lastname = request.form.get('last_name')
-    email = request.form.get('email')
-    password = request.form.get('password')
-    if not username or not firstname or not lastname or not email or not password:
-        return "All fields are required!"
-    if register_customer(username, firstname, lastname, email, password):
-        return f"User {username} registered successfully!"
-    else:
-        return "Username or email already exists"
+    if request.method == 'POST':
+        username = request.form.get('username')
+        firstname = request.form.get('first_name')
+        lastname = request.form.get('last_name')
+        email = request.form.get('email')
+        password = request.form.get('password')
+        if not username or not firstname or not lastname or not email or not password:
+            return "All fields are required!"
+        if register_customer(username, firstname, lastname, email, password):
+            return f"User {username} registered successfully!"
+        else:
+            return "Username or email already exists"
     return render_template('register.html')
 
 @app.route('/newjoincommunitypage')
@@ -214,11 +215,11 @@ def adminviewsubmissions():
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
 
-@app.route('/communitypage')
-def communitypage():
+@app.route('/community_page')
+def community_page():
     if 'username' in session:
         username = session['username']
-        return render_template('communitypage.html', username=username, title='Community Page')
+        return render_template('community_page.html', username=username, title='Community Page')
     return render_template('incorrectdetails.html', username=False, title='Wrong credentials')
 
 @app.route('/find_branch', methods=['GET', 'POST'])
