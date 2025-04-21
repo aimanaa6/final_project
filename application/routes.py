@@ -95,36 +95,23 @@ def newjoincommunitypage():
 
 @app.route('/login', methods=['GET', 'POST'])
 
+
 @app.route('/login', methods=['GET', 'POST'])
-
-# def login():
-#     # app.logger.debug("Start of login")
-#     if request.method == 'POST':
-#         session['username'] = request.form['username']
-#         # app.logger.debug("Username is: " + session['username'])
-#         session['loggedIn'] = True
-#         session['role'] = 'admin'
-#         return redirect(url_for('communitypage'))
-#     return render_template('loginfailed.html', username=False, title='Login Failed')
-
 def login():
     error = None
-    next_page = request.args.get('next', url_for('home'))  # Get 'next' URL or default to home
-
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
 
-        if not username or not password:
-            error = "Please fill in all fields."
-        elif check_customerdetails(username, password):
-            session['username'] = username  # Store in session
-            return redirect(next_page)  # Redirect to originally requested page
+        # Check login credentials
+        if check_customerdetails(username, password):
+            session['username'] = username  # Set session data
+            session['loggedIn'] = True  # Optional: you can track logged-in state
+            return redirect(url_for('home'))  # Redirect after successful login
         else:
-            error = "Incorrect Username or Password."
+            error = "Incorrect username or password."
 
-    return render_template('login.html', error=error, next_page=next_page)
-
+    return render_template('login.html', error=error)
 
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
