@@ -1,8 +1,9 @@
 from flask import render_template, url_for, request, redirect, session
 import bcrypt
 from application import app
-from application.register_customer import register_customer, check_customerdetails, get_db_connection
+from application.register_customer import register_customer, check_customerdetails, get_db_connection, view_submissions
 import datetime
+
 
 # Hardcoded admin credentials
 admin_username = 'admin'
@@ -27,17 +28,22 @@ def adminlogin():
         if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
             session['username'] = username
             session['admin'] = True
-            return redirect(url_for('admin_dashboard'))
+            return redirect(url_for('adminviewsubmissions'))
         else:
             error = "Invalid admin credentials."
 
     return render_template('adminlogin.html', title='Admin Login', error=error)
 
-@app.route('/admin')
-def admin_dashboard():
-    if session.get('admin'):
-        return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
-    return redirect(url_for('adminlogin'))
+# @app.route('/admindashboard')
+# def admin_dashboard():
+#     submission_list_db = view_submissions()
+#     print(submission_list_db)
+#     if session.get('admin'):
+#         return render_template('adminviewsubmissions.html', title= 'Admin Dashboard', current_date= datetime.date.today() )
+
+    # return redirect(url_for('adminlogin'))
+
+
 
 
 # ------- THIS IS THE END OF POOJA's ROUTES ----------
@@ -183,7 +189,9 @@ def adminviewsubmissions():
         username = session['username']
         print('You are logged in as Admin')
         print(username)
-        return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
+        submission_list_db = view_submissions()
+        print(submission_list_db)
+        return render_template('adminviewsubmissions.html', title='View Submissions', current_date= datetime.date.today())
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
 
