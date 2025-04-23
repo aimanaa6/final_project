@@ -61,6 +61,22 @@ def locations():
 def featuredproduct():
     return render_template('featuredproduct.html', title='Product of the Month')
 
+#
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     if request.method == 'POST':
+#         username = request.form.get('username')
+#         firstname = request.form.get('first_name')
+#         lastname = request.form.get('last_name')
+#         email = request.form.get('email')
+#         password = request.form.get('password')
+#         if not username or not firstname or not lastname or not email or not password:
+#             return "All fields are required!"
+#         if register_customer(username, firstname, lastname, email, password):
+#             return f"User {username} registered successfully!"
+#         else:
+#             return "Username or email already exists"
+#     return render_template('register.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -70,20 +86,23 @@ def register():
         lastname = request.form.get('last_name')
         email = request.form.get('email')
         password = request.form.get('password')
+
         if not username or not firstname or not lastname or not email or not password:
             return "All fields are required!"
+
         if register_customer(username, firstname, lastname, email, password):
-            return f"User {username} registered successfully!"
+            return redirect(url_for('newjoincommunitypage'))
         else:
             return "Username or email already exists"
+
     return render_template('register.html')
 
-@app.route('/newjoincommunitypage')
+
+@app.route('/newjoincommunity')
 def newjoincommunitypage():
-    if 'username' in session:
-        username = session['username']
-        return render_template('newjoincommunitypage.html', username=username, title='Community Page')
-# add a notification of success
+    session['show_modal'] = True  # this enables the modal to pop up
+    return render_template('newjoincommunitypage.html')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
