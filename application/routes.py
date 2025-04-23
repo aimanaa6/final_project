@@ -33,11 +33,11 @@ def adminlogin():
 
     return render_template('adminlogin.html', title='Admin Login', error=error)
 
-@app.route('/admin')
-def admin_dashboard():
-    if session.get('admin'):
-        return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
-    return redirect(url_for('adminlogin'))
+# @app.route('/admin')
+# def admin_dashboard():
+#     if session.get('admin'):
+#         return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
+#     return redirect(url_for('adminlogin'))
 
 
 # ------- THIS IS THE END OF POOJA's ROUTES ----------
@@ -86,24 +86,45 @@ def newjoincommunitypage():
 # add a notification of success
 
 @app.route('/login', methods=['GET', 'POST'])
-
-
-@app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
         username = request.form.get('username')
-        password = request.form.get('password')
+        password = request.form.get('password').encode('utf-8')
 
-        # Check login credentials
-        if check_customerdetails(username, password):
-            session['username'] = username  # Set session data
-            session['loggedIn'] = True  # Optional: you can track logged-in state
-            return redirect(url_for('home'))  # Redirect after successful login
-        else:
-            error = "Incorrect username or password."
+        # Check if this is the admin login
+        if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
+            session['username'] = username
+            session['admin'] = True
+            return redirect(url_for('adminlogin'))
+
+        # Check if it's a normal user
+        if check_customerdetails(username, password.decode('utf-8')):
+            session['username'] = username
+            session.pop('admin', None)
+            return redirect(url_for('community_page'))
+
+        error = "Incorrect username or password."
 
     return render_template('login.html', error=error)
+
+
+# @app.route('/login', methods=['GET', 'POST'])
+# def login():
+#     error = None
+#     if request.method == 'POST':
+#         username = request.form.get('username')
+#         password = request.form.get('password')
+#
+#         # Check login credentials
+#         if check_customerdetails(username, password):
+#             session['username'] = username  # Set session data
+#             session['loggedIn'] = True  # Optional: you can track logged-in state
+#             return redirect(url_for('home'))  # Redirect after successful login
+#         else:
+#             error = "Incorrect username or password."
+#
+#     return render_template('login.html', error=error)
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     # Handle form submission
