@@ -16,3 +16,4 @@ venv/
 
 # Ignore specific cached files (no need to list them one-by-one)
 application/__pycache__/
+*.pyc
