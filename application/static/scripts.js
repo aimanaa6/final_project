@@ -15,3 +15,10 @@ function resetRecipe() {
       input.checked = false;
     });
 }
+
+const items = document.querySelectorAll('.img-hover');
+items.forEach(item => {
+  item.addEventListener('mouseover', () => item.classList.add('bounce'));
+  item.addEventListener('mouseout', () => item.classList.remove('bounce'));
+});
+

@@ -1,12 +1,240 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
-  padding: 40px;
-  margin: 0;
+
+.hero {
+    background: linear-gradient(135deg, #ff7a7a, #ffb84d);
+    color: white;
+    padding: 50px;
+    text-align: center;
 }
-h1 {
+
+.hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3em;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+.locations-section {
+  background-color: #fbeaff; /* pastel lilac */
+  padding: 60px 20px;
+  width: 100%;
+}
+
+.locations-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.locations-heading {
   text-align: center;
-  color: #d63384;
+  font-size: 2.5rem;
   margin-bottom: 40px;
+  color: #a84bb5;
+}
+
+.location-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+}
+
+.location-card h3 {
+  margin-top: 0;
+  color: #e68ed9;
+}
+
+.quality, .drinks, .staff {
+    background-color: #fff9b8;
+    padding: 40px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ff7a7a;
+    font-size: 2em;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    color: #666;
+    font-size: 1.1em;
+    margin-top: 10px;
+}
+
+/* Pastel Colors */
+.pastel-pink {
+    background-color: #f8d6d6;
+}
+
+.pastel-orange {
+    background-color: #ffd9b3;
+}
+
+.pastel-yellow {
+    background-color: #fff9b8;
+}
+
+.pastel-green {
+    background-color: #d4f3d0;
+}
+
+.pastel-blue {
+    background-color: #c3d9f7;
+}
+
+.pastel-purple {
+    background-color: #e0cbe8;
+}
+
+/*.welcome-bg {
+    background-color: #f8d6d6; /* Pastel Pink */
+
+.customer-faves-bg {
+    background-color: #ffd9b3; /* Pastel Orange */
+}
+
+.locations-bg {
+    background-color: #c3d9f7; /* Pastel Blue */
+}
+
+.quality-bg {
+    background-color: #d4f3d0; /* Pastel Green */
+}
+.home-menu-btn,
+.return-btn,
+.find-branch-link {
+    background-color: #ff7a7a;  /* Pink background */
+    color: white;  /* White text color */
+    border: none;  /* No border */
+    padding: 15px 30px;  /* Vertical and horizontal padding */
+    font-size: 1.2em;  /* Font size */
+    font-family: 'Arial', sans-serif;  /* Font family */
+    border-radius: 50px;  /* Fully rounded corners */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transitions */
+}
+
+.home-menu-btn,
+.return-btn {
+    background-color: #ff4d4d;  /* Darker pink on hover */
+    transform: scale(1.05);  /* Slightly enlarge button on hover */
+}
+
+.home-menu-btn,
+.return-btn {
+    outline: none;  /* Remove outline when focused */
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Use regular weight by default */
+    line-height: 1.6; /* Improve readability */
+      color: #d63384;
+      padding: 40px;
+      margin: 0;
+      background: linear-gradient(135deg,
+        #f8d6d6, /* pastel pink (lighter) */
+        #ffe6e6, /* pastel pink (lighter) */
+        #ffd9b3, /* pastel orange (lighter) */
+        #ffbf66, /* pastel orange (lighter) */
+        #fff9b8, /* pastel yellow (lighter) */
+        #fff4a3, /* pastel yellow (lighter) */
+        #d4f3d0, /* pastel green (lighter) */
+        #c2f7b7, /* pastel green (lighter) */
+        #c3d9f7, /* pastel blue (lighter) */
+        #a8d5f1, /* pastel blue (lighter) */
+        #e0cbe8, /* pastel purple (lighter) */
+        #d0bbd8  /* pastel purple (lighter) */
+    );
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600; /* Bold for headings */
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+html {
+    scroll-behavior: smooth;
+}
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1050;  /* Ensures the navbar stays above other content */
+    background-color: lightblue;  /* Optional: makes the navbar visible */
+    box-shadow: 0 4px 2px -2px gray;  /* Optional: adds shadow for better visibility */
+}
+
+/* home page */
+.find-branch-link {
+    text-decoration: none;  /* Remove underline from the link */
+    color: #ff4d4d;  /* Pink color for the link */
+    font-size: 1.2em;  /* Set font size */
+    padding: 10px 20px;  /* Add some padding for clickable area */
+    border-radius: 5px;  /* Round the corners */
+    background-color: #f7a6b3;  /* Light pink background */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.find-branch-link:hover {
+    background-color: #f1a7c5;  /* Lighter pink when hovered */
+    transform: scale(1.05);  /* Slightly enlarge the link on hover */
+}
+
+.bounce {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.img-hover {
+        position: relative;
+        overflow: hidden;
+}
+
+.img-hover img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.img-hover:hover img {
+    transform: scale(1.1); /* Enlarge image on hover */
+}
+
+.img-description {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: #f8d6d6;
+    color: white;
+    padding: 10px;
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+}
+
+.img-hover:hover .img-description {
+    visibility: visible; /* Show description on hover */
+}
+
+.img-description h5 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.img-description p {
+    font-size: 1rem;
 }
 
 .menu-grid {
@@ -61,6 +289,48 @@ h1 {
   color: #666; /* optional: makes it a soft grey */
   margin-top: 8px; /* optional: adds space above */
 }
+
+/* Modal Header Customization */
+.modal-header {
+    background-color: #f7a6b3;  /* Soft pastel red-pink background */
+    color: white;  /* White text */
+    border-radius: 10px 10px 0 0;  /* Rounded top corners */
+    padding: 20px;
+}
+
+.modal-header h5 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.4em;
+}
+
+/* Custom Close Button */
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect on Close Button */
+.btn-close:hover {
+    color: #f1a7c5;  /* Lighter pastel pink on hover */
+}
+
+/* Footer Button Customization */
+.modal-footer .btn-close {
+    background-color: #f7a6b3;  /* Pastel red-pink for footer button */
+    color: white;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer .btn-close:hover {
+    background-color: #f1a7c5;  /* Lighter pastel pink when hovered */
+}
+
 
 .allergens {
   font-size: 0.85em;
