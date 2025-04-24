@@ -187,11 +187,11 @@ def adminviewsubmissions():
     # select username
     if 'username' in session:
         username = session['username']
-        print('You are logged in as Admin')
-        print(username)
+        # print('You are logged in as Admin')
+        # print(username)
         submission_list_db = view_submissions()
         print(submission_list_db)
-        return render_template('adminviewsubmissions.html', title='View Submissions', current_date= datetime.date.today())
+        return render_template('adminviewsubmissions.html', title='View Submissions', current_date= datetime.date.today(), contactus= submission_list_db)
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
 
