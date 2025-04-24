@@ -39,19 +39,13 @@ def admin_dashboard():
         return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
     return redirect(url_for('adminlogin'))
 
-
-# ------- THIS IS THE END OF POOJA's ROUTES ----------
-
-
 @app.route('/founders')
 def founders():
     return render_template('founders.html', title='Founders')
 
-
 @app.route('/menu')
 def menu():
     return render_template('menu.html', title='Our Menu')
-
 
 @app.route('/locations')
 def locations():
@@ -60,7 +54,6 @@ def locations():
 @app.route('/featuredproduct')
 def featuredproduct():
     return render_template('featuredproduct.html', title='Product of the Month')
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -83,10 +76,6 @@ def newjoincommunitypage():
     if 'username' in session:
         username = session['username']
         return render_template('newjoincommunitypage.html', username=username, title='Community Page')
-# add a notification of success
-
-@app.route('/login', methods=['GET', 'POST'])
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -104,6 +93,7 @@ def login():
             error = "Incorrect username or password."
 
     return render_template('login.html', error=error)
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     # Handle form submission
@@ -125,11 +115,11 @@ def contact():
 
         conn = get_db_connection()
         try:
-            # with conn.cursor(dictionary=True) as cursor:
-            with conn.cursor() as cursor:
+            with conn.cursor(dictionary=True) as cursor:
+                # Get user and subject info
                 cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
                 user_result = cursor.fetchone()
-                # Get user and subject info
+
                 cursor.execute("SELECT subject_id FROM subjects WHERE subject_description = %s", (subject_id,))
                 subject_result = cursor.fetchone()
 
@@ -174,7 +164,6 @@ def logout():
     session['loggedIn'] = False
     return redirect(url_for('home'))
 
-
 @app.route('/adminviewsubmissions', methods=['GET', 'POST'])
 def adminviewsubmissions():
     # select username
@@ -185,7 +174,6 @@ def adminviewsubmissions():
         return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
-
 @app.route('/community_page')
 def community_page():
     if 'username' not in session:
@@ -193,6 +181,7 @@ def community_page():
 
     username = session['username']
     return render_template('community_page.html', username=username, title='Community Page')
+
 
 
 @app.route('/find_branch', methods=['GET', 'POST'])
@@ -207,8 +196,7 @@ def find_branch():
             message = "Please enter a town."
         else:
             conn = get_db_connection()
-            # cursor = conn.cursor(dictionary=True)
-            cursor = conn.cursor()
+            cursor = conn.cursor(dictionary=True)
 
             query = """
                 SELECT b.branch_name, l.location_name
@@ -224,4 +212,10 @@ def find_branch():
 
     return render_template('find_branch.html', branches=branches, message=message)
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
 
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500

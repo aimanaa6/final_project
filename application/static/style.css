@@ -1,0 +1,48 @@
+/* Gradient pastel backgrounds */
+.pastel-pink {
+    background: linear-gradient(135deg, #fcd1d1, #ffe4e4);
+}
+
+.pastel-orange {
+    background: linear-gradient(135deg, #ffe0b2, #ffcc80);
+}
+
+.pastel-yellow {
+    background: linear-gradient(135deg, #fff9c4, #fff59d);
+}
+
+.pastel-green {
+    background: linear-gradient(135deg, #d0f0c0, #b2fab4);
+}
+
+.pastel-blue {
+    background: linear-gradient(135deg, #cce5ff, #b3e0ff);
+}
+
+.pastel-purple {
+    background: linear-gradient(135deg, #e1d5e7, #d1c4e9);
+}
+
+/* Founder card styling */
+.founder-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    backdrop-filter: blur(6px);
+}
+
+.founder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.founder-card img {
+    border-radius: 50%;
+    border: 3px solid white;
+}
+
+.founder-card h5,
+.founder-card p {
+    color: #333;
+}
