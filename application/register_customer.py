@@ -5,7 +5,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
+        password="",
         database="kaasp"
     )
 # Function to insert a new customer with hashed password
