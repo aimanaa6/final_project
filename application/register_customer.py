@@ -53,7 +53,18 @@ def check_customerdetails(username, password):
     else:
         return False
 
+def view_submissions():
+    conn = get_db_connection()
+    cursor = conn.cursor()
 
+    sql = "Select query_ID, username, subject_id, message, date, customer_id from contactus"
+    cursor.execute(sql)
+
+    result_set = cursor.fetchall()
+    submission_list = []
+    for submission in result_set:
+        submission_list.append({'query_id': submission[0], 'username': submission[1], 'subject_id': submission[2], 'message': submission[3], 'date': submission[4], 'customer_id': submission[5]})
+    return submission_list
 
 
 # from flask import render_template, url_for, request, redirect, session
