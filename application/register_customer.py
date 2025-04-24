@@ -1,16 +1,16 @@
-import mysql.connector
-# import pymysql
-# from pymysql.err import IntegrityError
+# import mysql.connector
+import pymysql
+from pymysql.err import IntegrityError
 import bcrypt
 
 
 def get_db_connection():
-    return mysql.connector.connect(
+    return pymysql.connect(
         host="localhost",
         user="root",
-        password="",
+        password="password",
         database="kaasp",
-        # cursorclass=pymysql.cursors.DictCursor
+        cursorclass=pymysql.cursors.DictCursor
     )
 
 # Function to insert a new customer with hashed password
@@ -31,7 +31,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
         cursor.execute(sql, values)
         conn.commit()
         return True
-    except mysql.connector.IntegrityError:
+    except IntegrityError:
         return False
     finally:
         cursor.close()
@@ -39,7 +39,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
 
 def check_customerdetails(username, password):
     conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
+    cursor = conn.cursor()
 
     sql = "SELECT * FROM customers WHERE username = %s"
     cursor.execute(sql, (username,))
