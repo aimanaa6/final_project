@@ -2,58 +2,44 @@
 
 {% block title %}Founders - Bakery Website{% endblock %}
 
+{% block extra_styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="container py-5">
     <h1 class="text-center mb-4">Meet Our Founders</h1>
-    <p class="text-center lead mb-5">Welcome to Kaasp Bakery! Our bakery was founded by a group of passionate bakers who are dedicated to bringing you the best baked goods in town. Here are the amazing people behind our success:</p>
+    <p class="text-center lead mb-5">
+        Welcome to Kaasp Bakery! Our bakery was founded by a group of passionate bakers who are dedicated
+        to bringing you the best baked goods in town. Here are the amazing people behind our success:
+    </p>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 justify-content-center">
-        <div class="col">
-            <div class="card shadow-sm text-center p-3 h-100">
-                <img src="{{ url_for('static', filename='images/kinga.png') }}" class="rounded-circle mx-auto mb-3" alt="Kinga" style="width: 120px; height: 120px; object-fit: cover;">
-                <h5 class="card-title mb-1">Kinga</h5>
-                <p class="mb-1 text-muted small">✨ Speciality: Cookies & Cakes</p>
-                <p class="mb-0"><strong>Fave Product:</strong> Lavender Shortbread</p>
+        {% set pastel_classes = ['pastel-pink', 'pastel-orange', 'pastel-yellow', 'pastel-green', 'pastel-blue', 'pastel-purple'] %}
+        {% for founder in [
+            {'name': 'Kinga', 'img': 'kinga.png', 'spec': 'Cookies & Cakes', 'fave': 'Lavender Shortbread'},
+            {'name': 'Aiman', 'img': 'aiman.png', 'spec': 'Colorful buttercream sculpting', 'fave': 'Strawberry Milkshake'},
+            {'name': 'Anita', 'img': 'anita.png', 'spec': 'Vegan pastries', 'fave': 'Pistachio Muffin'},
+            {'name': 'Sami', 'img': 'sami.png', 'spec': 'Latte art & drink pairings', 'fave': 'Peach Iced Tea'},
+            {'name': 'Pooja', 'img': 'pooja.png', 'spec': 'Fermentation & flavor chemistry', 'fave': 'Pink Croissant'}
+        ] %}
+            {% set color = pastel_classes[loop.index0 % pastel_classes|length] %}
+            <div class="col">
+                <div class="card founder-card text-center p-4 h-100 text-dark {{ color }}">
+                    <img src="{{ url_for('static', filename='images/' ~ founder.img) }}" class="rounded-circle mx-auto mb-3 bg-white"
+                         alt="{{ founder.name }}" style="width: 120px; height: 120px; object-fit: cover; padding: 5px;">
+                    <h5 class="card-title mb-1">{{ founder.name }}</h5>
+                    <p class="mb-1 small">✨ Speciality: {{ founder.spec }}</p>
+                    <p class="mb-0"><strong>Fave Product:</strong> {{ founder.fave }}</p>
+                </div>
             </div>
-        </div>
-
-        <div class="col">
-            <div class="card shadow-sm text-center p-3 h-100">
-                <img src="{{ url_for('static', filename='images/aiman.png') }}" class="rounded-circle mx-auto mb-3" alt="Aiman" style="width: 120px; height: 120px; object-fit: cover;">
-                <h5 class="card-title mb-1">Aiman</h5>
-                <p class="mb-1 text-muted small">✨ Speciality: Colorful buttercream sculpting</p>
-                <p class="mb-0"><strong>Fave Product:</strong> Strawberry Milkshake</p>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card shadow-sm text-center p-3 h-100">
-                <img src="{{ url_for('static', filename='images/anita.png') }}" class="rounded-circle mx-auto mb-3" alt="Anita" style="width: 120px; height: 120px; object-fit: cover;">
-                <h5 class="card-title mb-1">Anita</h5>
-                <p class="mb-1 text-muted small">✨ Speciality: Vegan pastries</p>
-                <p class="mb-0"><strong>Fave Product:</strong> Pistachio Muffin</p>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card shadow-sm text-center p-3 h-100">
-                <img src="{{ url_for('static', filename='images/sami.png') }}" class="rounded-circle mx-auto mb-3" alt="Sai" style="width: 120px; height: 120px; object-fit: cover;">
-                <h5 class="card-title mb-1">Sami</h5>
-                <p class="mb-1 text-muted small">✨ Speciality: Latte art & drink pairings</p>
-                <p class="mb-0"><strong>Fave Product:</strong> Peach Iced Tea</p>
-            </div>
-        </div>
-
-        <div class="col">
-            <div class="card shadow-sm text-center p-3 h-100">
-                <img src="{{ url_for('static', filename='images/pooja.png') }}" class="rounded-circle mx-auto mb-3" alt="Pooja" style="width: 120px; height: 120px; object-fit: cover;">
-                <h5 class="card-title mb-1">Pooja</h5>
-                <p class="mb-1 text-muted small">✨ Speciality: Fermentation & flavor chemistry</p>
-                <p class="mb-0"><strong>Fave Product:</strong> Pink Croissant</p>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
+
+
+
+
 
 

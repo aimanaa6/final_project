@@ -4,14 +4,6 @@ from application import app
 from application.register_customer import register_customer, check_customerdetails, get_db_connection
 import datetime
 
-# from application import app
-# from datetime import datetime
-# from application.utilities import get_time_of_day
-# from application.fake_data import products, people
-# import os
-# from application.forms.register_form import RegisterForm
-# from application.data_access import add_person, get_people
-
 # Hardcoded admin credentials
 admin_username = 'admin'
 admin_password_hashed = bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt())
@@ -47,19 +39,13 @@ def admin_dashboard():
         return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
     return redirect(url_for('adminlogin'))
 
-
-# ------- THIS IS THE END OF POOJA's ROUTES ----------
-
-
 @app.route('/founders')
 def founders():
     return render_template('founders.html', title='Founders')
 
-
 @app.route('/menu')
 def menu():
     return render_template('menu.html', title='Our Menu')
-
 
 @app.route('/locations')
 def locations():
@@ -68,7 +54,6 @@ def locations():
 @app.route('/featuredproduct')
 def featuredproduct():
     return render_template('featuredproduct.html', title='Product of the Month')
-
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -91,10 +76,6 @@ def newjoincommunitypage():
     if 'username' in session:
         username = session['username']
         return render_template('newjoincommunitypage.html', username=username, title='Community Page')
-# add a notification of success
-
-@app.route('/login', methods=['GET', 'POST'])
-
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -112,6 +93,7 @@ def login():
             error = "Incorrect username or password."
 
     return render_template('login.html', error=error)
+
 @app.route('/contact', methods=['GET', 'POST'])
 def contact():
     # Handle form submission
@@ -182,7 +164,6 @@ def logout():
     session['loggedIn'] = False
     return redirect(url_for('home'))
 
-
 @app.route('/adminviewsubmissions', methods=['GET', 'POST'])
 def adminviewsubmissions():
     # select username
@@ -193,7 +174,6 @@ def adminviewsubmissions():
         return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
-
 @app.route('/community_page')
 def community_page():
     if 'username' not in session:
@@ -201,6 +181,7 @@ def community_page():
 
     username = session['username']
     return render_template('community_page.html', username=username, title='Community Page')
+
 
 
 @app.route('/find_branch', methods=['GET', 'POST'])
@@ -231,4 +212,10 @@ def find_branch():
 
     return render_template('find_branch.html', branches=branches, message=message)
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
 
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500

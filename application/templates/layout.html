@@ -6,6 +6,9 @@
     <title>{% block title %}Kaasp Bakery{% endblock %}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='main_styles.css') }}">
+
+    <!-- Page-specific styles -->
+    {% block extra_styles %}{% endblock %}
 </head>
 <body>
     <header>
@@ -86,3 +89,4 @@
     <script src="{{ url_for('static', filename='scripts.js') }}"></script>
 </body>
 </html>
+
