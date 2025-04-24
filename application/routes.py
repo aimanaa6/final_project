@@ -1,7 +1,7 @@
 from flask import render_template, url_for, request, redirect, session
 import bcrypt
 from application import app
-from application.register_customer import register_customer, check_customerdetails, get_db_connection
+from application.register_customer import register_customer, check_customerdetails, get_db_connection, view_submissions
 import datetime
 
 # Hardcoded admin credentials
@@ -169,9 +169,11 @@ def adminviewsubmissions():
     # select username
     if 'username' in session:
         username = session['username']
-        print('You are logged in as Admin')
-        print(username)
-        return render_template('adminviewsubmissions.html', username=username, title='View Submissions')
+        # print('You are logged in as Admin')
+        # print(username)
+        submission_list_db = view_submissions()
+        print(submission_list_db)
+        return render_template('adminviewsubmissions.html', title='View Submissions', current_date= datetime.date.today(), contactus= submission_list_db)
     return render_template('adminlogin.html', username=False, title='Admin Login')
 
 @app.route('/community_page')
