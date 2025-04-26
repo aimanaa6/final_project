@@ -30,7 +30,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
         conn.commit()
         return True
     # Trying to insert a duplicate value in a column with UNIQUE constraint (e.g., username already exists). - IntegrityError PyMySQL
-    except IntegrityError:
+    except mysql.connector.IntegrityError:
         return False
     # This block always runs, whether an error happened or not.
     finally:
