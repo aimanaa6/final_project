@@ -35,6 +35,7 @@ def locations():
 def featuredproduct():
     return render_template('featuredproduct.html', title='Product of the Month')
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -43,19 +44,30 @@ def register():
         lastname = request.form.get('last_name')
         email = request.form.get('email')
         password = request.form.get('password')
+
         if not username or not firstname or not lastname or not email or not password:
-            return "All fields are required!"
+            error = "All fields are required!"
+            return render_template('register.html', error=error)
+
         if register_customer(username, firstname, lastname, email, password):
-            return f"User {username} registered successfully!"
+            session['username'] = username
+            session['show_modal'] = True  # ⚡ Set flag to show modal
+            return redirect(url_for('newjoincommunitypage'))
         else:
-            return "Username or email already exists"
+            error = "Username or email already exists. Please try again."
+            return render_template('register.html', error=error)
+
     return render_template('register.html')
+
 
 @app.route('/newjoincommunitypage')
 def newjoincommunitypage():
     if 'username' in session:
         username = session['username']
-        return render_template('newjoincommunitypage.html', username=username, title='Community Page')
+        return render_template('newjoincommunitypage.html', username=username, title='Thank You for Joining!')
+    else:
+        return redirect(url_for('register'))  # 🔥 Important: if no username, go back to register
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -194,11 +206,12 @@ def find_branch():
             cursor = conn.cursor(dictionary=True)
 
             query = """
-                SELECT b.branch_name, l.location_name
+                SELECT b.branch_name, b.opening_times, l.location_name
                 FROM branches b
                 JOIN locations l ON b.location_id = l.location_id
                 WHERE LOWER(l.location_name) = LOWER(%s)
             """
+
             cursor.execute(query, (town,))
             branches = cursor.fetchall()
 
