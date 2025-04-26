@@ -1,115 +1,117 @@
 {% extends 'layout.html' %}
 
 {% block title %}Home - Kaasp Bakery{% endblock %}
-
-{% block content %}
-<section id="welcome" class="container-fluid welcome-bg">
-    <div class="container mt-4">
-        <div class="text-center">
-            <h1>{{ title }}</h1>
-            <p class="lead">Delicious bakes, made fresh every day.</p>
-            <div class="mb-4">
-                    <h2>Handcrafted with love</h2>
-                    <p>We offer a wide range of cakes, pastries, and breads — all baked daily with the finest ingredients.</p>
-                    <a href="/menu" class="home-menu-btn">View Our Menu</a>  <!-- Temporarily hardcoded URL -->
+<body class="home-page">
+    {% block content %}
+    <section id="welcome" class="container-fluid welcome-section">
+        <div class="container mt-4">
+            <div class="text-center">
+                <h1>{{ title }}</h1>
+                <img src="{{ url_for('static', filename='images/kaasp_logo.png') }}" alt="KAASP Rainbow Bakery Logo" style="max-height: 250px;">
+                <p class="lead">Delicious bakes, made fresh every day.</p>
+                <div class="mb-4">
+                        <h2>Handcrafted with love</h2>
+                        <p>We offer a wide range of cakes, pastries, and breads — all baked daily with the finest ingredients.</p>
+                        <a href="/menu" class="home-menu-btn">View Our Menu</a>  <!-- Temporarily hardcoded URL -->
+                    </div>
+                </div>
+            </div>
+    </section>
+        <hr>
+    <section id="customerfaves" class="container-fluid customerfaves-section">
+        <h3 class="mt-5 text-center">Customer Favourites</h3>
+        <br>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="img-hover">
+                    <img src="{{ url_for('static', filename='images/strawberry_shortcake.jpg') }}" class="img-fluid" alt="Strawberry Shortcake">
+                    <div class="img-description">
+                        <h5>Strawberry Shortcake</h5>
+                        <p>Layers of sponge, strawberries, and whipped cream.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="img-hover">
+                    <img src="{{ url_for('static', filename='images/yellow_sunshine_cookie.jpg') }}" class="img-fluid" alt="Yellow Sunshine Cookie">
+                    <div class="img-description">
+                        <h5>Yellow Sunshine Cookie</h5>
+                        <p>Buttery cookie with lemon glaze.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="img-hover">
+                    <img src="{{ url_for('static', filename='images/blueberry_cheesecake.jpg') }}" class="img-fluid" alt="Blueberry Cheesecake">
+                    <div class="img-description">
+                        <h5>Blueberry Cheesecake</h5>
+                        <p>Rich cheesecake with a blueberry topping.</p>
+                    </div>
                 </div>
             </div>
         </div>
-</section>
-    <hr>
-<section id="customerfaves" class="container-fluid">
-    <h3 class="mt-5 text-center">Customer Favourites</h3>
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="img-hover">
-                <img src="{{ url_for('static', filename='images/strawberry_shortcake.jpg') }}" class="img-fluid" alt="Strawberry Shortcake">
-                <div class="img-description">
-                    <h5>Strawberry Shortcake</h5>
-                    <p>Layers of sponge, strawberries, and whipped cream.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="img-hover">
-                <img src="{{ url_for('static', filename='images/yellow_sunshine_cookie.jpg') }}" class="img-fluid" alt="Yellow Sunshine Cookie">
-                <div class="img-description">
-                    <h5>Yellow Sunshine Cookie</h5>
-                    <p>Buttery cookie with lemon glaze.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="img-hover">
-                <img src="{{ url_for('static', filename='images/blueberry_cheesecake.jpg') }}" class="img-fluid" alt="Blueberry Cheesecake">
-                <div class="img-description">
-                    <h5>Blueberry Cheesecake</h5>
-                    <p>Rich cheesecake with a blueberry topping.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="hero">
-        <h1>The Rainbow Bakery is Proud to Serve Customers Across the UK</h1>
-        <p>Bringing the best of our delicious baked goods and drinks to major cities and regions.</p>
-        <a href="/find_branch" class="find-branch-link">Find your local branch!</a>
     </section>
 
-<section class="locations-section">
-  <div class="locations-container">
-    <h2 class="locations-heading">Our Locations</h2>
+    <section class="container-fluid hero">
+            <h1>The Rainbow Bakery is Proud to Serve Customers Across the UK</h1>
+            <p>Bringing the best of our delicious baked goods and drinks to major cities and regions.</p>
+            <a href="/find_branch" class="find-branch-link">Find your local branch!</a>
+        </section>
 
-    <div class="location-card">
-      <h3>London</h3>
-      <p>Our flagship bakery is based in the heart of London. Whether you're grabbing a quick bite or enjoying a relaxing moment, we're here to satisfy your cravings.</p>
-    </div>
+    <section class="container-fluid locations-section">
+      <div class="locations-container">
+        <h2 class="locations-heading">Our Locations</h2>
 
-    <div class="location-card">
-      <h3>Scotland</h3>
-      <p>From the stunning landscapes of Scotland, we embrace local ingredients and make sure every bite feels like home, warm as Scottish hospitality.</p>
-    </div>
+        <div class="location-card">
+          <h3>London</h3>
+          <p>Our flagship bakery is based in the heart of London. Whether you're grabbing a quick bite or enjoying a relaxing moment, we're here to satisfy your cravings.</p>
+        </div>
 
-    <div class="location-card">
-      <h3>Manchester</h3>
-      <p>Located in vibrant Manchester, we bring a mix of modern flavors and classic bakes. The perfect stop after a busy day.</p>
-    </div>
+        <div class="location-card">
+          <h3>Scotland</h3>
+          <p>From the stunning landscapes of Scotland, we embrace local ingredients and make sure every bite feels like home, warm as Scottish hospitality.</p>
+        </div>
 
-    <div class="location-card">
-      <h3>Wales</h3>
-      <p>In Wales, our bakery combines the natural beauty with rich flavors. Visit and enjoy the peaceful atmosphere with your favorite pastries.</p>
-    </div>
+        <div class="location-card">
+          <h3>Manchester</h3>
+          <p>Located in vibrant Manchester, we bring a mix of modern flavors and classic bakes. The perfect stop after a busy day.</p>
+        </div>
 
-    <div class="location-card">
-      <h3>Northern Ireland</h3>
-      <p>Bringing a touch of the Emerald Isle, we are known for our friendly atmosphere and exceptional baked goods, from scones to cakes.</p>
-    </div>
-  </div>
-</section>
+        <div class="location-card">
+          <h3>Wales</h3>
+          <p>In Wales, our bakery combines the natural beauty with rich flavors. Visit and enjoy the peaceful atmosphere with your favorite pastries.</p>
+        </div>
 
-<section class="quality">
-    <h2>A Commitment to Quality and Service</h2>
-    <p>At Rainbow Bakery, we don't just bake; we craft. Every product is made with care and the highest quality ingredients.</p>
-</section>
+        <div class="location-card">
+          <h3>Northern Ireland</h3>
+          <p>Bringing a touch of the Emerald Isle, we are known for our friendly atmosphere and exceptional baked goods, from scones to cakes.</p>
+        </div>
+      </div>
+    </section>
 
-<section class="drinks">
-    <h2>Our Drinks</h2>
-    <p>Our drinks are as special as our bakes, with high-quality ingredients to ensure every sip is a delight.</p>
-</section>
+    <section class="container-fluid quality">
+        <h2>A Commitment to Quality and Service</h2>
+        <p>At KAASP Rainbow Bakery, we don't just bake; we craft. Quality is at the heart of everything we do. Each product is crafted with the finest ingredients, ensuring every bite is full of fresh, authentic flavor.
+            Our team is passionate about delivering not just delicious baked goods, but also an exceptional experience, filled with warmth, care, and attention to detail.
+            Whether you're stopping by for a morning treat or celebrating a special occasion, we are committed to making every visit a memorable one.</p>
+    </section>
 
-<section class="staff">
-    <h2>The Lovely Staff</h2>
-    <p>Our friendly staff are always ready to make your visit special, helping you feel right at home.</p>
-</section>
+    <section class="container-fluid drinks">
+        <h2>Our Drinks</h2>
+        <p>
+            Every sweet moment deserves the perfect sip.
+            At KAASP Rainbow Bakery, our drinks are made with handpicked ingredients and a sprinkle of joy.
+            From our colorful fruit coolers to our rich, comforting coffees, every drink is crafted to be the perfect companion to your favorite bake.
+        </p>
+    </section>
 
-<!--<section class="opening-hours">-->
-<!--    <h2>Opening Hours</h2>-->
-<!--    <p>We're open every day to serve you fresh bakes and smiles!</p>-->
-<!--    <ul>-->
-<!--        <li>Monday – Friday: 8:00 AM – 6:00 PM</li>-->
-<!--        <li>Saturday: 9:00 AM – 5:00 PM</li>-->
-<!--        <li>Sunday: 10:00 AM – 4:00 PM</li>-->
-<!--    </ul>-->
-<!--</section>-->
-
-{% endblock %}
+    <section class="container-fluid staff">
+        <h2>The Lovely Staff</h2>
+        <p>
+            Behind every delicious bake and cheerful greeting at KAASP Rainbow Bakery is a team of passionate, caring people.
+            Our staff are more than just bakers and baristas — they're family.
+            With a love for creating sweet moments and a commitment to kindness, they help make every visit a little brighter.
+        </p>
+    </section>
+    {% endblock %}
+</body>

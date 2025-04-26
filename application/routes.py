@@ -1,4 +1,4 @@
-from flask import render_template, url_for, request, redirect, session
+from flask import render_template, url_for, request, redirect, session, abort
 import bcrypt
 from application import app
 from application.register_customer import register_customer, check_customerdetails, get_db_connection, view_submissions
@@ -118,7 +118,7 @@ def contact():
         conn = get_db_connection()
         try:
             with conn.cursor(dictionary=True) as cursor:
-                # Get user and subject info
+                # Get user and subject info - with conn.cursor as cursor - PyMySQL:
                 cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
                 user_result = cursor.fetchone()
 
@@ -204,7 +204,7 @@ def find_branch():
         else:
             conn = get_db_connection()
             cursor = conn.cursor(dictionary=True)
-
+            # cursor = conn.cursor()
             query = """
                 SELECT b.branch_name, b.opening_times, l.location_name
                 FROM branches b
@@ -229,7 +229,9 @@ def internal_error(error):
     return render_template('500.html'), 500
 
 
-
+@app.route('/test500')
+def test500():
+    return render_template('500.html'), 500
 
 
 

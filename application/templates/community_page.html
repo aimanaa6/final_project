@@ -7,97 +7,85 @@
     <div class="text-center mb-4">
         <h1 class="display-5 fw-bold text-primary">KAASP Community</h1>
         <p class="lead text-muted">Explore recipes, events, and creative vibes shared by our amazing bakery fam!</p>
-        <button type="button" class="btn btn-warning btn-lg fw-bold shadow-sm mt-3" data-bs-toggle="modal" data-bs-target="#discountsModal">
+        <button type="button" class="btn btn-warning btn-lg fw-bold shadow-sm mt-3" data-bs-toggle="modal" data-bs-target="#discountsModal" style="font-size: 1.2rem; padding: 1rem 2rem; background-color: #f06292; border: none; color: white; border-radius: 0.375rem;">
             View This Week's Sweet Deals!
         </button>
     </div>
 
     <!-- Upcoming Events Section -->
     <section class="events mb-5">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3">Upcoming Events</h2>
-        <div class="card shadow-sm">
-            <img src="{{ url_for('static', filename='images/event1.jpg') }}" class="card-img-top" alt="May Opening in London">
-            <div class="card-body">
-                <h5 class="card-title fw-bold">May Opening of Our Next Location in London</h5>
-                <p class="card-text">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned!</p>
-                <span class="badge bg-info text-dark">New!</span>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-3 text-center" style="color: #c2185b;">
+            Upcoming Events
+        </h2>
+        <div class="card shadow-lg border-0 position-relative text-white overflow-hidden">
+            <img src="{{ url_for('static', filename='images/opening.png') }}"
+                 class="img-fluid w-100"
+                 style="height: 500px; object-fit: cover; filter: brightness(70%);"
+                 alt="May Opening in London">
+            <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
+                <h5 class="display-6 fw-bold text-white">May Opening of Our Next Location in London</h5>
+                <p class="lead text-white">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned!</p>
+                <span class="badge bg-light text-dark fs-6 mt-2">New!</span>
             </div>
         </div>
     </section>
 
     <!-- Recipes Carousel Section -->
     <section class="recipe-carousel mb-5">
-        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-4">Community Recipes</h2>
+        <h2 class="h4 text-uppercase fw-semibold border-bottom pb-2 mb-2 text-center" style="color: #c2185b;">
+            Community Recipes
+        </h2>
+        <p class="text-center text-muted mb-4">
+            Want to see your recipe here? <a href="{{ url_for('contact') }}" class="text-decoration-none fw-bold" style="color: #f06292;">Contact us</a> to submit it!
+        </p>
+
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                {% for recipe in [
-                    {'id': 'modal1', 'img': 'recipe1.jpg', 'title': 'Chunky, Fluffy Orange Challah Bread', 'text': 'Amanda’s turmeric-powered bread recipe.'},
-                    {'id': 'modal2', 'img': 'recipe2.jpg', 'title': 'Red Chocolate Cake', 'text': 'A rich twist on red velvet.'},
-                    {'id': 'modal3', 'img': 'recipe3.jpg', 'title': 'Pink Puff Pastry Delight', 'text': 'Beetroot + pastry = forever love.'},
-                    {'id': 'modal4', 'img': 'recipe4.jpg', 'title': 'Blue Chai Latte', 'text': 'Chai with a blue twist from our fans.'},
-                    {'id': 'modal5', 'img': 'recipe5.jpg', 'title': 'Green Matcha Cookies', 'text': 'Vibrant, crunchy, and slightly healthy.'},
-                    {'id': 'modal6', 'img': 'recipe6.jpg', 'title': 'Sourdough Bread', 'text': 'Master the sour rise.'},
-                    {'id': 'modal7', 'img': 'recipe7.jpg', 'title': 'Red Velvet Cake', 'text': 'For all your celebrations.'},
-                    {'id': 'modal8', 'img': 'recipe8.jpg', 'title': 'Croissants', 'text': 'Perfect your flaky layers.'}
-                ] %}
-                <div class="carousel-item {% if loop.first %}active{% endif %}">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#{{ recipe.id }}">
-                        <img src="{{ url_for('static', filename='images/' ~ recipe.img) }}" class="card-img-top" alt="{{ recipe.title }}">
+
+                <!-- Example Recipe Card (only one for brevity) -->
+                <div class="carousel-item active">
+                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal1">
+                        <img src="{{ url_for('static', filename='images/recipe1.jpg') }}" class="card-img-top" alt="Chunky, Fluffy Orange Challah Bread">
                         <div class="card-body text-center">
-                            <h5 class="card-title">{{ recipe.title }}</h5>
-                            <p class="card-text text-muted">{{ recipe.text }}</p>
+                            <h5 class="card-title">Chunky, Fluffy Orange Challah Bread</h5>
+                            <p class="card-text text-muted">Amanda’s turmeric-powered bread recipe.</p>
+                            <span class="badge bg-success">Submitted by our community members!</span>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
 
     <!-- Recipe Modals -->
-    {% for recipe in [
-        {'id': 'modal1', 'title': 'Chunky, Fluffy Orange Challah Bread', 'steps': [
-            "In a bowl, combine warm water, yeast, and 1 tbsp sugar. Let it sit until foamy (10 min).",
-            "Add orange zest, eggs, oil, remaining sugar, and salt. Mix well.",
-            "Gradually add flour and knead until smooth. Let rise in a warm place (1–2 hours).",
-            "Braid the dough into your desired shape, then let it rise again (30–45 min).",
-            "Brush with egg wash and bake at 175°C (350°F) for 25–30 minutes until golden brown."
-        ]},
-    ] %}
-    <div class="modal fade" id="{{ recipe.id }}" tabindex="-1" aria-labelledby="{{ recipe.id }}Label" aria-hidden="true">
+    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="{{ recipe.id }}Label">{{ recipe.title }}</h5>
+                    <h5 class="modal-title" id="modal1Label">Chunky, Fluffy Orange Challah Bread</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <h6>Steps:</h6>
                     <ol>
-                        {% for step in recipe.steps %}
-                        <li>{{ step }}</li>
-                        {% endfor %}
+                        <li>Mix warm water, yeast, and 1 tbsp sugar. Let sit for 10 minutes.</li>
+                        <li>Add eggs, oil, zest, rest of sugar, and salt. Mix well.</li>
+                        <li>Slowly add flour, knead until smooth. Let rise for 1–2 hours.</li>
+                        <li>Braid the dough and let rise again for 30 minutes.</li>
+                        <li>Brush with egg wash. Bake at 175°C (350°F) for 25–30 min.</li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    {% endfor %}
 
     <!-- Discounts Modal -->
     <div class="modal fade" id="discountsModal" tabindex="-1" aria-labelledby="discountsModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header bg-warning text-dark">
-                    <h5 class="modal-title fw-bold" id="discountsModalLabel"> This Week's Deals!</h5>
+                    <h5 class="modal-title fw-bold" id="discountsModalLabel">This Week's Deals!</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body bg-light">
@@ -106,8 +94,8 @@
                             <div class="card shadow-lg border-0 h-100">
                                 <img src="{{ url_for('static', filename='images/pink_croissant.jpg') }}" class="card-img-top" alt="Pink Baked Goods Discount">
                                 <div class="card-body">
-                                    <h5 class="card-title fw-bold text-pink">25% Off Pink Baked Goods</h5>
-                                    <p class="card-text">Celebrate love and sweetness with our pink-themed delights! Enjoy 25% off on everything from beet puff pastries to rose cupcakes.</p>
+                                    <h5 class="card-title fw-bold" style="color: #d63384;">25% Off Pink Baked Goods</h5>
+                                    <p class="card-text">Celebrate love and sweetness with our pink-themed delights! Enjoy 25% off on everything from beet puff pastries to rose cupcakes, with code PINKY25.</p>
                                     <span class="badge bg-danger">Limited Time</span>
                                 </div>
                             </div>
@@ -117,7 +105,7 @@
                                 <img src="{{ url_for('static', filename='images/red_velvet_cupcake.jpg') }}" class="card-img-top" alt="Red Baked Goods Discount">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold text-danger">25% Off Red Baked Goods</h5>
-                                    <p class="card-text">Treat yourself with our bold red delights—like red velvet cake and ruby chocolate cookies. Now 25% off for a limited time!</p>
+                                    <p class="card-text">Treat yourself with our bold red delights—like red velvet cake and ruby chocolate cookies. Now 25% off for a limited time, when you quote REDDY25!</p>
                                     <span class="badge bg-danger">Hot Deal</span>
                                 </div>
                             </div>
