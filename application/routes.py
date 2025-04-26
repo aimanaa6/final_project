@@ -1,4 +1,4 @@
-from flask import render_template, url_for, request, redirect, session
+from flask import render_template, url_for, request, redirect, session, abort
 import bcrypt
 from application import app
 from application.register_customer import register_customer, check_customerdetails, get_db_connection, view_submissions
@@ -229,7 +229,9 @@ def internal_error(error):
     return render_template('500.html'), 500
 
 
-
+@app.route('/test500')
+def test500():
+    return render_template('500.html'), 500
 
 
 
