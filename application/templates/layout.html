@@ -32,32 +32,10 @@
                                 <li><a class="dropdown-item" href="{{ url_for('aboutus') }}">Our Story</a></li>
                                 <li><a class="dropdown-item" href="{{ url_for('founders') }}">Founders</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('register') }}">Register</a>
-                        </li>
-
-                        {% if session.get('username') %}
-                          <!-- User is logged in -->
-                          <li class="nav-item">
-                              <a class="nav-link" href="{{ url_for('logout') }}">Logout ({{ session['username'] }})</a>
-                          </li>
-                        {% else %}
-                          <!-- User is not logged in -->
-                          <li class="nav-item">
-                              <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                          </li>
-                        {% endif %}
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('adminlogin') }}">Admin Dashboard</a>
-                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('menu') }}">Menu</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url_for('community_page') }}">Community Page</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('featuredproduct') }}">Product of the Month!</a>
                         </li>
@@ -67,6 +45,20 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('find_branch') }}">Find Branch</a>
                         </li>
+                        {% if not session.get('username') %}
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ url_for('logout') }}">Logout ({{ session['username'] }})</a>
+                            </li>
+
+                            {% if session.get('admin') %}
+                                <li class="nav-item"><a class="nav-link" href="{{ url_for('adminviewsubmissions') }}">Admin Dashboard</a></li>
+                            {% else %}
+                                <li class="nav-item"><a class="nav-link" href="{{ url_for('community_page') }}">Community Page</a></li>
+                            {% endif %}
+                        {% endif %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('contact') }}">Contact</a>
                         </li>
