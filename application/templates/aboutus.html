@@ -3,28 +3,54 @@
 {% block title %}About Us - Kaasp Bakery{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1 class="text-center mb-4">{{ title }}</h1>
-    <p class="lead text-center">
-        Kaasp Bakery is more than just a bakery — it’s a celebration of colour, creativity, and community.
-    </p>
-    <p class="mt-4">
-        Founded by five friends with a shared passion for baking, Kaasp was born from the idea that desserts should not only taste amazing but also bring happiness with every bite. The name "Kaasp" is a blend of our founders’ initials, symbolising unity and friendship.
-    </p>
-    <p>
-        Inspired by the colours of the rainbow, we set out to create a space where each bake tells a story and every customer feels like family. From bright, fluffy cupcakes to layered celebration cakes bursting with colour, every creation is crafted with joy and love.
-    </p>
-    <p>
-        At Kaasp, community means everything. We love collaborating with local artists, hosting themed baking days, and celebrating the little moments that make life sweet.
-        Our bakery is a place where creativity meets tradition — where new ideas are layered over time-honored recipes to create something truly special.
-    </p>
-    <p>
-        Whether you're picking up a cake, sipping one of our signature drinks, or simply browsing our rainbow of treats, we hope you feel the love, care, and passion that go into every corner of Kaasp Bakery.
-    </p>
-    <p>
-        Since opening our doors, Kaasp Bakery has grown into a local favourite, known for its bold themes, playful designs, and welcoming atmosphere. Whether you’re celebrating a big occasion or just stopping by for a treat, we’re here to add a little colour to your day.
-    </p>
-    <p class="text-center mt-5 fw-bold">Welcome to Kaasp — where every bite is a rainbow of joy.</p>
-</div>
-{% endblock %}
+<section class="about-hero text-center py-5">
+    <div class="container">
+        <h1 class="display-4 mb-3">{{ title }}</h1>
+        <p class="lead">Bringing colour, creativity, and sweetness to your everyday moments.</p>
+    </div>
+</section>
 
+<section class="about-story container py-5">
+    <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <img src="{{ url_for('static', filename='images/about_us_bake.jpg') }}" class="img-fluid rounded shadow" alt="Baking at Kaasp Bakery">
+        </div>
+        <div class="col-md-6">
+            <h2>Our Story</h2>
+            <p>Kaasp Bakery started as a dream among friends — a dream to create bakes that spark joy, not just satisfy hunger. The name "Kaasp" is made from the initials of the founders, standing for friendship, unity, and shared purpose.</p>
+            <p>We believe that bakes should be as beautiful as they are tasty, which is why every product is made with attention to detail, love, and colour.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about-values bg-light py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">What We Believe</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <h5>Joy in Every Bite</h5>
+                <p>Every pastry, cake, and cookie is made to lift your mood and brighten your day.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5>Bold, Beautiful Bakes</h5>
+                <p>We embrace colour and creativity, making every treat a feast for the eyes and the palate.</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <h5>Warm, Welcoming Vibes</h5>
+                <p>Our spaces are made for everyone — cosy, inclusive, and filled with the scent of fresh bakes.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="about-quote container text-center py-4">
+    <blockquote class="blockquote">
+        <p class="mb-0">“At Kaasp, we don’t just bake — we create moments of magic, colour, and comfort.”</p>
+        <footer class="blockquote-footer mt-2">The Kaasp Team</footer>
+    </blockquote>
+</section>
+
+<section class="welcome-note text-center py-4">
+    <p class="fw-bold fs-5">Thanks for stopping by — we can’t wait to welcome you in person!</p>
+</section>
+{% endblock %}

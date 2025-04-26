@@ -4,10 +4,6 @@ from application import app
 from application.register_customer import register_customer, check_customerdetails, get_db_connection, view_submissions
 import datetime
 
-# Hardcoded admin credentials
-admin_username = 'admin'
-admin_password_hashed = bcrypt.hashpw('admin123'.encode('utf-8'), bcrypt.gensalt())
-
 @app.route('/')
 @app.route('/home')
 def home():
@@ -17,27 +13,11 @@ def home():
 def aboutus():
     return render_template('aboutus.html', title='Our Story')
 
-@app.route('/adminlogin', methods=['GET', 'POST'])
-def adminlogin():
-    error = ""
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password'].encode('utf-8')
-
-        if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
-            session['username'] = username
-            session['admin'] = True
-            return redirect(url_for('admin_dashboard'))
-        else:
-            error = "Invalid admin credentials."
-
-    return render_template('adminlogin.html', title='Admin Login', error=error)
-
 @app.route('/admin')
 def admin_dashboard():
     if session.get('admin'):
         return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
-    return redirect(url_for('adminlogin'))
+    return redirect(url_for('adminviewsubmissions'))
 
 @app.route('/founders')
 def founders():
@@ -55,6 +35,7 @@ def locations():
 def featuredproduct():
     return render_template('featuredproduct.html', title='Product of the Month')
 
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -63,34 +44,55 @@ def register():
         lastname = request.form.get('last_name')
         email = request.form.get('email')
         password = request.form.get('password')
+
         if not username or not firstname or not lastname or not email or not password:
-            return "All fields are required!"
+            error = "All fields are required!"
+            return render_template('register.html', error=error)
+
         if register_customer(username, firstname, lastname, email, password):
-            return f"User {username} registered successfully!"
+            session['username'] = username
+            session['show_modal'] = True  # ⚡ Set flag to show modal
+            return redirect(url_for('newjoincommunitypage'))
         else:
-            return "Username or email already exists"
+            error = "Username or email already exists. Please try again."
+            return render_template('register.html', error=error)
+
     return render_template('register.html')
+
 
 @app.route('/newjoincommunitypage')
 def newjoincommunitypage():
     if 'username' in session:
         username = session['username']
-        return render_template('newjoincommunitypage.html', username=username, title='Community Page')
+        return render_template('newjoincommunitypage.html', username=username, title='Thank You for Joining!')
+    else:
+        return redirect(url_for('register'))  # 🔥 Important: if no username, go back to register
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
         username = request.form.get('username')
-        password = request.form.get('password')
+        password = request.form.get('password').encode('utf-8')
 
-        # Check login credentials
-        if check_customerdetails(username, password):
-            session['username'] = username  # Set session data
-            session['loggedIn'] = True  # Optional: you can track logged-in state
-            return redirect(url_for('home'))  # Redirect after successful login
-        else:
-            error = "Incorrect username or password."
+        # Hardcoded admin credentials
+        admin_username = 'admin'
+        admin_password = 'admin123'
+        admin_password_hashed = bcrypt.hashpw(admin_password.encode('utf-8'), bcrypt.gensalt())
+
+
+        if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
+            session['username'] = username
+            session['admin'] = True
+            return redirect(url_for('adminviewsubmissions'))
+
+        if check_customerdetails(username, password.decode('utf-8')):
+            session['username'] = username
+            session.pop('admin', None)
+            return redirect(url_for('community_page'))
+
+        error = 'Incorrect username or password.'
 
     return render_template('login.html', error=error)
 
@@ -166,15 +168,20 @@ def logout():
 
 @app.route('/adminviewsubmissions', methods=['GET', 'POST'])
 def adminviewsubmissions():
-    # select username
-    if 'username' in session:
-        username = session['username']
-        # print('You are logged in as Admin')
-        # print(username)
-        submission_list_db = view_submissions()
-        print(submission_list_db)
-        return render_template('adminviewsubmissions.html', title='View Submissions', current_date= datetime.date.today(), contactus= submission_list_db)
-    return render_template('adminlogin.html', username=False, title='Admin Login')
+    if 'username' not in session or not session.get('admin'):
+        # If user is not logged in or not an admin, redirect to admin login
+        return redirect(url_for('login'))
+
+    username = session['username']
+    submission_list_db = view_submissions()
+    print(submission_list_db)  # Debugging purpose
+
+    return render_template(
+        'adminviewsubmissions.html',
+        title='View Submissions',
+        current_date=datetime.date.today(),
+        contactus=submission_list_db
+    )
 
 @app.route('/community_page')
 def community_page():
@@ -183,8 +190,6 @@ def community_page():
 
     username = session['username']
     return render_template('community_page.html', username=username, title='Community Page')
-
-
 
 @app.route('/find_branch', methods=['GET', 'POST'])
 def find_branch():
@@ -201,11 +206,12 @@ def find_branch():
             cursor = conn.cursor(dictionary=True)
             # cursor = conn.cursor()
             query = """
-                SELECT b.branch_name, l.location_name
+                SELECT b.branch_name, b.opening_times, l.location_name
                 FROM branches b
                 JOIN locations l ON b.location_id = l.location_id
                 WHERE LOWER(l.location_name) = LOWER(%s)
             """
+
             cursor.execute(query, (town,))
             branches = cursor.fetchall()
 
@@ -250,22 +256,7 @@ def internal_error(error):
 # def aboutus():
 #     return render_template('aboutus.html', title='Our Story')
 #
-# @app.route('/adminlogin', methods=['GET', 'POST'])
-# def adminlogin():
-#     error = ""
-#     if request.method == 'POST':
-#         username = request.form['username']
-#         password = request.form['password'].encode('utf-8')
-#
-#         if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
-#             session['username'] = username
-#             session['admin'] = True
-#             return redirect(url_for('admin_dashboard'))
-#         else:
-#             error = "Invalid admin credentials."
-#
-#     return render_template('adminlogin.html', title='Admin Login', error=error)
-#
+
 # @app.route('/admin')
 # def admin_dashboard():
 #     if session.get('admin'):
@@ -315,15 +306,25 @@ def internal_error(error):
 #     error = None
 #     if request.method == 'POST':
 #         username = request.form.get('username')
-#         password = request.form.get('password')
+#         password = request.form.get('password').encode('utf-8')
 #
-#         # Check login credentials
-#         if check_customerdetails(username, password):
-#             session['username'] = username  # Set session data
-#             session['loggedIn'] = True  # Optional: you can track logged-in state
-#             return redirect(url_for('home'))  # Redirect after successful login
-#         else:
-#             error = "Incorrect username or password."
+#         # Hardcoded admin credentials
+#         admin_username = 'admin'
+#         admin_password = 'admin123'
+#         admin_password_hashed = bcrypt.hashpw(admin_password.encode('utf-8'), bcrypt.gensalt())
+#
+#
+#         if username == admin_username and bcrypt.checkpw(password, admin_password_hashed):
+#             session['username'] = username
+#             session['admin'] = True
+#             return redirect(url_for('adminviewsubmissions'))
+#
+#         if check_customerdetails(username, password.decode('utf-8')):
+#             session['username'] = username
+#             session.pop('admin', None)
+#             return redirect(url_for('community_page'))
+#
+#         error = 'Incorrect username or password.'
 #
 #     return render_template('login.html', error=error)
 #
