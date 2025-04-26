@@ -1,5 +1,6 @@
-mysql-connector-python
 Flask
 bcrypt
 datetime
 cryptography
+PyMySQL
+mysql-connector-python
