@@ -777,10 +777,10 @@
         <div class="card card-link" data-type="bakery" onclick="window.location.href='/featuredproduct'">
             <img src="{{ url_for('static', filename='images/lavender_shortbread.jpg') }}" alt="Lavender Shortbread">
             <div class="card-content">
-                <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">⭐ Product of the Month</span>
+                <span class="badge product-month position-absolute top-0 end-0 m-2">⭐ Product of the Month</span>
                 <div class="item-name">Lavender Shortbread</div>
                 <div class="description"><strong>Fragrant shortbread with a hint of lavender</strong></div>
-                <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#lavenderShortbreadModal">
+                <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#lavenderShortbreadModal" onclick="event.stopPropagation();">
                   View Allergens
                 </button>
                 <div class="price">£2.00</div>
@@ -815,7 +815,7 @@
             <img src="{{ url_for('static', filename='images/strawberry-glazed_doughnut.jpg') }}" alt="Pink Strawberry Doughnut">
             <div class="card-content">
                 <div class="item-name">Pink Strawberry Doughnut</div>
-                <div class="description"><strong>Soft yeast doughnut with strawberry glaze and pink sprinkles</strong></div>
+                <div class="description"><strong>Soft yeast doughnut with strawberry glaze</strong></div>
                     <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#pinkStrawberryDoughnutModal">
                         View Allergens
                     </button>

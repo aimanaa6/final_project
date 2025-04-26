@@ -1,18 +1,21 @@
 import mysql.connector
 import bcrypt
+# import pymysql
+# from pymysql.err import IntegrityError
 
 def get_db_connection():
-    return mysql.connector.connect(
+    return mysql.conncector.connect(
         host="localhost",
         user="root",
-        password="password",
-        database="kaasp"
+        password="",
+        database="kaasp",
+        # cursorclass = pymysql.cursors.DictCursor
     )
 # Function to insert a new customer with hashed password
 def register_customer(username, first_name, last_name, email, plain_password):
     conn = get_db_connection()
-    cursor = conn.cursor()
-
+    # cursor = conn.cursor()
+    cursor = conn.cursor(dictionary=True)
     # Hash the password
     hashed = bcrypt.hashpw(plain_password.encode('utf-8'), bcrypt.gensalt())
 
@@ -26,7 +29,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
         cursor.execute(sql, values)
         conn.commit()
         return True
-    # Trying to insert a duplicate value in a column with UNIQUE constraint (e.g., username already exists).
+    # Trying to insert a duplicate value in a column with UNIQUE constraint (e.g., username already exists). - IntegrityError PyMySQL
     except mysql.connector.IntegrityError:
         return False
     # This block always runs, whether an error happened or not.
@@ -39,7 +42,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
 def check_customerdetails(username, password):
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
-
+    # cursor = conn.cursor()
     sql = "SELECT * FROM customers WHERE username = %s"
     cursor.execute(sql, (username,))
     user = cursor.fetchone()

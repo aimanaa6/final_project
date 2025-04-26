@@ -1,4 +1,95 @@
 
+.navbar-spacer {
+    height: 150px; /* match navbar height - inspect tool*/
+}
+/* Navbar background */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background: linear-gradient(to right, #ffd1dc, #d0f0c0, #a2d2ff);
+    z-index: 1000;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.custom-navbar .navbar-brand img {
+    max-height: 60px;
+}
+
+.custom-navbar .navbar-brand span {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #443434;
+}
+/* Navbar brand text */
+.custom-navbar .navbar-brand { /* << was missing .custom-navbar before */
+    color: #443434 !important; /* Deep warm brown for brand */
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+/* Navbar links */
+.custom-navbar .nav-link,
+.custom-navbar .dropdown-toggle {
+    color: #443434;
+    font-weight: 600;
+    font-size: 1rem; /* slightly smaller text */
+    letter-spacing: 0.5px;
+    margin: 0 8px; /* tighter spacing between links */
+    padding: 6px 10px; /* reduce padding */
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* <<< this forces nav links to stay in one line */
+}
+
+/* Navbar links hover - pastel pill effect */
+.custom-navbar .nav-link:hover,
+.custom-navbar .dropdown-toggle:hover {
+    background-color: rgba(255, 209, 220, 0.8); /* Light pastel pink background on hover */
+    color: #443434;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);/* Soft little shadow */
+}
+
+/* Active page link */
+.custom-navbar .nav-link.active {
+    background-color: rgba(255, 209, 220, 1);
+    color: #443434;
+    font-weight: 700;
+}
+
+/* Dropdown menu background */
+.dropdown-menu {
+    background-color: #fff5f8; /* Soft creamy pink */
+}
+
+/* Dropdown items */
+.dropdown-item {
+    color: #5c4b51 !important; /* Soft cocoa text */
+}
+
+/* Dropdown item hover */
+.dropdown-item:hover {
+    background-color: #ffe4ec;
+    border-radius: 20px; /* Soft rounded hover */
+    color: #7b5d8c !important; /* Dusty lavender text on hover */
+}
+
+/* Navbar toggler (burger menu) */
+.navbar-toggler {
+    border-color: #5c4b51;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(92,75,81, 0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
 .hero {
     background: linear-gradient(135deg, #ff7a7a, #ffb84d);
     color: white;
@@ -37,7 +128,7 @@
 }
 
 .location-card {
-  background-color: white;
+  background-color: lightblue;
   border-radius: 15px;
   padding: 20px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -68,9 +159,9 @@ h2 {
 }
 
 p {
-    color: #666;
-    font-size: 1.1em;
-    margin-top: 10px;
+    color: #5c4b51;
+    font-size: 1.1rem; /* slightly bigger for better readability */
+    line-height: 1.6; /* extra breathing space */
 }
 
 /* Pastel Colors */
@@ -160,23 +251,70 @@ body {
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
-    font-weight: 600; /* Bold for headings */
+    font-weight: 600;
+    text-align: center/* Bold for headings */
 }
 a {
     text-decoration: none;
     color: inherit;
 }
-html {
+html.home-page {
     scroll-behavior: smooth;
 }
-.navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1050;  /* Ensures the navbar stays above other content */
-    background-color: lightblue;  /* Optional: makes the navbar visible */
-    box-shadow: 0 4px 2px -2px gray;  /* Optional: adds shadow for better visibility */
+
+.welcome-section,
+.customerfaves-section,
+.hero,
+.locations-section,
+.quality,
+.drinks,
+.staff  {
+    width: 100%;
+    max-width:100%;
+    overflow-x: hidden;
+    min-height: 100vh; /* full screen height */
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
+#welcome {
+    background: linear-gradient(to right, #ffc1cc, #ffe4b5);
+    color: #3d3d3d;
+}
+
+#customerfaves {
+    background: linear-gradient(to right, #ffe4b5, #ffffcc);
+    color: #3d3d3d;
+}
+
+.hero {
+    background: linear-gradient(to right, #ffffcc, #c1e1c1);
+    color: #3d3d3d;
+}
+
+.locations-section {
+    background: linear-gradient(to right, #c1e1c1, #a2d2ff);
+    color: #3d3d3d;
+}
+
+.quality {
+    background: linear-gradient(to right, #a2d2ff, #d0bdf4);
+    color: #3d3d3d;
+}
+
+.drinks {
+    background: linear-gradient(to right, #d0bdf4, #f3c4fb);
+    color: #3d3d3d;
+}
+
+.staff {
+    background: linear-gradient(to right, #f3c4fb, #ffc1cc);
+    color: #3d3d3d;
+}
 /* home page */
 .find-branch-link {
     text-decoration: none;  /* Remove underline from the link */
@@ -275,7 +413,21 @@ html {
   box-shadow: 0 0 15px rgba(255, 192, 203, 0.3);
   position: relative;
 }
-
+.card.card-link:hover {
+    box-shadow: 0 8px 18px rgba(255, 182, 193, 0.5); /* soft pink glow */
+}
+.badge.product-month {
+    background-color: #fff3cd; /* pastel yellow */
+    color: #7b5d8c; /* soft purple text */
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    animation: pulse 3s infinite;
+}
 .item-name {
   font-size: 1.1em;
   font-weight: bold;
@@ -552,4 +704,84 @@ button:hover {
   text-decoration: underline;
 }
 
+/* @ media - rule that CSS tells the browser - Smaller screens - tablets and small laptops (<=768px) */
+@media (max-width: 768px) {
 
+    /* Sections - less tall on mobile */
+    section {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    /* Navbar smaller */
+    .custom-navbar {
+        min-height: 90px;
+    }
+
+    /* Navbar spacer smaller */
+    .navbar-spacer {
+        height: 90px;
+    }
+
+    /* Brand logo smaller */
+    .custom-navbar .navbar-brand img {
+        max-height: 40px;
+    }
+
+    /* Brand text smaller */
+    .custom-navbar .navbar-brand span {
+        font-size: 1rem;
+    }
+
+    /* Push main content down less */
+    main {
+        padding-top: 100px;
+    }
+}
+
+/* Even smaller screens - mobile phones (<=576px) */
+@media (max-width: 576px) {
+
+    /* Navbar even smaller */
+    .custom-navbar {
+        min-height: 80px;
+    }
+
+    /* Spacer even smaller */
+    .navbar-spacer {
+        height: 80px;
+    }
+
+    /* Brand logo even smaller */
+    .custom-navbar .navbar-brand img {
+        max-height: 35px;
+    }
+
+    /* Brand text even smaller */
+    .custom-navbar .navbar-brand span {
+        font-size: 0.9rem;
+    }
+
+    /* Push main content down slightly less */
+    main {
+        padding-top: 90px;
+    }
+
+    /* Wider container on mobile */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 209, 220, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 209, 220, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 209, 220, 0);
+    }
+}
