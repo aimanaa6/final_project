@@ -1,3 +1,4 @@
+import mysql.connector
 from flask import render_template, url_for, request, redirect, session, abort
 import bcrypt
 from application import app
@@ -13,11 +14,11 @@ def home():
 def aboutus():
     return render_template('aboutus.html', title='Our Story')
 
-@app.route('/admin')
-def admin_dashboard():
-    if session.get('admin'):
-        return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
-    return redirect(url_for('adminviewsubmissions'))
+# @app.route('/admin')
+# def admin_dashboard():
+#     if session.get('admin'):
+#         return "Welcome to the admin dashboard!"  # Replace with render_template for your real admin page
+#     return redirect(url_for('adminviewsubmissions'))
 
 @app.route('/founders')
 def founders():
@@ -48,6 +49,11 @@ def register():
         if not username or not firstname or not lastname or not email or not password:
             error = "All fields are required!"
             return render_template('register.html', error=error)
+
+        if '@' not in email:
+            error = 'Please enter a valid email address'
+            return render_template('register.html', error=error)
+
 
         if register_customer(username, firstname, lastname, email, password):
             session['username'] = username
@@ -152,6 +158,18 @@ def contact():
 
                 # Redirect to contact page (so modal can show)
                 return redirect(url_for('contact'))
+
+        except (mysql.connector.OperationalError, mysql.connector.InternalError) as err:
+            f = open("exceptionlog.txt", "a")
+            f.write(str(err) + "\n")
+            f.close()
+        except mysql.connector.NotSupportedError as error:
+            message = str(error)
+            f = open("exceptionlog.txt", "a")
+            f.write(message)
+            f.close()
+
+
         finally:
             conn.close()
 
@@ -168,20 +186,33 @@ def logout():
 
 @app.route('/adminviewsubmissions', methods=['GET', 'POST'])
 def adminviewsubmissions():
-    if 'username' not in session or not session.get('admin'):
-        # If user is not logged in or not an admin, redirect to admin login
-        return redirect(url_for('login'))
+    submission_list_db = []
+    try:
+        if 'username' not in session or not session.get('admin'):
+            # If user is not logged in or not an admin, redirect to admin login
+            return redirect(url_for('login'))
 
-    username = session['username']
-    submission_list_db = view_submissions()
-    print(submission_list_db)  # Debugging purpose
+        username = session['username']
+        submission_list_db = view_submissions()
+        print(submission_list_db)
 
-    return render_template(
-        'adminviewsubmissions.html',
-        title='View Submissions',
-        current_date=datetime.date.today(),
-        contactus=submission_list_db
-    )
+
+    except (mysql.connector.OperationalError, mysql.connector.InternalError) as err:
+            f = open("exceptionlog.txt", "a")
+            f.write(str(err) + "\n")
+            f.close()
+    except mysql.connector.NotSupportedError as error:
+            message = str(error)
+            f = open("exceptionlog.txt", "a")
+            f.write(message)
+            f.close()
+    finally: return render_template(
+            'adminviewsubmissions.html',
+            title='View Submissions',
+            current_date=datetime.date.today(),
+            contactus=submission_list_db)
+
+
 
 @app.route('/community_page')
 def community_page():
@@ -190,6 +221,7 @@ def community_page():
 
     username = session['username']
     return render_template('community_page.html', username=username, title='Community Page')
+
 
 @app.route('/find_branch', methods=['GET', 'POST'])
 def find_branch():
