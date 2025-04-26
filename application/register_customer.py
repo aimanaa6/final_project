@@ -4,10 +4,10 @@ import bcrypt
 # from pymysql.err import IntegrityError
 
 def get_db_connection():
-    return mysql.conncector.connect(
+    return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="",
+        password="password",
         database="kaasp",
         # cursorclass = pymysql.cursors.DictCursor
     )

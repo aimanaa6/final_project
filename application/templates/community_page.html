@@ -23,9 +23,9 @@
                  style="height: 500px; object-fit: cover; filter: brightness(70%);"
                  alt="May Opening in London">
             <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center text-center">
-                <h5 class="display-6 fw-bold">May Opening of Our Next Location in London</h5>
-                <p class="lead">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned!</p>
-                <span class="badge bg-info text-dark fs-6 mt-2">New!</span>
+                <h5 class="display-6 fw-bold text-white">May Opening of Our Next Location in London</h5>
+                <p class="lead text-white">Join us for the secret unveiling of our newest spot in London! More details coming soon. Stay tuned!</p>
+                <span class="badge bg-light text-dark fs-6 mt-2">New!</span>
             </div>
         </div>
     </section>
@@ -38,12 +38,13 @@
         <p class="text-center text-muted mb-4">
             Want to see your recipe here? <a href="{{ url_for('contact') }}" class="text-decoration-none fw-bold" style="color: #f06292;">Contact us</a> to submit it!
         </p>
+
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
-                <!-- Recipe 1 with rainbow border -->
+                <!-- Example Recipe Card (only one for brevity) -->
                 <div class="carousel-item active">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer; border: 4px solid; border-image-slice: 1; border-width: 4px; border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);" data-bs-toggle="modal" data-bs-target="#modal1">
+                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal1">
                         <img src="{{ url_for('static', filename='images/recipe1.jpg') }}" class="card-img-top" alt="Chunky, Fluffy Orange Challah Bread">
                         <div class="card-body text-center">
                             <h5 class="card-title">Chunky, Fluffy Orange Challah Bread</h5>
@@ -53,148 +54,31 @@
                     </div>
                 </div>
 
-                <!-- Recipe 2 -->
-                <div class="carousel-item">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal2">
-                        <img src="{{ url_for('static', filename='images/communityredv.png') }}" class="card-img-top" alt="Red Chocolate Cake">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Red Chocolate Cake</h5>
-                            <p class="card-text text-muted">A rich twist on red velvet.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe 3 -->
-                <div class="carousel-item">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal3">
-                        <img src="{{ url_for('static', filename='images/recipe3.jpg') }}" class="card-img-top" alt="Pink Puff Pastry Delight">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Pink Puff Pastry Delight</h5>
-                            <p class="card-text text-muted">Beetroot + pastry = forever love.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe 4 -->
-                <div class="carousel-item">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal4">
-                        <img src="{{ url_for('static', filename='images/recipe4.jpg') }}" class="card-img-top" alt="Blue Chai Latte">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Blue Chai Latte</h5>
-                            <p class="card-text text-muted">Chai with a blue twist from our fans.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe 5 with rainbow border -->
-                <div class="carousel-item">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer; border: 4px solid; border-image-slice: 1; border-width: 4px; border-image-source: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);" data-bs-toggle="modal" data-bs-target="#modal5">
-                        <img src="{{ url_for('static', filename='images/recipe5.jpg') }}" class="card-img-top" alt="Green Matcha Cookies">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Green Matcha Cookies</h5>
-                            <p class="card-text text-muted">Vibrant, crunchy, and slightly healthy.</p>
-                            <span class="badge bg-success">Submitted by our community members!</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe 6 -->
-                <div class="carousel-item">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal6">
-                        <img src="{{ url_for('static', filename='images/recipe6.jpg') }}" class="card-img-top" alt="Sourdough Bread">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Sourdough Bread</h5>
-                            <p class="card-text text-muted">Master the sour rise.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Recipe 7 -->
-                <div class="carousel-item">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal8">
-                        <img src="{{ url_for('static', filename='images/recipe8.jpg') }}" class="card-img-top" alt="Croissants">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Croissants</h5>
-                            <p class="card-text text-muted">Perfect your flaky layers.</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
     </section>
 
     <!-- Recipe Modals -->
-    {% for recipe in [
-        {'id': 'modal1', 'title': 'Chunky, Fluffy Orange Challah Bread', 'steps': [
-            "In a bowl, combine warm water, yeast, and 1 tbsp sugar. Let it sit until foamy (10 min).",
-            "Add orange zest, eggs, oil, remaining sugar, and salt. Mix well.",
-            "Gradually add flour and knead until smooth. Let rise in a warm place (1–2 hours).",
-            "Braid the dough into your desired shape, then let it rise again (30–45 min).",
-            "Brush with egg wash and bake at 175°C (350°F) for 25–30 minutes until golden brown."
-        ]},
-        {'id': 'modal2', 'title': 'Red Chocolate Cake', 'steps': [
-            "Preheat oven to 175°C (350°F). Grease and flour cake pans.",
-            "Mix dry ingredients: flour, cocoa, baking soda, and salt.",
-            "Cream butter and sugar, then beat in eggs and red coloring.",
-            "Add dry mix alternately with buttermilk and vinegar.",
-            "Bake for 30 min. Cool completely before frosting with cream cheese icing."
-        ]},
-        {'id': 'modal3', 'title': 'Pink Puff Pastry Delight', 'steps': [
-            "Mix beetroot puree with pastry dough and chill.",
-            "Roll out dough, cut into triangles, and fill with the beetroot mixture.",
-            "Fold into puffs and bake until golden brown."
-        ]},
-        {'id': 'modal4', 'title': 'Blue Chai Latte', 'steps': [
-            "Brew strong chai tea, then add blue pea flower extract.",
-            "Steam milk and combine with chai mixture.",
-            "Serve hot with a sprinkle of cinnamon."
-        ]},
-        {'id': 'modal5', 'title': 'Green Matcha Cookies', 'steps': [
-            "Whisk matcha powder with flour, sugar, and baking powder.",
-            "Add butter and eggs to form dough.",
-            "Shape into cookies and bake at 180°C (350°F) for 12-15 minutes."
-        ]},
-        {'id': 'modal6', 'title': 'Sourdough Bread', 'steps': [
-            "Combine starter with water and flour, then let rise overnight.",
-            "Shape dough and let proof for a few hours.",
-            "Bake at 230°C (450°F) with steam for 25–30 minutes."
-        ]},
-        {'id': 'modal8', 'title': 'Croissants', 'steps': [
-            "Make the dough with flour, sugar, yeast, salt, and milk. Let rise.",
-            "Roll and layer with butter, fold, and chill (laminate).",
-            "Repeat folds and chills 2 more times.",
-            "Cut into triangles, roll into crescents, and proof until puffy.",
-            "Bake at 200°C (400°F) for 15–20 min until golden and flaky."
-        ]}
-    ] %}
-    <div class="modal fade" id="{{ recipe.id }}" tabindex="-1" aria-labelledby="{{ recipe.id }}Label" aria-hidden="true">
+    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="{{ recipe.id }}Label">{{ recipe.title }}</h5>
+                    <h5 class="modal-title" id="modal1Label">Chunky, Fluffy Orange Challah Bread</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <h6>Steps:</h6>
                     <ol>
-                        {% for step in recipe.steps %}
-                        <li>{{ step }}</li>
-                        {% endfor %}
+                        <li>Mix warm water, yeast, and 1 tbsp sugar. Let sit for 10 minutes.</li>
+                        <li>Add eggs, oil, zest, rest of sugar, and salt. Mix well.</li>
+                        <li>Slowly add flour, knead until smooth. Let rise for 1–2 hours.</li>
+                        <li>Braid the dough and let rise again for 30 minutes.</li>
+                        <li>Brush with egg wash. Bake at 175°C (350°F) for 25–30 min.</li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
-    {% endfor %}
 
     <!-- Discounts Modal -->
     <div class="modal fade" id="discountsModal" tabindex="-1" aria-labelledby="discountsModalLabel" aria-hidden="true">
@@ -211,7 +95,7 @@
                                 <img src="{{ url_for('static', filename='images/pink_croissant.jpg') }}" class="card-img-top" alt="Pink Baked Goods Discount">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold" style="color: #d63384;">25% Off Pink Baked Goods</h5>
-                                    <p class="card-text">Celebrate love and sweetness with our pink-themed delights! Enjoy 25% off on everything from beet puff pastries to rose cupcakes.</p>
+                                    <p class="card-text">Celebrate love and sweetness with our pink-themed delights! Enjoy 25% off on everything from beet puff pastries to rose cupcakes, with code PINKY25.</p>
                                     <span class="badge bg-danger">Limited Time</span>
                                 </div>
                             </div>
@@ -221,7 +105,7 @@
                                 <img src="{{ url_for('static', filename='images/red_velvet_cupcake.jpg') }}" class="card-img-top" alt="Red Baked Goods Discount">
                                 <div class="card-body">
                                     <h5 class="card-title fw-bold text-danger">25% Off Red Baked Goods</h5>
-                                    <p class="card-text">Treat yourself with our bold red delights—like red velvet cake and ruby chocolate cookies. Now 25% off for a limited time!</p>
+                                    <p class="card-text">Treat yourself with our bold red delights—like red velvet cake and ruby chocolate cookies. Now 25% off for a limited time, when you quote REDDY25!</p>
                                     <span class="badge bg-danger">Hot Deal</span>
                                 </div>
                             </div>
@@ -233,5 +117,4 @@
     </div>
 
 </div>
-
 {% endblock %}
