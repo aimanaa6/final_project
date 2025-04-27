@@ -7,7 +7,7 @@ def get_db_connection():
     return mysql.connector.connect(
         host="localhost",
         user="root",
-        password="password",
+        password="",
         database="kaasp",
         # cursorclass = pymysql.cursors.DictCursor
     )
@@ -66,7 +66,7 @@ def view_submissions():
     result_set = cursor.fetchall()
     submission_list = []
     for submission in result_set:
-        submission_list.append(submission)
+        submission_list.append({'query_id': submission[0], 'username': submission[1], 'subject_id': submission[2], 'message': submission[3], 'date': submission[4], 'customer_id': submission[5]})
     return submission_list
 
 
