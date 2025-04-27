@@ -160,7 +160,7 @@ h2 {
 
 p {
     color: #5c4b51;
-    font-size: 1.1rem; /* slightly bigger for better readability */
+    font-size: 1.5rem; /* slightly bigger for better readability */
     line-height: 1.6; /* extra breathing space */
 }
 
@@ -234,21 +234,9 @@ body {
       color: #d63384;
       padding: 40px;
       margin: 0;
-      background: linear-gradient(135deg,
-        #f8d6d6, /* pastel pink (lighter) */
-        #ffe6e6, /* pastel pink (lighter) */
-        #ffd9b3, /* pastel orange (lighter) */
-        #ffbf66, /* pastel orange (lighter) */
-        #fff9b8, /* pastel yellow (lighter) */
-        #fff4a3, /* pastel yellow (lighter) */
-        #d4f3d0, /* pastel green (lighter) */
-        #c2f7b7, /* pastel green (lighter) */
-        #c3d9f7, /* pastel blue (lighter) */
-        #a8d5f1, /* pastel blue (lighter) */
-        #e0cbe8, /* pastel purple (lighter) */
-        #d0bbd8  /* pastel purple (lighter) */
-    );
+      background: linear-gradient(to right, #ffc0cb, #ffe4e9);
 }
+/*background: linear-gradient(135deg, #fffaf0, #f5f5f5);*/
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Poppins', sans-serif;
     font-weight: 600;
@@ -260,6 +248,80 @@ a {
 }
 html.home-page {
     scroll-behavior: smooth;
+}
+
+.baker-img  {
+  width: 50%; /* much bigger! takes 35% of container width */
+  max-width: 500px; /* but limits so it doesn't get TOO big */
+  height: auto;
+  border-radius: 20px;
+  margin: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* deeper shadow for larger image */
+}
+.drinks {
+  position: relative;
+  padding: 6rem 2rem; /* More vertical space, smaller sides */
+  background: linear-gradient(to bottom right, #ffe4e1, #fffacd);
+  text-align: center;
+  overflow: hidden;
+}
+
+.corner-img {
+  position: absolute;
+  width: 350px; /* MUCH bigger now */
+  height: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInZoom 1.5s forwards;
+  z-index: 1;
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.bottom-left {
+  bottom: 40px;
+  left: 20px;
+}
+
+.bottom-right {
+  bottom: 10px;
+  right: 20px;
+}
+
+.staff {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom right, #f0f8ff, #ffe4e1);
+  text-align: center;
+  overflow: hidden;
+}
+
+.avatar-wrapper {
+  margin-top: 3rem;
+}
+
+.staff-img {
+  width: 220px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInZoom 1.5s forwards;
+}
+
+.center-avatar {
+  position: relative; /* Allow movement */
+  top: 50px;           /* Move it downwards (adjust as needed) */
+  left: 10px;          /* Move it slightly left (or right if you want) */
+  transform: none;     /* Remove automatic centering */
+  width: 150px;        /* Optional: resize avatar */
 }
 
 .welcome-section,
@@ -318,7 +380,7 @@ html.home-page {
 /* home page */
 .find-branch-link {
     text-decoration: none;  /* Remove underline from the link */
-    color: #ff4d4d;  /* Pink color for the link */
+    color: white;  /* Pink color for the link */
     font-size: 1.2em;  /* Set font size */
     padding: 10px 20px;  /* Add some padding for clickable area */
     border-radius: 5px;  /* Round the corners */
@@ -615,10 +677,12 @@ html.home-page {
 #steps-list {
   list-style: none;
   padding-left: 0;
+  font-size: 1.2rem;
 }
 
 #steps-list {
   padding-left: 1rem;
+  font-size: 1.2rem;
 }
 
 .reset-button-wrapper {
@@ -784,4 +848,98 @@ button:hover {
     100% {
         box-shadow: 0 0 0 0 rgba(255, 209, 220, 0);
     }
+}
+@keyframes fadeInZoom {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* RESPONSIVE: adjust images on smaller screens */
+@media (max-width: 992px) {
+  .corner-img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .corner-img {
+    width: 70px;
+  }
+}
+/* Responsive design */
+@media (max-width: 992px) {
+  .staff-img {
+    width: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .staff-img {
+    width: 120px;
+  }
+}
+/* Responsive sizes for avatars */
+.staff {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom right, #f0f8ff, #ffe4e1);
+  text-align: center;
+  overflow: hidden;
+}
+
+.staff-img {
+  position: absolute;
+  width: 350px; /* Default size */
+  height: auto;
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Avatar-specific corner positions */
+.avatar-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.avatar-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.avatar-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.avatar-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Center avatar */
+.avatar-center {
+  top: 450px;
+  left: 50%;
+  transform: translateX(-50%); /* This keeps it centered horizontally */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .staff-img {
+    width: 100px;
+  }
+  .avatar-center {
+    top: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-img {
+    width: 80px;
+  }
+  .avatar-center {
+    top: 350px;
+  }
 }

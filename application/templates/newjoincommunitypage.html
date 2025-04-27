@@ -5,12 +5,11 @@
 {% block content %}
 <div class="container mt-5">
     <h2>Welcome, {{ username }}!</h2>
-
     <!-- Button to trigger modal -->
     <button type="button" class="btn btn-primary" id="launchModalButton" data-bs-toggle="modal" data-bs-target="#thankYouModal" style="display:none;">
-        Launch Thank You Modal
+        Thank You!
     </button>
-
+    <img src="{{ url_for('static', filename='images/kaasp_logo.png') }}" alt="KAASP Rainbow Bakery Logo" style="display: block; margin: 0 auto; max-height: 400px;">
     <!-- Modal -->
     <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
         <div class="modal-dialog">

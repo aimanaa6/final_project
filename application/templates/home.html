@@ -8,10 +8,9 @@
             <div class="text-center">
                 <h1>{{ title }}</h1>
                 <img src="{{ url_for('static', filename='images/kaasp_logo.png') }}" alt="KAASP Rainbow Bakery Logo" style="max-height: 250px;">
-                <p class="lead">Delicious bakes, made fresh every day.</p>
                 <div class="mb-4">
                         <h2>Handcrafted with love</h2>
-                        <p>We offer a wide range of cakes, pastries, and breads — all baked daily with the finest ingredients.</p>
+                        <p>We offer a wide range of cakes, pastries, and drinks — all crafted daily with the finest ingredients.</p>
                         <a href="/menu" class="home-menu-btn">View Our Menu</a>  <!-- Temporarily hardcoded URL -->
                     </div>
                 </div>
@@ -90,28 +89,40 @@
     </section>
 
     <section class="container-fluid quality">
-        <h2>A Commitment to Quality and Service</h2>
-        <p>At KAASP Rainbow Bakery, we don't just bake; we craft. Quality is at the heart of everything we do. Each product is crafted with the finest ingredients, ensuring every bite is full of fresh, authentic flavor.
-            Our team is passionate about delivering not just delicious baked goods, but also an exceptional experience, filled with warmth, care, and attention to detail.
-            Whether you're stopping by for a morning treat or celebrating a special occasion, we are committed to making every visit a memorable one.</p>
+        <div class="content">
+
+         <img src="{{ url_for('static', filename='images/laughing_bakers.png') }}" alt="Laughing Bakers" class="baker-img"/>
+            <h2>A Commitment to Quality and Service</h2>
+            <p><strong>At KAASP Rainbow Bakery, we don't just bake; we craft. Quality is at the heart of everything we do. Each product is crafted with the finest ingredients, ensuring every bite is full of fresh, authentic flavor.</strong></p>
+            <p><strong>Our team is passionate about delivering not just delicious baked goods, but also an exceptional experience, filled with warmth, care, and attention to detail.</strong></p>
+            <p><strong>Whether you're stopping by for a morning treat or celebrating a special occasion, we are committed to making every visit a memorable one.</strong></p>
+            <img src="{{ url_for('static', filename='images/group_bakers.png') }}" alt="Group Bakers" class="baker-img"/>
+        </div>
     </section>
 
-    <section class="container-fluid drinks">
-        <h2>Our Drinks</h2>
-        <p>
-            Every sweet moment deserves the perfect sip.
-            At KAASP Rainbow Bakery, our drinks are made with handpicked ingredients and a sprinkle of joy.
-            From our colorful fruit coolers to our rich, comforting coffees, every drink is crafted to be the perfect companion to your favorite bake.
-        </p>
-    </section>
+  <section class="container-fluid drinks">
+    <img src="{{ url_for('static', filename='images/goldenchai_cartoon.png') }}" class="corner-img top-left" alt="Top Left Drink">
+    <img src="{{ url_for('static', filename='images/greenlemonade_cartoon.png') }}" class="corner-img top-right" alt="Top Right Drink">
+    <img src="{{ url_for('static', filename='images/lavendermilk_cartoon.png') }}" class="corner-img bottom-left" alt="Bottom Left Drink">
+    <img src="{{ url_for('static', filename='images/strawberrymilkshake_cartoon.png') }}" class="corner-img bottom-right" alt="Bottom Right Drink">
 
-    <section class="container-fluid staff">
-        <h2>The Lovely Staff</h2>
-        <p>
-            Behind every delicious bake and cheerful greeting at KAASP Rainbow Bakery is a team of passionate, caring people.
-            Our staff are more than just bakers and baristas — they're family.
-            With a love for creating sweet moments and a commitment to kindness, they help make every visit a little brighter.
-        </p>
-    </section>
+    <h2>Our Drinks</h2>
+    <p><strong>Every sweet moment deserves the perfect sip.</strong></p>
+    <p><strong>At KAASP Rainbow Bakery, our drinks are made with handpicked ingredients and a sprinkle of joy.</strong></p>
+    <p><strong>From our colorful fruit coolers to our rich, comforting coffees, every drink is crafted to be the perfect companion to your favorite bake.</strong></p>
+
+</section>
+<section class="container-fluid staff">
+        <div class="avatar-wrapper">
+            <img src="{{ url_for('static', filename='images/aiman_pose.png') }}" class="staff-img avatar-top-left" alt="Top Left Avatar">
+            <img src="{{ url_for('static', filename='images/kinga_pose.png') }}" class="staff-img avatar-top-right" alt="Top Right Avatar">
+            <img src="{{ url_for('static', filename='images/sami_pose.png') }}" class="staff-img avatar-bottom-left" alt="Bottom Left Avatar">
+            <img src="{{ url_for('static', filename='images/pooja_pose.png') }}" class="staff-img avatar-bottom-right" alt="Bottom Right Avatar">
+            <h2>The Lovely Staff</h2>
+            <p><strong>Behind every delicious bake and cheerful greeting at KAASP Rainbow Bakery is a team of passionate, caring people.</strong></p>
+            <p><strong>Our staff are more than just bakers and baristas — they're family.</strong></p>
+            <p><strong>With a love for creating sweet moments and a commitment to kindness, they help make every visit a little brighter.</strong></p>
+        </div>
+</section>
     {% endblock %}
 </body>
