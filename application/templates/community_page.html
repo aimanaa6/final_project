@@ -42,43 +42,67 @@
         <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
 
-                <!-- Example Recipe Card (only one for brevity) -->
-                <div class="carousel-item active">
-                    <div class="card mx-auto shadow-sm border-0" style="width: 75%; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#modal1">
-                        <img src="{{ url_for('static', filename='images/recipe1.jpg') }}" class="card-img-top" alt="Chunky, Fluffy Orange Challah Bread">
+                {% set recipes = [
+                    {'id': 1, 'title': 'Chunky, Fluffy Orange Challah Bread', 'img': 'orange_challah.jpg', 'desc': 'Amanda’s turmeric-powered bread recipe.', 'community': True},
+                    {'id': 2, 'title': 'Dreamy Blue Latte', 'img': 'blue_latte.jpg', 'desc': 'A calming butterfly pea flower latte.', 'community': False},
+                    {'id': 3, 'title': 'Green Swirly Cookie', 'img': 'green_cookie.jpg', 'desc': 'Matcha meets vanilla in this fun treat.', 'community': True},
+                    {'id': 4, 'title': 'Red Chocolate Cake', 'img': 'red_chocolate_cake.jpg', 'desc': 'Decadent cocoa with a cherry twist.', 'community': False},
+                    {'id': 5, 'title': 'Pink Glazed Donut', 'img': 'pink_donut.jpg', 'desc': 'Sweet, soft, and just the right amount of sparkle.', 'community': True}
+                ] %}
+
+                {% for recipe in recipes %}
+                <div class="carousel-item {% if loop.first %}active{% endif %}">
+                    <div class="card mx-auto shadow-sm border-0" style="width: 75%;" data-bs-toggle="modal" data-bs-target="#modal{{ recipe.id }}">
+                        <img src="{{ url_for('static', filename='images/' ~ recipe.img) }}" class="card-img-top" alt="{{ recipe.title }}">
                         <div class="card-body text-center">
-                            <h5 class="card-title">Chunky, Fluffy Orange Challah Bread</h5>
-                            <p class="card-text text-muted">Amanda’s turmeric-powered bread recipe.</p>
+                            <h5 class="card-title">{{ recipe.title }}</h5>
+                            <p class="card-text text-muted">{{ recipe.desc }}</p>
+                            {% if recipe.community %}
                             <span class="badge bg-success">Submitted by our community members!</span>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#recipeCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#recipeCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </button>
         </div>
     </section>
 
     <!-- Recipe Modals -->
-    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="modal1Label" aria-hidden="true">
+    {% for recipe in recipes %}
+    <div class="modal fade" id="modal{{ recipe.id }}" tabindex="-1" aria-labelledby="modal{{ recipe.id }}Label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modal1Label">Chunky, Fluffy Orange Challah Bread</h5>
+                    <h5 class="modal-title" id="modal{{ recipe.id }}Label">{{ recipe.title }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <h6>Steps:</h6>
                     <ol>
-                        <li>Mix warm water, yeast, and 1 tbsp sugar. Let sit for 10 minutes.</li>
-                        <li>Add eggs, oil, zest, rest of sugar, and salt. Mix well.</li>
-                        <li>Slowly add flour, knead until smooth. Let rise for 1–2 hours.</li>
-                        <li>Braid the dough and let rise again for 30 minutes.</li>
-                        <li>Brush with egg wash. Bake at 175°C (350°F) for 25–30 min.</li>
+                        <li>Gather your ingredients and preheat the oven or prep your workspace.</li>
+                        <li>Mix dry ingredients together in a large bowl.</li>
+                        <li>Whisk wet ingredients in a separate bowl until well combined.</li>
+                        <li>Slowly incorporate the wet mixture into the dry ingredients.</li>
+                        <li>Mix until a uniform dough/batter forms (adjust texture if needed).</li>
+                        <li>Shape, pour, roll, or prepare the mixture as required by the recipe.</li>
+                        <li>Let the dough/batter rest, rise, or chill as appropriate.</li>
+                        <li>Place into baking dish, tray, fryer, or serving glass.</li>
+                        <li>Bake, fry, chill, or stir until done (follow timing for your recipe).</li>
+                        <li>Finish with garnishes, frostings, glazes, or presentation flair!</li>
                     </ol>
                 </div>
             </div>
         </div>
     </div>
+    {% endfor %}
 
     <!-- Discounts Modal -->
     <div class="modal fade" id="discountsModal" tabindex="-1" aria-labelledby="discountsModalLabel" aria-hidden="true">
