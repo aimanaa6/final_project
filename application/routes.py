@@ -72,7 +72,7 @@ def newjoincommunitypage():
         username = session['username']
         return render_template('newjoincommunitypage.html', username=username, title='Thank You for Joining!')
     else:
-        return redirect(url_for('register'))  # 🔥 Important: if no username, go back to register
+        return redirect(url_for('register'))  # Important: if no username, go back to register
 
 
 @app.route('/login', methods=['GET', 'POST'])
