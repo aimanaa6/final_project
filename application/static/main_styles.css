@@ -160,7 +160,7 @@ h2 {
 
 p {
     color: #5c4b51;
-    font-size: 1.5rem; /* slightly bigger for better readability */
+    font-size: 1.2rem; /* slightly bigger for better readability */
     line-height: 1.6; /* extra breathing space */
 }
 
@@ -466,29 +466,50 @@ html.home-page {
 .card-content {
   padding: 20px;
 }
-.card.card-link {
-  cursor: pointer;
-  transition: transform 0.2s;
-  border: 3px solid;
-  border-image: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb) 1;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(255, 192, 203, 0.3);
-  position: relative;
+.card.card-link[data-type="bakery"] {
+    cursor: pointer;
+    background-color: #fff3cd; /* Light pastel yellow background */
+    border: 2px solid #7b5d8c; /* Soft purple border for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to make it pop */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-.card.card-link:hover {
-    box-shadow: 0 8px 18px rgba(255, 182, 193, 0.5); /* soft pink glow */
+
+.card.card-link[data-type="bakery"]:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
 }
-.badge.product-month {
-    background-color: #fff3cd; /* pastel yellow */
-    color: #7b5d8c; /* soft purple text */
-    font-size: 0.85rem;
-    padding: 6px 12px;
+
+.card.card-link[data-type="bakery"] .badge.product-month {
+    background-color: #7b5d8c; /* Soft purple background for the badge */
+    color: #fff; /* White text for contrast */
+    font-size: 1rem;
+    padding: 8px 14px;
     border-radius: 20px;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
     letter-spacing: 0.5px;
     text-transform: uppercase;
     animation: pulse 3s infinite;
+}
+
+.card.card-link[data-type="bakery"] .card-content {
+    padding: 16px;
+}
+
+.card.card-link[data-type="bakery"] .item-name {
+    font-size: 1.2rem; /* Slightly bigger font size for item name */
+    font-weight: bold;
+    color: #7b5d8c; /* Soft purple text */
+}
+
+.card.card-link[data-type="bakery"] .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #7b5d8c; /* Soft purple text */
+}
+
+.card.card-link[data-type="bakery"] .description {
+    color: #7b5d8c; /* Soft purple text */
 }
 .item-name {
   font-size: 1.1em;

@@ -32,7 +32,7 @@ def register_customer(username, first_name, last_name, email, plain_password):
     # Trying to insert a duplicate value in a column with UNIQUE constraint (e.g., username already exists). - IntegrityError PyMySQL
     except mysql.connector.IntegrityError:
         return False
-    # This block always runs, whether an error happened or not.
+    # This block always runs, whether an error happened or not.mysql.connector.IntegrityError:
     finally:
         cursor.close()
         conn.close()
@@ -66,8 +66,9 @@ def view_submissions():
     result_set = cursor.fetchall()
     submission_list = []
     for submission in result_set:
-        submission_list.append(submission)
-    return submission_list
+        submission_list.append({'query_id': submission[0], 'username': submission[1], 'subject_id': submission[2],
+                                'message': submission[3], 'date': submission[4], 'customer_id': submission[5]})
+        return submission_list
 
 
 # from flask import render_template, url_for, request, redirect, session

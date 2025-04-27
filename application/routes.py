@@ -1,4 +1,3 @@
-import mysql.connector
 from flask import render_template, url_for, request, redirect, session, abort
 import bcrypt
 from application import app
@@ -124,7 +123,7 @@ def contact():
         conn = get_db_connection()
         try:
             with conn.cursor(dictionary=True) as cursor:
-                # Get user and subject info - with conn.cursor as cursor - PyMySQL:
+                # Get user and subject info - with conn.cursor() as cursor - PyMySQL:
                 cursor.execute("SELECT customer_id FROM customers WHERE username = %s", (username,))
                 user_result = cursor.fetchone()
 
@@ -169,7 +168,6 @@ def contact():
             f.write(message)
             f.close()
 
-
         finally:
             conn.close()
 
@@ -181,6 +179,7 @@ def logout():
     # remove the username from the session if it is there
     session.pop('username', None)
     session.pop('role', None)
+    session.pop('admin', None)
     session['loggedIn'] = False
     return redirect(url_for('home'))
 
@@ -196,7 +195,6 @@ def adminviewsubmissions():
         submission_list_db = view_submissions()
         print(submission_list_db)
 
-
     except (mysql.connector.OperationalError, mysql.connector.InternalError) as err:
             f = open("exceptionlog.txt", "a")
             f.write(str(err) + "\n")
@@ -210,7 +208,8 @@ def adminviewsubmissions():
             'adminviewsubmissions.html',
             title='View Submissions',
             current_date=datetime.date.today(),
-            contactus=submission_list_db)
+            contactus=submission_list_db
+    )
 
 
 
