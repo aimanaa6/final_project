@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}Thank You from KAASP{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <h2>Contact Us</h2>
+  <form method="POST" action="{{ url_for('contact') }}">
+    <label for="username">Username:</label>
+    <input type="text" name="username" id="username"
+       value="{{ session['username'] if session.get('username') else '' }}"
+       {% if session.get('username') %}readonly{% endif %} required>
+
+    <label for="subject_id">Subject:</label>
+    <select name="subject_id" id="subject_id" required>
+      <option value="">-- Select a Subject --</option>
+      <option value="Allergy complaint">Allergy complaint</option>
+      <option value="Ingredients question">Ingredients question</option>
+      <option value="Recipe">Recipe</option>
+      <option value="Bakery feedback">Bakery feedback</option>
+      <option value="Job Posting">Job Posting</option>
+      <option value="Culture">Culture</option>
+      <option value="Sustainability">Sustainability</option>
+      <option value="General">General</option>
+      <option value="Product feedback">Product feedback</option>
+    </select>
+
+    <label for="message">Your Message:</label>
+    <textarea name="message" id="message" rows="4" required></textarea>
+
+    <button type="submit" class="btn btn-success mt-3">Submit</button>
+  </form>
+</div>
+
+<div class="container">
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title" id="thankYouModalLabel">Thank You!</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for reaching out!</p>
+                    <p>We've received your message and will get back to you shortly. While you wait, treat yourself to something sweet from our menu.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('home') }}" class="btn btn-outline-success">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if session.pop('show_modal', None) %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const thankYouModal = new bootstrap.Modal(document.getElementById('thankYouModal'));
+        thankYouModal.show();
+    });
+</script>
+{% endif %}
+{% endblock %}

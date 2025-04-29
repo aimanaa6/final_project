@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block title %}404 - Page Not Found{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Oops! Page Not Found</h1>
+    <p class="lead text-center">
+        It looks like the page you’re looking for doesn’t exist.
+    </p>
+    <p class="text-center">
+        Maybe you followed a broken link or typed something wrong — happens to the best of us!
+    </p>
+    <div class="text-center mt-5">
+        <a href="{{ url_for('home') }}" class="return-btn">Return to Home</a>
+    </div>
+</div>
+{% endblock %}

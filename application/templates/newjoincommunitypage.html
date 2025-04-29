@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}Thank You from KAASP{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Welcome, {{ username }}!</h2>
+    <!-- Button to trigger modal -->
+    <button type="button" class="btn btn-primary" id="launchModalButton" data-bs-toggle="modal" data-bs-target="#thankYouModal" style="display:none;">
+        Thank You!
+    </button>
+    <img src="{{ url_for('static', filename='images/kaasp_logo.png') }}" alt="KAASP Rainbow Bakery Logo" style="display: block; margin: 0 auto; max-height: 400px;">
+    <!-- Modal -->
+    <div class="modal fade" id="thankYouModal" tabindex="-1" aria-labelledby="thankYouModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content shadow">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="thankYouModalLabel">Thank You!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for signing up to our newsletter/community. We have received your subscription and will keep you updated with our latest news and offers.</p>
+                    <p>Feel free to browse our community!</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="{{ url_for('community_page') }}" class="btn btn-outline-primary">Go to Community Page</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const launchModalButton = document.getElementById('launchModalButton');
+    {% if session.pop('show_modal', None) %}
+        launchModalButton.style.display = 'block';
+        launchModalButton.click();
+    {% endif %}
+});
+</script>
+{% endblock %}
+
+

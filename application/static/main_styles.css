@@ -1,0 +1,966 @@
+
+.navbar-spacer {
+    height: 150px; /* match navbar height - inspect tool*/
+}
+/* Navbar background */
+.custom-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--navbar-height);
+    background: linear-gradient(to right, #ffd1dc, #d0f0c0, #a2d2ff);
+    z-index: 1000;
+    padding: 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.custom-navbar .navbar-brand img {
+    max-height: 60px;
+}
+
+.custom-navbar .navbar-brand span {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #443434;
+}
+/* Navbar brand text */
+.custom-navbar .navbar-brand { /* << was missing .custom-navbar before */
+    color: #443434 !important; /* Deep warm brown for brand */
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+}
+
+/* Navbar links */
+.custom-navbar .nav-link,
+.custom-navbar .dropdown-toggle {
+    color: #443434;
+    font-weight: 600;
+    font-size: 1rem; /* slightly smaller text */
+    letter-spacing: 0.5px;
+    margin: 0 8px; /* tighter spacing between links */
+    padding: 6px 10px; /* reduce padding */
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    white-space: nowrap; /* <<< this forces nav links to stay in one line */
+}
+
+/* Navbar links hover - pastel pill effect */
+.custom-navbar .nav-link:hover,
+.custom-navbar .dropdown-toggle:hover {
+    background-color: rgba(255, 209, 220, 0.8); /* Light pastel pink background on hover */
+    color: #443434;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);/* Soft little shadow */
+}
+
+/* Active page link */
+.custom-navbar .nav-link.active {
+    background-color: rgba(255, 209, 220, 1);
+    color: #443434;
+    font-weight: 700;
+}
+
+/* Dropdown menu background */
+.dropdown-menu {
+    background-color: #fff5f8; /* Soft creamy pink */
+}
+
+/* Dropdown items */
+.dropdown-item {
+    color: #5c4b51 !important; /* Soft cocoa text */
+}
+
+/* Dropdown item hover */
+.dropdown-item:hover {
+    background-color: #ffe4ec;
+    border-radius: 20px; /* Soft rounded hover */
+    color: #7b5d8c !important; /* Dusty lavender text on hover */
+}
+
+/* Navbar toggler (burger menu) */
+.navbar-toggler {
+    border-color: #5c4b51;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(92,75,81, 0.7)' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+.hero {
+    background: linear-gradient(135deg, #ff7a7a, #ffb84d);
+    color: white;
+    padding: 50px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 3em;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+.locations-section {
+  background-color: #fbeaff; /* pastel lilac */
+  padding: 60px 20px;
+  width: 100%;
+}
+
+.locations-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+}
+
+.locations-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #a84bb5;
+}
+
+.location-card {
+  background-color: lightblue;
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+}
+
+.location-card h3 {
+  margin-top: 0;
+  color: #e68ed9;
+}
+
+.quality, .drinks, .staff {
+    background-color: #fff9b8;
+    padding: 40px;
+    text-align: center;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ff7a7a;
+    font-size: 2em;
+    font-family: 'Poppins', sans-serif;
+}
+
+p {
+    color: #5c4b51;
+    font-size: 1.2rem; /* slightly bigger for better readability */
+    line-height: 1.6; /* extra breathing space */
+}
+
+/* Pastel Colors */
+.pastel-pink {
+    background-color: #f8d6d6;
+}
+
+.pastel-orange {
+    background-color: #ffd9b3;
+}
+
+.pastel-yellow {
+    background-color: #fff9b8;
+}
+
+.pastel-green {
+    background-color: #d4f3d0;
+}
+
+.pastel-blue {
+    background-color: #c3d9f7;
+}
+
+.pastel-purple {
+    background-color: #e0cbe8;
+}
+
+/*.welcome-bg {
+    background-color: #f8d6d6; /* Pastel Pink */
+
+.customer-faves-bg {
+    background-color: #ffd9b3; /* Pastel Orange */
+}
+
+.locations-bg {
+    background-color: #c3d9f7; /* Pastel Blue */
+}
+
+.quality-bg {
+    background-color: #d4f3d0; /* Pastel Green */
+}
+.home-menu-btn,
+.return-btn,
+.find-branch-link {
+    background-color: #ff7a7a;  /* Pink background */
+    color: white;  /* White text color */
+    border: none;  /* No border */
+    padding: 15px 30px;  /* Vertical and horizontal padding */
+    font-size: 1.2em;  /* Font size */
+    font-family: 'Arial', sans-serif;  /* Font family */
+    border-radius: 50px;  /* Fully rounded corners */
+    cursor: pointer;  /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transitions */
+}
+
+.home-menu-btn,
+.return-btn {
+    background-color: #ff4d4d;  /* Darker pink on hover */
+    transform: scale(1.05);  /* Slightly enlarge button on hover */
+}
+
+.home-menu-btn,
+.return-btn {
+    outline: none;  /* Remove outline when focused */
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Use regular weight by default */
+    line-height: 1.6; /* Improve readability */
+      color: #d63384;
+      padding: 40px;
+      margin: 0;
+      background: linear-gradient(to right, #ffc0cb, #ffe4e9);
+}
+/*background: linear-gradient(135deg, #fffaf0, #f5f5f5);*/
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    text-align: center/* Bold for headings */
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+html.home-page {
+    scroll-behavior: smooth;
+}
+
+.baker-img  {
+  width: 50%; /* much bigger! takes 35% of container width */
+  max-width: 500px; /* but limits so it doesn't get TOO big */
+  height: auto;
+  border-radius: 20px;
+  margin: 1.5rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2); /* deeper shadow for larger image */
+}
+.drinks {
+  position: relative;
+  padding: 6rem 2rem; /* More vertical space, smaller sides */
+  background: linear-gradient(to bottom right, #ffe4e1, #fffacd);
+  text-align: center;
+  overflow: hidden;
+}
+
+.corner-img {
+  position: absolute;
+  width: 350px; /* MUCH bigger now */
+  height: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInZoom 1.5s forwards;
+  z-index: 1;
+}
+
+.top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.bottom-left {
+  bottom: 40px;
+  left: 20px;
+}
+
+.bottom-right {
+  bottom: 10px;
+  right: 20px;
+}
+
+.staff {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom right, #f0f8ff, #ffe4e1);
+  text-align: center;
+  overflow: hidden;
+}
+
+.avatar-wrapper {
+  margin-top: 3rem;
+}
+
+.staff-img {
+  width: 220px;
+  height: auto;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeInZoom 1.5s forwards;
+}
+
+.center-avatar {
+  position: relative; /* Allow movement */
+  top: 50px;           /* Move it downwards (adjust as needed) */
+  left: 10px;          /* Move it slightly left (or right if you want) */
+  transform: none;     /* Remove automatic centering */
+  width: 150px;        /* Optional: resize avatar */
+}
+
+.welcome-section,
+.customerfaves-section,
+.hero,
+.locations-section,
+.quality,
+.drinks,
+.staff  {
+    width: 100%;
+    max-width:100%;
+    overflow-x: hidden;
+    min-height: 100vh; /* full screen height */
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#welcome {
+    background: linear-gradient(to right, #ffc1cc, #ffe4b5);
+    color: #3d3d3d;
+}
+
+#customerfaves {
+    background: linear-gradient(to right, #ffe4b5, #ffffcc);
+    color: #3d3d3d;
+}
+
+.hero {
+    background: linear-gradient(to right, #ffffcc, #c1e1c1);
+    color: #3d3d3d;
+}
+
+.locations-section {
+    background: linear-gradient(to right, #c1e1c1, #a2d2ff);
+    color: #3d3d3d;
+}
+
+.quality {
+    background: linear-gradient(to right, #a2d2ff, #d0bdf4);
+    color: #3d3d3d;
+}
+
+.drinks {
+    background: linear-gradient(to right, #d0bdf4, #f3c4fb);
+    color: #3d3d3d;
+}
+
+.staff {
+    background: linear-gradient(to right, #f3c4fb, #ffc1cc);
+    color: #3d3d3d;
+}
+/* home page */
+.find-branch-link {
+    text-decoration: none;  /* Remove underline from the link */
+    color: white;  /* Pink color for the link */
+    font-size: 1.2em;  /* Set font size */
+    padding: 10px 20px;  /* Add some padding for clickable area */
+    border-radius: 5px;  /* Round the corners */
+    background-color: #f7a6b3;  /* Light pink background */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.find-branch-link:hover {
+    background-color: #f1a7c5;  /* Lighter pink when hovered */
+    transform: scale(1.05);  /* Slightly enlarge the link on hover */
+}
+
+.bounce {
+  transform: scale(1.1);
+  transition: transform 0.3s;
+}
+.img-hover {
+        position: relative;
+        overflow: hidden;
+}
+
+.img-hover img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.img-hover:hover img {
+    transform: scale(1.1); /* Enlarge image on hover */
+}
+
+.img-description {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+    background-color: #f8d6d6;
+    color: white;
+    padding: 10px;
+    visibility: hidden;
+    transition: visibility 0.3s ease;
+}
+
+.img-hover:hover .img-description {
+    visibility: visible; /* Show description on hover */
+}
+
+.img-description h5 {
+    margin: 0;
+    font-size: 1.25rem;
+}
+
+.img-description p {
+    font-size: 1rem;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  background: #F4D6CC;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 20px;
+}
+.card.card-link[data-type="bakery"] {
+    cursor: pointer;
+    background-color: #fff3cd; /* Light pastel yellow background */
+    border: 2px solid #7b5d8c; /* Soft purple border for contrast */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow to make it pop */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.card.card-link[data-type="bakery"]:hover {
+    transform: scale(1.05); /* Slightly enlarge the card on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Increase shadow on hover */
+}
+
+.card.card-link[data-type="bakery"] .badge.product-month {
+    background-color: #7b5d8c; /* Soft purple background for the badge */
+    color: #fff; /* White text for contrast */
+    font-size: 1rem;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-weight: bold;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    animation: pulse 3s infinite;
+}
+
+.card.card-link[data-type="bakery"] .card-content {
+    padding: 16px;
+}
+
+.card.card-link[data-type="bakery"] .item-name {
+    font-size: 1.2rem; /* Slightly bigger font size for item name */
+    font-weight: bold;
+    color: #7b5d8c; /* Soft purple text */
+}
+
+.card.card-link[data-type="bakery"] .price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #7b5d8c; /* Soft purple text */
+}
+
+.card.card-link[data-type="bakery"] .description {
+    color: #7b5d8c; /* Soft purple text */
+}
+.item-name {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.description {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #666; /* optional: makes it a soft grey */
+  margin-top: 8px; /* optional: adds space above */
+}
+
+/* Modal Header Customization */
+.modal-header {
+    background-color: #f7a6b3;  /* Soft pastel red-pink background */
+    color: white;  /* White text */
+    border-radius: 10px 10px 0 0;  /* Rounded top corners */
+    padding: 20px;
+}
+
+.modal-header h5 {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.4em;
+}
+
+/* Custom Close Button */
+.btn-close {
+    background-color: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: white;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+/* Hover Effect on Close Button */
+.btn-close:hover {
+    color: #f1a7c5;  /* Lighter pastel pink on hover */
+}
+
+/* Footer Button Customization */
+.modal-footer .btn-close {
+    background-color: #f7a6b3;  /* Pastel red-pink for footer button */
+    color: white;
+    font-size: 1.2em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer .btn-close:hover {
+    background-color: #f1a7c5;  /* Lighter pastel pink when hovered */
+}
+
+
+.allergens {
+  font-size: 0.85em;
+  font-style: italic;
+  color: #666; /* optional: makes it a soft grey */
+  margin-top: 8px; /* optional: adds space above */
+}
+
+.price {
+  font-size: 1em;
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.overlay-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.featured-product-overlay {
+  position: relative;
+  max-width: 900px;
+  margin: auto;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  z-index: 10;
+  text-align: center;
+  font-weight: bold;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6); /* Optional: adds readability */
+}
+
+.overlay-text h2 {
+  font-size: 2rem;
+  color: white;
+}
+
+.overlay-text p {
+  font-size: 1.2rem;
+  color: white;
+}
+.back-button {
+    color: white;
+    background: #B88C9E;
+    font-weight: 600;
+    font-size: 0.85rem; /* slightly smaller font */
+    border: none;
+    padding: 0.3rem 0.8rem; /* smaller padding */
+    border-radius: 50px;
+    transition: 0.3s ease;
+    box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+    transform: scale(1.05);
+    box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
+}
+.btn-outline-info {
+  background-color:#f8a6c4;
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem; /* slightly smaller font */
+  border: none;
+  padding: 0.3rem 0.8rem; /* smaller padding */
+  border-radius: 50px;
+  transition: 0.3s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+  transform: scale(1.05);
+  box-shadow: 0 6px 14px rgba(248, 166, 196, 0.6);
+}
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem 0;
+  flex-wrap: wrap; /* if you want it to wrap on smaller screens */
+}
+.btn-all-filter,
+.btn-bakery-filter,
+.btn-drink-filter {
+  background-color: #fcd6e5;
+  color: #7a1f4c;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 50px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 3px 8px rgba(252, 214, 229, 0.5);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-all-filter:hover,
+.btn-bakery-filter:hover,
+.btn-drink-filter:hover,
+.back-button:hover {
+  background-color: #fbaecf;
+  transform: scale(1.05);
+}
+.why-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid #eac7e7;
+  border-radius: 1rem;
+  background-color: #fff0f6;
+  font-family: 'Segoe UI', sans-serif;
+}
+.recipe-section {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 2px solid #eac7e7;
+  border-radius: 1rem;
+  background-color: #fff0f6;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.recipe-section h2 {
+  color: #7a1f4c;
+}
+
+.recipe-section h3 {
+  color: #b05c88;
+}
+
+#ingredients-list,
+#steps-list {
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.2rem;
+}
+
+#steps-list {
+  padding-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.reset-button-wrapper {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.reset-button {
+  background-color: #fcd6e5;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 25px;
+  font-weight: bold;
+  color: #7a1f4c;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.reset-button:hover {
+  background-color: #fbb6d2;
+}
+
+
+.login-container {
+  width: 350px;
+  margin: 80px auto;
+  padding: 30px;
+  background-color: #FFF0F2; /* Soft blush background */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #4B4B4B;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #4B4B4B;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #FF6F91;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff4f75;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.register-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register-link a {
+  color: #FF6F91;
+  text-decoration: underline;
+}
+
+/* @ media - rule that CSS tells the browser - Smaller screens - tablets and small laptops (<=768px) */
+@media (max-width: 768px) {
+
+    /* Sections - less tall on mobile */
+    section {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    /* Navbar smaller */
+    .custom-navbar {
+        min-height: 90px;
+    }
+
+    /* Navbar spacer smaller */
+    .navbar-spacer {
+        height: 90px;
+    }
+
+    /* Brand logo smaller */
+    .custom-navbar .navbar-brand img {
+        max-height: 40px;
+    }
+
+    /* Brand text smaller */
+    .custom-navbar .navbar-brand span {
+        font-size: 1rem;
+    }
+
+    /* Push main content down less */
+    main {
+        padding-top: 100px;
+    }
+}
+
+/* Even smaller screens - mobile phones (<=576px) */
+@media (max-width: 576px) {
+
+    /* Navbar even smaller */
+    .custom-navbar {
+        min-height: 80px;
+    }
+
+    /* Spacer even smaller */
+    .navbar-spacer {
+        height: 80px;
+    }
+
+    /* Brand logo even smaller */
+    .custom-navbar .navbar-brand img {
+        max-height: 35px;
+    }
+
+    /* Brand text even smaller */
+    .custom-navbar .navbar-brand span {
+        font-size: 0.9rem;
+    }
+
+    /* Push main content down slightly less */
+    main {
+        padding-top: 90px;
+    }
+
+    /* Wider container on mobile */
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 209, 220, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 209, 220, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 209, 220, 0);
+    }
+}
+@keyframes fadeInZoom {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* RESPONSIVE: adjust images on smaller screens */
+@media (max-width: 992px) {
+  .corner-img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  .corner-img {
+    width: 70px;
+  }
+}
+/* Responsive design */
+@media (max-width: 992px) {
+  .staff-img {
+    width: 160px;
+  }
+}
+
+@media (max-width: 576px) {
+  .staff-img {
+    width: 120px;
+  }
+}
+/* Responsive sizes for avatars */
+.staff {
+  position: relative;
+  padding: 6rem 2rem;
+  background: linear-gradient(to bottom right, #f0f8ff, #ffe4e1);
+  text-align: center;
+  overflow: hidden;
+}
+
+.staff-img {
+  position: absolute;
+  width: 350px; /* Default size */
+  height: auto;
+  z-index: 1;
+  opacity: 1;
+}
+
+/* Avatar-specific corner positions */
+.avatar-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.avatar-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.avatar-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.avatar-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Center avatar */
+.avatar-center {
+  top: 450px;
+  left: 50%;
+  transform: translateX(-50%); /* This keeps it centered horizontally */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .staff-img {
+    width: 100px;
+  }
+  .avatar-center {
+    top: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-img {
+    width: 80px;
+  }
+  .avatar-center {
+    top: 350px;
+  }
+}
